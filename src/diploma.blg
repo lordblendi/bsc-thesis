@@ -4,13 +4,14 @@ A level-1 auxiliary file: include/titlepage.aux
 A level-1 auxiliary file: include/declaration.aux
 A level-1 auxiliary file: content/abstract.aux
 A level-1 auxiliary file: content/introduction.aux
-A level-1 auxiliary file: content/chapter1.aux
-A level-1 auxiliary file: content/chapter2.aux
-A level-1 auxiliary file: content/chapter3.aux
-A level-1 auxiliary file: content/chapter4.aux
-A level-1 auxiliary file: content/chapter5.aux
-A level-1 auxiliary file: content/chapter6.aux
-A level-1 auxiliary file: content/chapter7.aux
+A level-1 auxiliary file: content/2-comparing-frameworks.aux
+A level-1 auxiliary file: content/3-specification.aux
+A level-1 auxiliary file: content/4-conceptual.aux
+A level-1 auxiliary file: content/5-design.aux
+A level-1 auxiliary file: content/6-implementation.aux
+A level-1 auxiliary file: content/7-test.aux
+A level-1 auxiliary file: content/8-deployment.aux
+A level-1 auxiliary file: content/9-conclusion.aux
 A level-1 auxiliary file: content/acknowledgement.aux
 A level-1 auxiliary file: content/appendices.aux
 Database file #1: bib/diploma.bib

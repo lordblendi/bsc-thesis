@@ -1,19 +1,20 @@
 \select@language {magyar} \contentsline {chapter}{Kivonat}{i}{chapter*.2}
 \select@language {english} \contentsline {chapter}{Abstract}{ii}{chapter*.3}
-\select@language {english} \contentsline {chapter}{Introduction}{1}{chapter*.4}
-\select@language {english} \contentsline {chapter}{\numberline {1}Funkcion\IeC {\'a}lis specifik\IeC {\'a}ci\IeC {\'o}}{2}{chapter.1}
-\select@language {english} \contentsline {chapter}{\numberline {2}Rendszerterv}{3}{chapter.2}
-\select@language {english} \contentsline {chapter}{\numberline {3}backend+db}{4}{chapter.3}
-\select@language {english} \contentsline {chapter}{\numberline {4}Comparing JavaScript Frameworks}{5}{chapter.4}
-\select@language {english} \contentsline {section}{\numberline {4.1}React}{5}{section.4.1}
-\select@language {english} \contentsline {section}{\numberline {4.2}AngularJS}{5}{section.4.2}
-\select@language {english} \contentsline {section}{\numberline {4.3}Mithril}{6}{section.4.3}
-\select@language {english} \contentsline {section}{\numberline {4.4}Conclusion}{6}{section.4.4}
-\select@language {english} \contentsline {chapter}{\numberline {5}interf\IeC {\'e}szek defini\IeC {\'a}l\IeC {\'a}sa}{7}{chapter.5}
-\select@language {english} \contentsline {chapter}{\numberline {6}fel\IeC {\"u}letek elk\IeC {\'e}sz\IeC {\'\i }t\IeC {\'e}s\IeC {\'e}nek dokument\IeC {\'a}l\IeC {\'a}sa}{8}{chapter.6}
-\select@language {english} \contentsline {chapter}{\numberline {7}tesztel\IeC {\'e}s \IeC {\'e}s \IeC {\'e}rt\IeC {\'e}kel\IeC {\'e}s}{9}{chapter.7}
-\select@language {english} \contentsline {chapter}{Acknowledgements}{iii}{chapter*.5}
-\select@language {english} \contentsline {chapter}{List of Figures}{iv}{chapter*.6}
-\select@language {english} \contentsline {chapter}{List of Tables}{v}{chapter*.7}
-\select@language {english} \contentsline {chapter}{Bibliography}{vi}{chapter*.8}
-\select@language {english} \contentsline {chapter}{Appendix}{vii}{appendix*.9}
+\select@language {english} \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\select@language {english} \contentsline {chapter}{\numberline {2}Comparing JavaScript Frameworks}{2}{chapter.2}
+\select@language {english} \contentsline {section}{\numberline {2.1}React}{2}{section.2.1}
+\select@language {english} \contentsline {section}{\numberline {2.2}AngularJS}{2}{section.2.2}
+\select@language {english} \contentsline {section}{\numberline {2.3}Mithril}{3}{section.2.3}
+\select@language {english} \contentsline {section}{\numberline {2.4}Conclusion}{3}{section.2.4}
+\select@language {english} \contentsline {chapter}{\numberline {3}specification}{4}{chapter.3}
+\select@language {english} \contentsline {chapter}{\numberline {4}conceptual}{5}{chapter.4}
+\select@language {english} \contentsline {chapter}{\numberline {5}design}{6}{chapter.5}
+\select@language {english} \contentsline {chapter}{\numberline {6}implementation}{7}{chapter.6}
+\select@language {english} \contentsline {chapter}{\numberline {7}test}{8}{chapter.7}
+\select@language {english} \contentsline {chapter}{\numberline {8}deployment}{9}{chapter.8}
+\select@language {english} \contentsline {chapter}{\numberline {9}conclusion}{10}{chapter.9}
+\select@language {english} \contentsline {chapter}{Acknowledgements}{iii}{chapter*.4}
+\select@language {english} \contentsline {chapter}{List of Figures}{iv}{chapter*.5}
+\select@language {english} \contentsline {chapter}{List of Tables}{v}{chapter*.6}
+\select@language {english} \contentsline {chapter}{Bibliography}{vi}{chapter*.7}
+\select@language {english} \contentsline {chapter}{Appendix}{vii}{appendix*.8}
