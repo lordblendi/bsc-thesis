@@ -1,6 +1,15 @@
 \chapter{Comparing JavaScript Frameworks}
 
-I've worked in vanilla JavaScript and jQuery before but for this project I wanted to choose a JavaScript framework for faster development. I was looking for something fast to learn and easy to use with good documentation and tutorials. With the help of TodoMVC~\cite{TodoMVC} I tried some frameworks to see how fast I can create a simple website with a basic AJAX request, read the documentation to find out how routing works and how can I access a server with AJAX requests. 
+For the project I wanted to choose a JavaScript framework for faster developement than using plain JavaScript with jQuery. I chose the TodoMVC~\cite{TodoMVC} website to find the most popular frameworks.
+
+I tried these frameworks to see how fast and easily can I build a basic website, how can I access a server with AJAX requests and how routing and data binding works.
+
+In JavaScript with AJAX requests we can send requests to a server asynchronously without reloading a page. In a single-page application we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser won't reload the whole page, it will just simply load the new view into the old frame. Everything happens in the background so the application won't force the user to wait while it sends data to a server.  If the application is retrieving data, then when it arrives, the application can process it and show the result to the user.
+
+
+There are two types of routings. Routing can be either a way to manipulate browser's URL and the part of a web application what decides which controller will handle the requests. I was looking for a solution for URL manipulation.
+
+The classic data binding model is when the view template and the data from the model are merged together to create the to be displayed view. Any data changes in the view won't automatically sync into the model. The developer has to write the controller what syncs the changes between the model and the view.~\cite{Angular-Developer-DataBinding}
 
 
 \section{React}
