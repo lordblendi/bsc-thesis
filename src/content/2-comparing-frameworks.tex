@@ -4,45 +4,49 @@ For the project I wanted to choose a JavaScript framework for faster developemen
 
 I tried these frameworks to see how fast and easily can I build a basic website, how can I access a server with AJAX requests and how routing and data binding works.
 
-In JavaScript with AJAX requests we can send requests to a server asynchronously without reloading a page. In a single-page application we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser won't reload the whole page, it will just simply load the new view into the old frame. Everything happens in the background so the application won't force the user to wait while it sends data to a server.  If the application is retrieving data, then when it arrives, the application can process it and show the result to the user.
-
+In JavaScript with AJAX requests we can send requests to a server asynchronously without reloading a page. In a single-page application we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser won't reload the whole page, it will just simply load the new view into the old frame. Everything happens in the background so the application won't force the user to wait while it sends data to a server. If the application is retrieving data, then when it arrives, the application can process it and show the result to the user.
 
 There are two types of routings. Routing can be either a way to manipulate the browser's URL and the part of a web application what decides which controller will handle the requests. I was looking for a solution for URL manipulation.
 
-The classic data binding model is when the view template and the data from the model are merged together to create the to be displayed view. Any data changes in the view won't automatically sync into the model. The developer has to write the controller what syncs the changes between the model and the view.~\cite{Angular-Developer-DataBinding}
+The classic data binding model is when the view template and the data from the model are merged together to create the to be displayed view. Any data changes in the view won't automatically sync into the model. The developer has to write the controller what syncs the changes between the model and the view~\cite{Angular-Developer-DataBinding}.
 
-%
-%\section{React}
-%
-%My first choice was React~\cite{React}. It is developed by Facebook and Instagram since 2013. With the help of the official website tutorials and videos I've managed to create websites easily with JSX~\cite{JSX} because I can use XML-like syntax for creating views. 
-%
-%After reading the documentation I found out that it gave me no other option than inline jQuery for AJAX requests and routing is not part of the main core although there are many good routing libraries, e.g. React/Router~\cite{React-Router}. 
-%
-%
-%\section{AngularJS}
-%
-%AngularJS~\cite{Angular} is one of the most famous JavaScript frameworks nowadays.  It is maintained by Google for 6 years now. It focuses mostly on dynamic views in web-applications. On the homepage they provide many examples in written tutorials and videos on YouTube. 
-%
-%Creating a website is done with an extended HTML vocabulary, like Android Layouts where you declare everything in XML. Building a website wasn't that hard but the data binding is different. It uses a two-way data binding template~\cite{Angular-Developer-DataBinding} which means whenever either the View or the Model is changed, it will update the other one.
-%
-%Angular AJAX requests with the shortcut methods are similar to the AJAX methods in jQuery. It can also be used in unit tests with ngMock~\cite{Angular-AJAX}.
-%
-%In a single-page application we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser won't reload the whole page, it will just simply load the new view into the old frame. Angular binds a special listener to links. If the user clicks on the link, Angular will simply push the page to the history and replace the view with the new page. This method only works if Angular is loaded into memory otherwise the application needs a page where Angular can be loaded.
-%
-%
-%\section{Mithril}
-%
-%My last choice was Mithril~\cite{Mithril}. It is really similar to React. With the help of MSX~\cite{MSX}, you can use the same HTML-like syntax to create websites. MSX uses JSX, but transforms the output to be compatible with Mithril. 
-%
-%It provides a simple way to work with AJAX requests~\cite{Mithril-request}. A basic request returns a special \emph{m.prop} getter-setter, what is a utility class.
-%
-%Mithril provides utilites to handle routing~\cite{Mithril-routing}. It's organized around URL routes. For a URL we can create a new module with a controller and a view. When the user clicks on the link a new instance will be made and passed to the view.
-%
+
+\section{React}
+
+My first choice was React~\cite{React}. It is developed by Facebook and Instagram since 2013.
+
+React's performance is really good because instead of always updating the browser's actual DOM it creates a virtual DOM. The virtual DOM is like a blueprint of the real DOM. Instead of containing a DIV element, the virtual DOM contains a React.div element what is just data and not a rendered content. React is able to find out what are the changes on the real DOM. It makes changes to the virtual DOM, because that is faster and then re-render the real DOM~\cite{React-Virtual-DOM}.
+
+To create DOM elements you can choose between JavaScript and JSX~\cite{JSX}. If you use JavaScript, then the code will render the HTML code for you. If you choose JSX, then you can mix JavaScript and HTML syntax, and you can insert the desired HTML code as the return statement. 
+
+React has a one-way data flow called Flux~\cite{Flux}. Flux supports data flow only in a single direction, downstream. This means if something is changed in the component tree, then it will cause the element to re-render itself and all of its descendants.
+
+React focuses only on building views. The core React version doesn't have an option for routing or AJAX requests. If I want to support those too in my application, then I should use it combined with other frameworks to have a full MVC experience.
+
+\section{AngularJS}
+
+AngularJS~\cite{Angular} is one of the most famous JavaScript frameworks nowadays.  It is maintained by Google for 6 years now. It focuses mostly on dynamic views in web-applications. 
+
+Creating a website is done with an extended HTML vocabulary, like Android Layouts where you declare everything in XML. Building a website wasn't that hard but the data binding is different. It uses a two-way data binding template~\cite{Angular-Developer-DataBinding} which means whenever either the View or the Model is changed, it will update the other one.
+
+Angular AJAX requests are similar to the AJAX methods in jQuery, but Angular takes care of setting headers and converting the data to JSON string. It can also be used in unit tests with ngMock~\cite{Angular-AJAX}, because it can create a mock server. 
+
+For routing Angular uses a special listener. It binds these listener to links. If the user clicks on a link, Angular will simply push the page to the browser's history and replace the view with the new page. This will even allow the back button to operate. This method works only if the website is loading from a server, because it allows Angular to load into the memory otherwise the listeners can't navigate through pages.
+
+
+\section{Mithril}
+
+My last choice was Mithril~\cite{Mithril}. It is really similar to React. With the help of MSX~\cite{MSX}, you can use the same HTML-like syntax to create websites. MSX uses JSX, but transforms the output to be compatible with Mithril. 
+
+It provides a simple way to work with AJAX requests~\cite{Mithril-request}. A basic request returns a special \emph{m.prop} getter-setter, what is a utility class.
+
+Mithril provides utilites to handle routing~\cite{Mithril-routing}. It's organized around URL routes. For a URL we can create a new module with a controller and a view. When the user clicks on the link a new instance will be made and passed to the view.
+
 %\section{Conclusion}
+%
+%Although Angular contains everything what I need, I didn't like the extended HTML vocabulary. I liked the fast and easy way of creating websites in React. Mithril provides a similar way of doing it. 
+%
+%In this project I'll use Mithril. It is a simpler framework than Angular, because it doesn't implement features what make it feel like a new programming language and not a JavaScript framework.
 
-React is basically only for building views and I should use it combined with other frameworks to have full MVC experience. I really liked the fast way of creating UIs but I was looking for a framework that supports everything what I need. 
-
-Although Angular contains everything what I need, I didn't like the extended HTML vocabulary. I liked the fast and easy way of creating websites in React. Mithril provides a similar way of doing it. 
-
-In this project I'll use Mithril. It is a simpler framework than Angular, because it doesn't implement features what make it feel like a new programming language and not a JavaScript framework.
-
+\section{Chosen Tools}
+ide vagy máshova, de valahova leírni milyen toolokat fogok használni
