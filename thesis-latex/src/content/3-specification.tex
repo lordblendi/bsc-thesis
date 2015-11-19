@@ -1,5 +1,37 @@
 \chapter{Specification}
-hogy történik a specifikálás folyamata
+
+Before the team's first meeting in August, I looked up all the homework portals I've used during my student years to write a small specification~\cite{Szepes-specification} about what I expect from a homework portal as a student. Since September we have weekly meetings where we discuss 
+
+\begin{itemize}
+	\item what do we want to keep from the old portal's features,
+	\item do we want to change these features
+	\item and what do we want to add as a new feature.
+\end{itemize}
+
+\section{User Roles}
+
+In the new portal there will be three different user roles: student, teacher and administrator. 
+
+\subsection{Student Role}
+
+As a student we want see informations about the classes, e.g. when will it be, where will it be, who is the teacher, how much time is left until the deadline and their grades. The portal won't have an option to upload files, because students will use Git repositories to upload\todo{/push/store?} their homeworks. With every laboratory they will get a new Git repository in the Database Laboratory GitLab. To be able to push their homework into the repository, the Git remote URL will be in an information field next to the general informations and on the settings page they will have an option to upload an SSH public key. A student will also have an option to tag a commit as final version. When the deadline is over, the back end will tag the last commit in every branch. If the student didn't tag any commit as final version, then the evaluator will only check the solution in the last commit in the master branch.
+
+\subsection{Teacher Role}
+
+\subsubsection{Demonstrator Role}
+
+\subsubsection{Evaluator Role}
+
+\subsection{Administrator Role}
+
+\subsection{Default Options}
+
+Besides the SSH public key uploading option for students, the settings page gives the same options for every user role. A user is able to set a new e-mail address, set a new password, and change the subscription for the mailing list and the e-mail notifications.
+
+\todo{oktatói és adminisztátori specifikációt még meg kell írni. nagyjából? mert azokról még nem sokat beszéltünk}
+
+
+\section{Meh}
 
 mire van szükségünk
 
