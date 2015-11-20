@@ -1,11 +1,19 @@
 \chapter{Specification}
 
-Before the team's first meeting in August, I looked up all the homework portals I've used during my student years to write a small specification~\cite{Szepes-specification} about what I expect from a homework portal as a student. Since September we have weekly meetings where we discuss 
+Before the team's first meeting in August, I looked up all the homework portals I've used during my student years to write a small specification~\cite{Szepes-specification} about what I expect from a homework portal as a student. Since September we have weekly meetings where we discuss the followings: 
 
 \begin{itemize}
-	\item what do we want to keep from the old portal's features,
-	\item do we want to change these features
-	\item and what do we want to add as a new feature.
+	\item old portal's features we want to delete
+	\item old portal's features we want to keep with modification
+	\item old portal's features we want to keep without modification
+	\item new features we want to add
+	\item technologies
+	\item tools
+	\item modules and components of the system (conceptual system design)
+	\item database schema
+	\item design
+	\item who and what did since the previous meeting
+	\item tasks until the next meeting
 \end{itemize}
 
 \section{User Roles}
@@ -14,24 +22,102 @@ In the new portal there will be three different user roles: student, teacher and
 
 \subsection{Student Role}
 
-As a student we want see informations about the classes, e.g. when will it be, where will it be, who is the teacher, how much time is left until the deadline and their grades. The portal won't have an option to upload files, because students will use Git repositories to upload\todo{/push/store?} their homeworks. With every laboratory they will get a new Git repository in the Database Laboratory GitLab. To be able to push their homework into the repository, the Git remote URL will be in an information field next to the general informations and on the settings page they will have an option to upload an SSH public key. A student will also have an option to tag a commit as final version. When the deadline is over, the back end will tag the last commit in every branch. If the student didn't tag any commit as final version, then the evaluator will only check the solution in the last commit in the master branch.
+The student can:
+
+\begin{itemize}
+	\item see informations about his classes
+	\begin{itemize}
+		\item when will it be
+		\item where will it be
+		\item who will be the teacher
+		\item when is the deadline
+		\item how much time is left until the deadline
+		\item what is the Git remote URL
+		\begin{itemize}
+			\item The portal doesn't have an option to upload files, because students use Git repositories to upload their homeworks.
+			\item With every laboratory they get a new Git repository in the Database Laboratory GitLab.
+		\end{itemize}
+		\item his entry test grade
+		\item his laboratory report grade
+		\item his laboratory report review
+		\item who was the evaluator
+		\item his laboratory grade
+		\item his laboratory review
+	\end{itemize}
+	\item list his commits from every branch in the laboratory's repository
+	\item tag a commit as a final version
+	\begin{itemize}
+		\item When the deadline is over, the back end will tag every branch's last commit.
+		\item If the student didn't tag any commit as final version, the evaluator will check the solution only the master branch's commit, what was tagged by the back end.
+	\end{itemize}
+	\item see a summarized reviews of his grades
+\end{itemize}
 
 \subsection{Teacher Role}
 
+The teacher can be a demonstrator and/or an evaluator \see{data-dictionary}. If a teacher is both a demonstrator and an evaluator, then the teacher can choose which role's pages the teacher wants to use now.
+
 \subsubsection{Demonstrator Role}
 
+The demonstrator can:
+
+\begin{itemize}
+	\item see his current class with a list of students, who attended that class
+	\begin{itemize}
+		\item This list also contains the students' laboratory report grades and reviews.
+	\end{itemize}
+	\item give the students entry test grades
+	\item give the students laboratory grades
+	\item give the students laboratory reviews
+	\item choose another class to list the students, who attended that class
+	\begin{itemize}
+		\item save the student's results as a draft
+		\item continue writing a saved review draft
+		\item publish the results for the student
+	\end{itemize}
+\end{itemize}
+
 \subsubsection{Evaluator Role}
+
+The evaluator can:
+
+\begin{itemize}
+	\item see maximum 4 lists of homeworks
+	\begin{itemize}
+		\item If a list doesn't have any element, it won't appear on the page.
+		\item The first list contains the homeworks, what are waiting for evaluation and booked by the evaluator. 
+		\item The second list contains the homeworks, what are waiting for evaluation and not booked yet. 
+		\item The third list contains homeworks booked by another evaluator. 
+		\item The fourth list contains the evaluated homeworks. 
+	\end{itemize}
+	\item book homeworks for himself for evaluation
+	\item choose a homework to start the evaluation
+	\item see the student's name and the Git remote URL as a general information for a homework
+	\item give a laboratory report grade for a homework
+	\item write a review for a homework
+		\begin{itemize}
+			\item save the review as a draft
+			\item continue writing a saved review draft
+			\item publish the grade and the review for the student
+			\item If the student didn't tag any commit as final version, the evaluator will check the solution only in the last commit in the master branch.
+		\end{itemize}
+\end{itemize}
 
 \subsection{Administrator Role}
 
 \subsection{Default Options}
 
-Besides the SSH public key uploading option for students, the settings page gives the same options for every user role. A user is able to set a new e-mail address, set a new password, and change the subscription for the mailing list and the e-mail notifications.
+Any type of user can:
 
-\todo{oktatói és adminisztátori specifikációt még meg kell írni. nagyjából? mert azokról még nem sokat beszéltünk}
+\begin{itemize}
+	\item upload a new SSH public key
+	\item set a new e-mail address
+	\item set a new password
+	\item change his mailing list subscription
+	\item change his e-mail notifications subscription
+\end{itemize}
 
-
-\section{Meh}
+\section{Meh, kene ide egy jo alcim}
 
 mire van szükségünk
 
