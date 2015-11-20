@@ -34,7 +34,7 @@
 
 
 %--------------------------------------------------------------------------------------
-% Table of contents and the main text
+% Table of tsnts and the main text
 %--------------------------------------------------------------------------------------
 \begin{document}
 
@@ -54,7 +54,9 @@
 
 % Table of Contents
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\renewcommand{\contentsname}{Table of Contents}%
 	\tableofcontents\vfill
+
 
 
 % Declaration and Abstract
@@ -108,20 +110,18 @@
 %----------------------------------------------------------------------------
 \appendix
 %----------------------------------------------------------------------------
-%\chapter{\fuggelek}\addcontentsline{toc}{chapter}{\fuggelek}
+%\chapter{\fuggelek}%\addcontentsline{toc}{chapter}{\fuggelek}
 %\setcounter{chapter}{6}  % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz
 %\setcounter{equation}{0} % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
 \numberwithin{lstlisting}{section}
+%\renewcommand\thesection{\Alph{section}}
 %\numberwithin{tabular}{section}
-
-\begin{appendices}
-	\include{content/appendix/dictionary}
-	\include{content/appendix/userstory}
-	\include{content/appendix/sketches}
-\end{appendices}
-
+\include{content/appendix/dictionary}
+\include{content/appendix/userstory}
+\include{content/appendix/sketches}
+%\end{appendices}
 
 \label{page:last}
 \end{document}
