@@ -104,7 +104,24 @@
 % Appendix
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %TODO your own content
-	\include{content/appendices}
+%	\include{content/appendices}
+%----------------------------------------------------------------------------
+\appendix
+%----------------------------------------------------------------------------
+%\chapter{\fuggelek}\addcontentsline{toc}{chapter}{\fuggelek}
+%\setcounter{chapter}{6}  % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz
+%\setcounter{equation}{0} % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{lstlisting}{section}
+%\numberwithin{tabular}{section}
+
+\begin{appendices}
+	\include{content/appendix/dictionary}
+	\include{content/appendix/userstory}
+	\include{content/appendix/sketches}
+\end{appendices}
+
 
 \label{page:last}
 \end{document}
