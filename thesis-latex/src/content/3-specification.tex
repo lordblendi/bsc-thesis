@@ -34,6 +34,21 @@ When I finished with the filtering, I had the final list of features \see{final-
 %I chose the Cucumber software to run automated tests. Cucumber allows
 \todo{miau} cucumber, given-when-then, scenario, background
 
+\underline{Example:}
+
+Background:\\ \hspace*{1cm}
+Given a logged in student named "Jakab"\\ \hspace*{1cm}
+and the settings page is loaded
+
+Scenario: Setting a new SSH public key\\ \hspace*{1cm}
+Given I am logged in as "Jakab"\\ \hspace*{1cm}
+And I have entered a new SSH public key\\ \hspace*{1cm}
+When I press the save button\\ \hspace*{1cm}
+Then I should see "Your settings have been saved."
+
+
+The user stories are in \refstruc{user-stories}.
+
 \subsection{API Blueprint}
 
 \todo{miau2}
@@ -175,10 +190,10 @@ Any type of user can:
 
 \section{Meh, kene ide egy jo alcim}
 
-mire van szükségünk
+%mire van szükségünk
 
 hibaágak
 
-test suite - hogyan történik a teszt írás
+%test suite - hogyan történik a teszt írás
 
 mi az én feladatom?
