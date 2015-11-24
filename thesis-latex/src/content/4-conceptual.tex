@@ -47,7 +47,7 @@ The main components are the followings:
 	\item \textbf{Message Queue:} A component, what will forward the incoming tasks from the task manager to the right worker for processing. \todo{erről beszéljünk, hogy az MB miért nem elég nekünk}
 	\item \textbf{Task Manager:} A special worker. It gets tasks from the web server to decide which worker has to process it. After the decision it forwards the task through the message bus.
 	\item \textbf{Web Server:} The server that runs the API's implementation. This component processes the incoming requests, creates tasks and forwards them to the task manager. It also provides its clients the data from the databases. The API is written in Ruby on Rails. 
-	\item \textbf{Worker:} This will process the task, e.g., writing data to the database.
+	\item \textbf{Worker:} This will process the task, e.g., changes the user's mailing list subscription.
 \end{itemize}
 
 \subsubsection{Scalability}
