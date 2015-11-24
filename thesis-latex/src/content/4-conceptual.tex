@@ -24,12 +24,11 @@ In web applications the browser communicates with a controller. When the user se
 
 \todo{bevezetőszöveg?}
 
-\begin{figure}[!ht]
-	\includegraphics[width=\textwidth]{figures/atfogo_rendszerterv_teljes.pdf}
-	\caption[Conceptional System Design]{Conceptional System Design\footnotemark}
+\begin{figure}[!htbp]
+	\includegraphics[width=0.95\textheight, angle=90]{figures/atfogo_rendszerterv_teljes.pdf}
+	\caption[Conceptional System Design]{Conceptional System Design\\Made by the team.}
 	\label{fig:conceptional-system-design}
 \end{figure}
-\footnotetext{Made by the team.}
 
 \todo{ábrán kijavítani, hogy a web server az külön szó}
 
@@ -60,19 +59,17 @@ To solve the scalability problem, the client's code will run in a web browser fo
 
 If there were not any load balancer between the client and the web server, then one server would get every request. With thousands of users this could lead to overload and high the response time. With a load balancer, the requests will first arrive at the load balancer, and it will decide which web server will handle that request and forwards it to that web server. The choice depends on the client module, request type and the web servers' load. The load balancer's purpose is to avoid overload and minimize the response time.
  
-
 \subsection{Frontend System Design}
 \todo{frontend ábra visioban}
 
 \subsection{Entity–relationship model}
 \label{ER-model}
 
-\begin{figure}[!ht]
-	\includegraphics[width=\textwidth]{figures/ER.pdf}
-	\caption[Entity–relationship model]{Entity–relationship model\footnotemark}
+\begin{figure}[!htbp]
+	\includegraphics[width=0.85\textheight, angle=90]{figures/ER.pdf}
+	\caption[Entity–relationship model]{Entity–relationship model\\Finalized by the team based on my proposal.}
 	\label{fig:er}
 \end{figure}
 
-\footnotetext{Finalized by the team based on my proposal.}
 
 \todo{magyarázat}
