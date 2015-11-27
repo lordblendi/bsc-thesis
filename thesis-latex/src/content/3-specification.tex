@@ -3,34 +3,21 @@
 Before the team's first meeting in August, I looked up all the homework portals I've used during my student years to write a small specification~\cite{Szepes-specification} about what I expect from a homework portal as a student. Since September we have weekly meetings where we discussed the followings: 
 
 \begin{itemize}
-	\item the old portal's features we don't wish to keep
-	\item the old portal's features we want to keep with modification
-	\item the old portal's features we want to keep without modification
-	\item new features we want to add
+	\item the old portal's features to be kept without modifications
+	\item the old portal's features to be modified
+	\item the old portal's features to be deleted
+	\item new features to be added
 \end{itemize}
 
 After a few meetings we had a list of features as the starting point for our specification. Then I used the 5 Whys technique to filter out some features we don't need.
+\bence{ Specification bevezető vége: én azért javasoltam a "5 Why"
+	használatát, hogy megtudjuk a felmerült kérdések közös gyökerét --
+	azokat, amikre igazán kell koncentrálni, illetve amik a feature-ök
+	alapján fogják jelenteni (és nem azért, hogy szűrjek -- ez egy következmény)}
 
 \section{Test Suite}
-\subsection{5 Whys}
-
-The 5 Whys is a technique to find the root cause of a problem simply by asking the question "Why?". With this technique we can find out what does the user want to achieve with using a feature and why does he want to achieve it?
-
-\underline{Example:}
-
-The student wants to list his commits from every branch in the laboratory's repository.
-\begin{itemize}
-	\item \textbf{Why?} -- Because the student wants to tag one commit as final version.
-	\item \textbf{Why?} -- Because the evaluator will know which commit contains his homework.
-	\item \textbf{Why?} -- Because the evaluator has to correct his homework.
-	\item \textbf{Why?} -- Because the evaluator has to give the student a grade.
-	\item \textbf{Why?} -- Because the student has to pass the laboratory to pass the course.
-\end{itemize}
-
-When I finished with the filtering, I had the final list of features \see{final-spec} and I started to write user stories to have the basics for test automation.
-
 \subsection{User Story}
-
+\todo{explain}
 %I chose the Cucumber software to run automated tests. Cucumber allows
 \todo{miau} cucumber, given-when-then, scenario, background
 
@@ -49,6 +36,29 @@ Then I should see "Your settings have been saved."
 
 The user stories are in \refstruc{user-stories}.
 
+\subsubsection{5 Whys}
+
+\bence{- 2.1.2: a "5 Why"-ból emlékeim szerint először a "feature"
+	összefoglalókat hoztad össze és csak azután készültek el a részletes
+	sztorik,}
+
+The 5 Whys is a technique to find the root cause of a problem simply by asking the question "Why?". With this technique we can find out what does the user want to achieve with using a feature and why does he want to achieve it?
+
+\underline{Example:}
+
+The student wants to list his commits from every branch in the laboratory's repository.
+\begin{itemize}
+	\item \emph{Why?} -- Because the student wants to tag one commit as final version.
+	\item \emph{Why?} -- Because the evaluator will know which commit contains his homework.
+	\item \emph{Why?} -- Because the evaluator has to correct his homework.
+	\item \emph{Why?} -- Because the evaluator has to give the student a grade.
+	\item \emph{Why?} -- Because the student has to pass the laboratory to pass the course.
+\end{itemize}
+
+When I finished with the filtering, I had the final list of features \see{final-spec} and I started to write user stories to have the basics for test automation.
+
+
+
 \subsection{API Blueprint}
 \label{api-blueprint}
 
@@ -58,7 +68,7 @@ drakov, api blueprint
 \section{The Final Specification} \label{final-spec}
 \subsection{User Roles}
 
-In the new portal there will be three different user roles: student, teacher and administrator. 
+In the new portal there will be four different user roles: student, evaluator, demonstrator and administrator. 
 
 \subsubsection{Student Role}
 
@@ -96,7 +106,7 @@ The student can:
 	\item see a summarized reviews of his grades
 \end{itemize}
 
-\subsubsection{Teacher Role}
+\subsubsection{Teacher}
 
 The teacher can be a demonstrator and/or an evaluator \see{data-dictionary}. If a teacher is both a demonstrator and an evaluator, then the teacher can choose which role's pages the teacher wants to use now.
 
@@ -194,6 +204,9 @@ Any type of user can:
 %mire van szükségünk
 
 hibaágak
+\bence{- 2.3: ha a "hibaágak" tekintetében a specifikáció "zöltutas"
+	megközelítését szeretnéd kiegészíteni hibaágakkal, akkor korábban ezt a
+	megközelítést is definiálnod kéne,}
 
 %test suite - hogyan történik a teszt írás
 

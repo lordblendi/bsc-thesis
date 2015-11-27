@@ -1,9 +1,9 @@
 \chapter{Comparing JavaScript Frameworks}
 \label{comparing-frameworks}
 
-For the project a JavaScript framework is needed for faster development than using plain JavaScript with jQuery. Writing every component from scratch needs a lot of time. Hundreds of developers contribute in open-source frameworks, and developers can utilize their reviewed and tested work. This leads to getting more tasks done in less time. Because this project follows the MVC pattern \see{mvc}, only JavaScript MVC frameworks will be compared. The TodoMVC~\cite{TodoMVC} website helps developers to select a JavaScript MVC framework for their project. It provides the same example written in JavaScript using different JavaScript MVC frameworks.
+For the project I wanted to choose a JavaScript framework for faster development than using plain JavaScript with jQuery. Writing every component from scratch needs a lot of time. Hundreds of developers contribute in open-source frameworks, and developers can utilize their reviewed and tested work. This leads to getting more tasks done in less time. Because this project follows the MVC pattern \see{mvc}, only JavaScript MVC frameworks will be compared. The TodoMVC~\cite{TodoMVC} website helps developers to select a JavaScript MVC framework for their project. It provides the same example written in JavaScript using different JavaScript MVC frameworks.
 
-During comparison the followings will be checked:
+During comparison I checked the followings:
 \begin{itemize}
 	\item \textbf{AJAX requests:} the client and the server \see{fig:conceptional-system-design} will communicate via REST using JSON format.
 	\item \textbf{data binding:} to connect the data from the model to the view \see{fig:classic-mvc-webapplication}.
@@ -30,7 +30,7 @@ To create DOM elements, we can choose between JavaScript and JSX~\cite{JSX}. If 
 
 For data binding React has a one-way data flow called Flux~\cite{Flux}. Flux supports data flow only in a single direction, downstream. This means if something is changed in the component tree, then it will cause the element to re-render itself and all of its descendants.
 
-React focuses only on building views. The core React version doesn't have an option for routing and AJAX requests. If these should be supported in the application, then React should be combined with other frameworks or libraries to have a full MVC experience.
+React focuses only on building views. The core React version doesn't have an option for routing and AJAX requests. If I want to support those in my application, then React should be combined with other frameworks or libraries to have a full MVC experience.
 
 \section{AngularJS}
 
@@ -58,7 +58,7 @@ For routing Mithril needs a key-value map of possible routes and Mithril modules
 
 \section{Comparison}
 
-During the comparison a small program was developed to try AJAX requests, data binding and routing in the chosen frameworks. The source codes are publicly available on Github with a gulp file \see{gulp} and an API blueprint test file for Drakov \see{api-blueprint}.
+During the comparison I made a small program in every JavaScript framework to try AJAX requests, data binding and routing. The source codes are publicly available on Github with a gulp file \see{gulp} and an API blueprint test file for Drakov \see{api-blueprint}.
 
 \newparagraph{React~\cite{Github-react}}
 The components are separated into different JavaScript files. JSX was used to represent the views. Before the concatenation a JSX transformer converts the inline HTML-like JSX to JavaScript code. The React components' states were used as a model. Because React hasn't got an option for AJAX requests. jQuery was used to download some mock data from the mock server. React Router was used~\cite{React-router} for routing. 
@@ -79,7 +79,7 @@ A Mithril module contains a model, a controller and a view. A controller is a JS
 
 \section{Conclusion}
 In performance both React and Mithril are faster than Angular, because they use virtual DOM. Angular's public API interface is much bigger than React's or Mithril's. React doesn't have routing and AJAX requests in its core library, so it depends on other libraries. 
-Mithril is chosen for this project, because it's  self-contained, so it doesn't have to depend on other libraries. It has utilities built-in for routing and AJAX requests. And it has a small API with great documentation. 
+I choose Mithril for this project, because it's  self-contained, so it doesn't have to depend on other libraries. It has utilities built-in for routing and AJAX requests. And it has a small API with great documentation. 
 
 
 \bence{- 4 és 5 között hiányzik számomra az a rész, ahol az implementáció
