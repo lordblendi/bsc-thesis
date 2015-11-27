@@ -1,12 +1,77 @@
 \chapter{Design}
-hogy néz ki a rendszer
 
-arculati kézikönyv
+\section{Design Sketches}
+To be able to draw design sketches, we need to know when will a user login to the Educational Support System and what kind of informations is he looking for. As a student, there are 5 possible scenarios:
 
-színek kiválasztásának menete
+\begin{enumerate}
+	\item Before a laboratory
+	\begin{itemize}
+		\item To get informations about the laboratory
+		\begin{itemize}
+			\item When will it be
+			\item Where will it be
+			\item Who will be the teacher
+		\end{itemize}
+		\item To read general informations about the course
+	\end{itemize}
+	
+	\item During a laboratory
+	\begin{itemize}
+		\item To upload an SSH public key
+		\item To get his Git remote URL
+	\end{itemize}
+	
+	\item After a laboratory, before deadline
+	\begin{itemize}
+		\item To see the date of the deadline
+		\item To see how much time is left until the deadline
+		\item To see the pushed branches, commits and tags
+		\item To tag a commit as final version
+	\end{itemize}
+	
+	\item After a laboratory, after deadline
+	\begin{itemize}
+		\item To check his grades
+		\item To check his reviews
+		\item To check the evaluator's name
+	\end{itemize}
+	
+	\item Other scenarios
+	\begin{itemize}
+		\item To set a new e-mail address
+		\item To change his mailing list subscription
+		\item To change his e-mail notification subscription
+		\item To see a summarized table of his grades
+	\end{itemize}
+	
+\end{enumerate}
 
-milyen honlapokat néztem - bootstrap
+With the scenarios and list of actions, we can see how many pages is needed for the student modules and how many states will one page have. I drew sketches \see{appendix-design-sketches} for every state with placeholder data. Because the user is looking for a specific set of information, the page will only contain what he is looking for, and the previous, but still relevant informations will be accessible via submenus. Other pages, e.g., other laboratories, settings and summary, will be accessible via a menu.
 
-elkészítés módszere
+\section{Design template}
 
-skiccek függelékbe
+To show only a specific set of information I have decided to use a minimalist design. A minimalist design is a clear design, focusing on typography, space, color and basic design elements. This way the portal will show as much information as the user needs with as few elements as possible. 
+
+To look for templates and ideas I read the Designmodo blog~\cite{Designmodo} and checked all the popular websites, e.g., Facebook, Github, Twitter and Medium. Designmodo also have purchasable website builders, like Slides~\cite{Designmodo-slides}, but I prefer the simple design of the Bootstrap elements~\cite{Bootstrap}. 
+
+Bootstrap is a free and open source HTML, CSS and JS framework to create responsive design. It was originally a part of Twitter as Twitter Blueprint, but in 2011 it was released as an open source project. Bootstrap contains elements for responsive web design and mobile design too.
+
+\todo{ez még így nem végleges szerintem}
+
+\subsection{Colors}
+
+After deciding what kind of design framework will I use, I had to chose the colors of the portal. Both the Budapest University of Technology and Economics~\cite{BME-Arculat}~\cite{BME-Arculat-Intranet} and the Faculty of Electrical Engineering and Informatics~\cite{VIK-Arculat}~\cite{VIK-Arculat-PDF} have their own Visual Identity Guidelines. 
+
+A visual identity guideline contains the description of which color is the official color of the institution and in what kind of text which fonts and why that font should be used. Because the Software Laboratory 5 course belongs to the Faculty, we will follow that guideline and use blue (\#052A4B) as the main color of the portal. \todo{The following fonts will be used: Helvetica /Arial/ as body text and AvantGarde as lead text. - akarjuk mi ezeket a betűtípusokat használni?}
+
+\section{Elkészítés módszere}
+
+html, js, css, bootstrap css
+
+\todo{elkészítés módszere}
+
+\section{Rendszer kinézete}
+
+screenshotok
+
+\todo{hogy néz ki a rendszer}

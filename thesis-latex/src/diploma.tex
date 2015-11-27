@@ -22,6 +22,7 @@
 
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{***TODO***: #1}}}
 \newcommand{\see}[1]{(see \refstruc{#1})}
+\newcommand{\newparagraph}[1]{\paragraph{#1}\mbox{}\\}
 
 %--------------------------------------------------------------------------------------
 %TODO Language configuration -- choose one
@@ -34,7 +35,7 @@
 
 
 %--------------------------------------------------------------------------------------
-% Table of contents and the main text
+% Table of tsnts and the main text
 %--------------------------------------------------------------------------------------
 \begin{document}
 
@@ -54,7 +55,10 @@
 
 % Table of Contents
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\renewcommand{\contentsname}{Table of Contents}%
 	\tableofcontents\vfill
+	\thispagestyle{empty}
+	\addtocontents{toc}{\protect\thispagestyle{empty}}
 
 
 % Declaration and Abstract
@@ -104,7 +108,22 @@
 % Appendix
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %TODO your own content
-	\include{content/appendices}
+%	\include{content/appendices}
+%----------------------------------------------------------------------------
+\appendix
+%----------------------------------------------------------------------------
+%\chapter{\fuggelek}%\addcontentsline{toc}{chapter}{\fuggelek}
+%\setcounter{chapter}{6}  % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz
+%\setcounter{equation}{0} % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{lstlisting}{section}
+%\renewcommand\thesection{\Alph{section}}
+%\numberwithin{tabular}{section}
+\include{content/appendix/dictionary}
+\include{content/appendix/userstory}
+\include{content/appendix/sketches}
+%\end{appendices}
 
 \label{page:last}
 \end{document}

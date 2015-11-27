@@ -1,27 +1,33 @@
 \chapter{Comparing JavaScript Frameworks}
 
-For the project I wanted to choose a JavaScript framework for faster developement than using plain JavaScript with jQuery. I have chosen the TodoMVC~\cite{TodoMVC} website to find the currently available frameworks. \todo{mire jó egy framework}
+For the project I wanted to choose a JavaScript framework for faster development than using plain JavaScript with jQuery. Technically I don't have to use a framework, because I can write the logic myself too. But writing every component from scratch needs a lot of time. Hundreds of developers contribute in open-source frameworks, and I can use their reviewed and tested work. All I have to do is to learn the framework's usage and I get more tasks done in less time. I have chosen the TodoMVC~\cite{TodoMVC} website to find the currently available frameworks.
 
-I tried these frameworks to see how fast and easily can I build a basic website, how can I access the server with AJAX requests and how routing and data binding works~\see{fig:classic-mvc-webapplication}. \todo{leírni, miért ezek az összehasonlítási szempontok kellenek, amik -> must have kritériumok, rendszertervre hivatkozás}
+To compare these frameworks, I checked the followings:
+\begin{itemize}
+	\item \textbf{AJAX requests:} the client and the server \see{fig:conceptional-system-design} will communicate via REST using JSON format.
+	\item \textbf{data binding:} to connect the data from the model to the view \see{fig:classic-mvc-webapplication}.
+	\item \textbf{routing:} to build a single-page application.
+\end{itemize}
 
-In JavaScript with AJAX requests we can send requests to a server asynchronously without reloading a page. In a single-page application we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser won't reload the whole page, it will just simply load the new view into the old frame. Everything happens in the background so the application won't force the user to wait while it sends data to a server. If the application is retrieving data, then when it arrives, the application can process it and show the result to the user.
+In a single-page application (SPA) when the user opens the web site in a browser, all the resources will be downloaded with a single page load. From that point when the user interacts with the web site, it will dynamically update previously downloaded single page~\cite{SPA}.
 
-There are two types of routings. Routing can be either a way to manipulate the browser's URL or the part of a web application what decides which controller will handle the requests. I was looking for a solution for \todo{URL manipulation - single page application!!! leírás}.
+In JavaScript with \underline{AJAX requests} we can send requests to a server asynchronously without reloading a page. In a SPA we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser won't reload the whole page, it will just simply load the new view into the old frame. Everything happens in the background so the application won't force the user to wait while it sends data to a server. If the application is retrieving data, then when it arrives, the application can process it and show the result to the user.
 
-The classic data binding model is when the view template and the data from the model are merged together to create the to be displayed view. Any data changes in the view won't automatically sync into the model. The developer has to write the controller what syncs the changes between the model and the view~\cite{Angular-Developer-DataBinding}.
+The classic \underline{data binding} model is when the view template and the data from the model are merged together to create the to be displayed view. Any data changes in the view won't automatically sync into the model. The developer has to write the controller what syncs the changes between the model and the view~\cite{Angular-Developer-DataBinding}.
 
+Upon URL change an SPA won't download a new page. It will navigate to the right part of the application. \underline{Routing} takes care of this automatically. The SPA needs a routing table to know which URL belongs to which controller or view.
 
 \section{React}
 
 My first choice was React~\cite{React}. It is developed by Facebook and Instagram since 2013.
 
-React creates a virtual DOM instead of always updating the browser's actual \todo{DOM}. The virtual DOM is like a blueprint of the real DOM. Instead of containing a \todo{DIV} element, the virtual DOM contains a React.div element what is just data and not a rendered content. React is able to find out what are the changes on the real DOM. It makes changes to the virtual DOM, because that is faster and then re-render the real DOM~\cite{React-Virtual-DOM}.
+React creates a virtual DOM instead of always updating the browser's actual document object model (DOM)~\cite{dom}. The DOM provides a structured representation of HTML and XML documents. The objects are the nodes of the tree, and the tree structure is the DOM tree. In my case the DOM connects the HTML page to the JavaScript code. The virtual DOM is like a blueprint of the real DOM. Instead of containing a div\footnote{A div is a generic container in HTML. It helps structuring the HTML document~\cite{div}.} element, the virtual DOM contains a React.div element what is just data and not a rendered content. React is able to find out what are the changes on the real DOM. It makes changes to the virtual DOM, because that is faster and then re-render the real DOM~\cite{React-Virtual-DOM}.
 
-To create DOM elements, we can choose between JavaScript and JSX~\cite{JSX}. If we use JavaScript, then the code will render the HTML code for us. If we choose JSX, then we can mix JavaScript and HTML syntax, and we can insert the desired HTML code as the return statement. 
+To create DOM elements, we can choose between JavaScript and JSX~\cite{JSX}. If we use JavaScript, then the code will render the HTML code for us. If we choose JSX, then we can mix JavaScript and HTML-like syntax, and we can insert the desired HTML code as the return statement. 
 
-React has a one-way data flow called Flux~\cite{Flux}. Flux supports data flow only in a single direction, downstream. This means if something is changed in the component tree, then it will cause the element to re-render itself and all of its descendants.\todo{binding kifejtése}
+For data binding React has a one-way data flow called Flux~\cite{Flux}. Flux supports data flow only in a single direction, downstream. This means if something is changed in the component tree, then it will cause the element to re-render itself and all of its descendants.
 
-React focuses only on building views. The core React version doesn't have an option for routing and AJAX requests. If I want to support those too in my application, then I should use it combined with other frameworks to have a full MVC experience.
+React focuses only on building views. The core React version doesn't have an option for routing and AJAX requests. If I want to support those too in my application, then I should use it combined with other frameworks or libraries to have a full MVC experience.
 
 \section{AngularJS}
 
@@ -32,7 +38,6 @@ Creating a website is done with an extended HTML vocabulary, like Android Layout
 Angular AJAX requests are similar to the AJAX methods in jQuery, but Angular takes care of setting headers and converting the data to JSON string. It can also be used in unit tests with ngMock~\cite{Angular-AJAX}, because it can create a mock server. 
 
 For routing Angular uses a special listener. It binds these listeners to links. If the user clicks on a link, Angular will simply push the page to the browser's history and replace the view with the new page. This will even allow the back button to operate. This method works only if the website is loading from a server, because it allows Angular to load into the memory otherwise the listeners can't navigate through pages~\cite{Angular-Location}~\cite{Angular-Location2}.
-
 
 \section{Mithril}
 
@@ -46,13 +51,27 @@ Mithril has one-way data flow, from the model to the view. It has an auto-redraw
 Mithril provides a utility for AJAX requests. We can set an early reference for the asynchronous response and queue up operations to be performed after the request completes.  ~\cite{Mithril-webservice}~\cite{Mithril-request}.
 
 
-For routing Mithril needs a key-value map of possible routes and Mithril modules. A Mithril module contains a controller and a view. A controller is a JS constructor and the view is a function what returns a virtual DOM. When the user clicks on a link, the module's controller will be called and passed as a parameter to the view.~\cite{Mithril-routing}.\todo{nem komparálható másik két rdsz-el ?}
+For routing Mithril needs a key-value map of possible routes and Mithril modules to connect the routes to the modules. Upon routing the module's controller will be called and passed as a parameter to the view.~\cite{Mithril-routing}.
+
+\section{Comparison}
+
+During the comparison I made a small program to try AJAX requests, data binding and routing in the chosen frameworks. The source codes are publicly available on Github with a gulp file \see{gulp} and an API blueprint test file for Drakov \see{api-blueprint}.
+
+\newparagraph{React~\cite{Github-react}}
+The components are separated into different JavaScript files. To represent the views, I used JSX. Before the concatenation I included a JSX transformer in the gulp file, that converts the inline HTML-like JSX to JavaScript code. I used the React components' state as a model. Because React hasn't got an option for AJAX requests, I used jQuery to download some mock data from the mock server. I used the React Router library~\cite{React-router} for routing. 
+
+
+\newparagraph{Angular~\cite{Github-angular}}
+I separated the controllers into different JavaScript files and the views into different HTML templates. The routing connects the right HTML template to the right controller. In the gulp file I can simply concatenate the JavaScript files, but I had to keep the HTML templates in different HTML files. As a model I used variables inside the controllers. The routing is not included in the core Angular framework, but Google provides a library for it.
+
+
+\newparagraph{Mithril~\cite{Github-mithril}}
+A Mithril module contains a model, a controller and a view. A controller is a JS constructor and the view is a function, that returns a virtual DOM. I separated them into different JavaScript files and I concatenate them with gulp. I use a MSX transformer to convert the HTML-like MSX to JavaScript code. 
 
 \section{Conclusion}
+In performance both React and Mithril are faster than Angular, because they use virtual DOM. Angular's public API interface is much bigger than React's or Mithril's. React doesn't have routing and AJAX requests in its core library, so it depends on other libraries. 
+I choose Mithril for this project, because it's  self-contained, so it doesn't have to depend on other libraries. It has utilities built-in for routing and AJAX requests. And it has a small API with great documentation. 
 
 
-Angular uses a HTML syntax what it provides worse debugging support than JavaScript syntax. Mithril's auto-redraw system with the diff algorithm and virtual DOM is faster and the redrawing starts when all controllers are done. Because of this, the user won't see incorrect state during an AJAX response. Although both Angular and Mithril provide solutions for AJAX requests and routing, I'll choose Mithril for this project. \todo{legyen támadhatatlan mérnöki döntés}
-
-
-\section{Chosen Tools}
-ide vagy máshova, de valahova leírni milyen toolokat fogok használni
+%\section{Chosen Tools}
+%ide vagy máshova, de valahova leírni milyen toolokat fogok használni

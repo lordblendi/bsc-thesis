@@ -1,0 +1,130 @@
+\chapter{User Stories}
+\label{user-stories}
+
+\textbf{Feature: Student module}\\ \hspace*{1cm}
+As a student\\ \hspace*{1cm}
+I want to get informations about my laboratories\\ \hspace*{1cm}
+to know where to upload my homework\\ \hspace*{1cm}
+and read the remarks of my homeworks\\ \hspace*{1cm}
+and change my basic settings
+
+\underline{Before laboratory:}
+
+Background:\\ \hspace*{1cm}
+Given a student named "Jakab"\\ \hspace*{1cm}
+and his password and username are entered in the login fields\\ \hspace*{1cm}
+and it is one day before the laboratory\\ \hspace*{1cm}
+and a finished homework uploaded to the Git repository
+
+Scenario: Getting informations about the next laboratory\\ \hspace*{1cm}
+Given I open the Laboradmin page\\ \hspace*{1cm}
+When I press the login button\\ \hspace*{1cm}
+Then I should see the date of my next laboratory\\ \hspace*{1cm}
+And  I should see the room number of my next laboratory\\ \hspace*{1cm}
+And I should see the name of my teacher
+
+\underline{During laboratory:}
+
+Background:\\ \hspace*{1cm}
+Given a student named "Jakab"\\ \hspace*{1cm}
+and his password and username are entered in the login fields\\ \hspace*{1cm}
+and he is sitting at the laboratory
+
+Scenario: Getting a Git remote URL\\ \hspace*{1cm}
+Given I open the Laboradmin page\\ \hspace*{1cm}
+When I press the login button\\ \hspace*{1cm}
+Then I should see a Git remote URL
+
+Scenario: Check how many hours I have left\\ \hspace*{1cm}
+Given I open the Laboradmin page\\ \hspace*{1cm}
+When I press the login button\\ \hspace*{1cm}
+Then I should see a timer with a number between 96 and 92\pagebreak
+
+
+
+\underline{After laboratory, before deadline:}
+
+Background:\\ \hspace*{1cm}
+Given a student named "Jakab"\\ \hspace*{1cm}
+and his password and username are entered in the login fields\\ \hspace*{1cm}
+and it's one day before the deadline\\ \hspace*{1cm}
+and a finished homework uploaded to the Git repository
+
+Scenario: Getting a list of Git commits\\ \hspace*{1cm}
+Given I open the Laboradmin page\\ \hspace*{1cm}
+When I press the login button\\ \hspace*{1cm}
+Then I should see a list of branches, commits and tags
+
+Scenario: Check how many hours I have left\\ \hspace*{1cm}
+Given I open the Laboradmin page\\ \hspace*{1cm}
+When I press the login button\\ \hspace*{1cm}
+Then I should see a timer with a number between 24 and 0
+
+
+Scenario: Marking a commit as final\\ \hspace*{1cm}
+Given I open the main page\\ \hspace*{1cm}
+And I see a list of branches and commits\\ \hspace*{1cm}
+When I click on one of the commit in the list\\ \hspace*{1cm}
+Then I should see "The commit was marked as final."
+
+Scenario: Removing a final mark\\ \hspace*{1cm}
+Given I open the main page\\ \hspace*{1cm}
+And I see a list of commits\\ \hspace*{1cm}
+And one commit is already marked as final\\ \hspace*{1cm}
+When I click on the master branch in the list\\ \hspace*{1cm}
+Then I should see "You have succesfully removed your final mark."
+
+
+
+\underline{After laboratory, after deadline:}
+
+Background:\\ \hspace*{1cm}
+Given a student named "Jakab"\\ \hspace*{1cm}
+and his password and username are entered in the login fields\\ \hspace*{1cm}
+and it's one day after the deadline
+
+Scenario: Getting my grade and review\\ \hspace*{1cm}
+Given I open the Laboradmin page\\ \hspace*{1cm}
+When I press the login button\\ \hspace*{1cm}
+Then I should see my grade and review
+
+
+
+\underline{Other situations:}
+
+Background:\\ \hspace*{1cm}
+Given a student named "Jakab"\\ \hspace*{1cm}
+and his password and username are entered in the login fields
+
+Scenario: Getting a summarized list of my grades\\ \hspace*{1cm}
+Given I am logged in as "Jakab"\\ \hspace*{1cm}
+When I press the summary button\\ \hspace*{1cm}
+Then I should see all of my grades
+
+Background:\\ \hspace*{1cm}
+Given a logged in student named "Jakab"\\ \hspace*{1cm}
+and the settings page is loaded
+
+Scenario: Setting a new SSH public key\\ \hspace*{1cm}
+Given I am logged in as "Jakab"\\ \hspace*{1cm}
+And I have entered a new SSH public key\\ \hspace*{1cm}
+When I press the save button\\ \hspace*{1cm}
+Then I should see "Your settings have been saved."
+
+Scenario: Setting a new e-mail address\\ \hspace*{1cm}
+Given I am logged in as "Jakab"\\ \hspace*{1cm}
+And I have entered a new e-mail address\\ \hspace*{1cm}
+When I press the save button\\ \hspace*{1cm}
+Then I should see "Your settings have been saved."
+
+Scenario: Changing my subscription for the mailing list\\ \hspace*{1cm}
+Given I am logged in as "Jakab"\\ \hspace*{1cm}
+And I clicked the checkbox next to "Subscription for mailing list\\ \hspace*{1cm}
+When press the save button\\ \hspace*{1cm}
+Then I should see "Your settings have been saved."
+
+Scenario: Changing my subscription for notifications\\ \hspace*{1cm}
+Given I am logged in as "Jakab"\\ \hspace*{1cm}
+And I clicked the checkbox next to "Subscription for notification"\\ \hspace*{1cm}
+When press the save button\\ \hspace*{1cm}
+Then I should see "Your settings have been saved."

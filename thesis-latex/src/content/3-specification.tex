@@ -1,10 +1,200 @@
 \chapter{Specification}
-hogy történik a specifikálás folyamata
 
-mire van szükségünk
+Before the team's first meeting in August, I looked up all the homework portals I've used during my student years to write a small specification~\cite{Szepes-specification} about what I expect from a homework portal as a student. Since September we have weekly meetings where we discussed the followings: 
+
+\begin{itemize}
+	\item the old portal's features we don't wish to keep
+	\item the old portal's features we want to keep with modification
+	\item the old portal's features we want to keep without modification
+	\item new features we want to add
+\end{itemize}
+
+After a few meetings we had a list of features as the starting point for our specification. Then I used the 5 Whys technique to filter out some features we don't need.
+
+\section{Test Suite}
+\subsection{5 Whys}
+
+The 5 Whys is a technique to find the root cause of a problem simply by asking the question "Why?". With this technique we can find out what does the user want to achieve with using a feature and why does he want to achieve it?
+
+\underline{Example:}
+
+The student wants to list his commits from every branch in the laboratory's repository.
+\begin{itemize}
+	\item \textbf{Why?} -- Because the student wants to tag one commit as final version.
+	\item \textbf{Why?} -- Because the evaluator will know which commit contains his homework.
+	\item \textbf{Why?} -- Because the evaluator has to correct his homework.
+	\item \textbf{Why?} -- Because the evaluator has to give the student a grade.
+	\item \textbf{Why?} -- Because the student has to pass the laboratory to pass the course.
+\end{itemize}
+
+When I finished with the filtering, I had the final list of features \see{final-spec} and I started to write user stories to have the basics for test automation.
+
+\subsection{User Story}
+
+%I chose the Cucumber software to run automated tests. Cucumber allows
+\todo{miau} cucumber, given-when-then, scenario, background
+
+\underline{Example:}
+
+Background:\\ \hspace*{1cm}
+Given a logged in student named "Jakab"\\ \hspace*{1cm}
+and the settings page is loaded
+
+Scenario: Setting a new SSH public key\\ \hspace*{1cm}
+Given I am logged in as "Jakab"\\ \hspace*{1cm}
+And I have entered a new SSH public key\\ \hspace*{1cm}
+When I press the save button\\ \hspace*{1cm}
+Then I should see "Your settings have been saved."
+
+
+The user stories are in \refstruc{user-stories}.
+
+\subsection{API Blueprint}
+\label{api-blueprint}
+
+\todo{miau2}
+drakov, api blueprint
+
+\section{The Final Specification} \label{final-spec}
+\subsection{User Roles}
+
+In the new portal there will be three different user roles: student, teacher and administrator. 
+
+\subsubsection{Student Role}
+
+The student can:
+
+\begin{itemize}
+	\item see general informations about his classes
+	\begin{itemize}
+		\item when will it be
+		\item where will it be
+		\item who will be the teacher
+		\item when is the deadline
+		\item how much time is left until the deadline
+		\item what is the Git remote URL
+		\begin{itemize}
+			\item The portal doesn't have an option to upload files, because students use Git repositories to upload their homeworks.
+			\item With every laboratory they get a new Git repository in the Database Laboratory GitLab.
+		\end{itemize}
+	\end{itemize}
+	\item check his results
+	\begin{itemize}
+		\item his entry test grade
+		\item his laboratory report grade
+		\item his laboratory report review
+		\item who was the evaluator
+		\item his laboratory grade
+		\item his laboratory review
+	\end{itemize}
+	\item list his commits from every branch in the laboratory's repository
+	\item tag a commit as a final version
+	\begin{itemize}
+		\item When the deadline is over, the back end will tag every branch's last commit.
+		\item If the student didn't tag any commit as final version, the evaluator will check the solution only the master branch's commit, what was tagged by the back end.
+	\end{itemize}
+	\item see a summarized reviews of his grades
+\end{itemize}
+
+\subsubsection{Teacher Role}
+
+The teacher can be a demonstrator and/or an evaluator \see{data-dictionary}. If a teacher is both a demonstrator and an evaluator, then the teacher can choose which role's pages the teacher wants to use now.
+
+\newparagraph{Demonstrator Role}
+
+The demonstrator can:
+
+\begin{itemize}
+	\item see his current class with a list of students, who attended that class
+	\begin{itemize}
+		\item This list also contains the students' laboratory report grades and reviews.
+	\end{itemize}
+	\item give the students entry test grades
+	\item give the students laboratory grades
+	\item give the students laboratory reviews
+	\item choose another class to list the students, who attended that class
+	\begin{itemize}
+		\item save the student's results as a draft
+		\item continue writing a saved review draft
+		\item publish the results for the student
+	\end{itemize}
+\end{itemize}
+
+\newparagraph{Evaluator Role}
+
+The evaluator can:
+
+\begin{itemize}
+	\item see maximum 4 lists of homeworks
+	\begin{itemize}
+		\item If a list doesn't have any element, it won't appear on the page.
+		\item The first list contains the homeworks, what are waiting for evaluation and booked by the evaluator. 
+		\item The second list contains the homeworks, what are waiting for evaluation and not booked yet. 
+		\item The third list contains homeworks booked by another evaluator. 
+		\item The fourth list contains the evaluated homeworks. 
+	\end{itemize}
+	\item book homeworks for himself for evaluation
+	\item choose a homework to start the evaluation
+	\item see the student's name and the Git remote URL as a general information for a homework
+	\item give a laboratory report grade for a homework
+	\item write a review for a homework
+		\begin{itemize}
+			\item save the review as a draft
+			\item continue writing a saved review draft
+			\item publish the grade and the review for the student
+			\item If the student didn't tag any commit as final version, the evaluator will check the solution only in the last commit in the master branch.
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Administrator Role}
+
+The administrator role is a teacher role expanded with some extra features.
+
+The administrator can:
+
+\begin{itemize}
+	\item run SQL queries
+	\item search for users
+	\begin{itemize}
+		\item with name
+		\item with username
+		\item with id
+	\end{itemize}
+	\item can change a user's e-mail
+	\item can change a user's password
+	\item can impersonate any user
+	\item modify an evaluator's homework types
+	\item add a new entry test question
+	\item modify an entry test question
+	\item delete an entry test question
+	\item add a new event
+	\item modify an existing event
+	\item delete an existing event
+	\item see the statistics
+	\begin{itemize}
+		\item list the unpublished reviews
+		\item list the homeworks, what are waiting for evaluation
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Default Options}
+
+Any type of user can:
+
+\begin{itemize}
+	\item upload a new SSH public key
+	\item set a new e-mail address
+	\item set a new password
+	\item change his mailing list subscription
+	\item change his e-mail notifications subscription
+\end{itemize}
+
+\section{Meh, kene ide egy jo alcim}
+
+%mire van szükségünk
 
 hibaágak
 
-test suite
+%test suite - hogyan történik a teszt írás
 
 mi az én feladatom?
