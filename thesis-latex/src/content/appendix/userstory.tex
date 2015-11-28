@@ -5,16 +5,16 @@
 As a student\\ \hspace*{1cm}
 I want to get informations about my laboratories\\ \hspace*{1cm}
 to know where to upload my homework\\ \hspace*{1cm}
-and read the remarks of my homeworks\\ \hspace*{1cm}
-and change my basic settings
+And read the remarks of my homeworks\\ \hspace*{1cm}
+And change my basic settings
 
 \underline{Before laboratory:}
 
 Background:\\ \hspace*{1cm}
 Given a student named "Jakab"\\ \hspace*{1cm}
-and his password and username are entered in the login fields\\ \hspace*{1cm}
-and it is one day before the laboratory\\ \hspace*{1cm}
-and a finished homework uploaded to the Git repository
+And his password and username are entered in the login fields\\ \hspace*{1cm}
+And it is one day before the laboratory\\ \hspace*{1cm}
+And a finished homework uploaded to the Git repository
 
 Scenario: Getting informations about the next laboratory\\ \hspace*{1cm}
 Given I open the Laboradmin page\\ \hspace*{1cm}
@@ -27,8 +27,8 @@ And I should see the name of my teacher
 
 Background:\\ \hspace*{1cm}
 Given a student named "Jakab"\\ \hspace*{1cm}
-and his password and username are entered in the login fields\\ \hspace*{1cm}
-and he is sitting at the laboratory
+And his password and username are entered in the login fields\\ \hspace*{1cm}
+And he is sitting at the laboratory
 
 Scenario: Getting a Git remote URL\\ \hspace*{1cm}
 Given I open the Laboradmin page\\ \hspace*{1cm}
@@ -46,9 +46,9 @@ Then I should see a timer with a number between 96 and 92\pagebreak
 
 Background:\\ \hspace*{1cm}
 Given a student named "Jakab"\\ \hspace*{1cm}
-and his password and username are entered in the login fields\\ \hspace*{1cm}
-and it's one day before the deadline\\ \hspace*{1cm}
-and a finished homework uploaded to the Git repository
+And his password and username are entered in the login fields\\ \hspace*{1cm}
+And it's one day before the deadline\\ \hspace*{1cm}
+And a finished homework uploaded to the Git repository
 
 Scenario: Getting a list of Git commits\\ \hspace*{1cm}
 Given I open the Laboradmin page\\ \hspace*{1cm}
@@ -80,8 +80,8 @@ Then I should see "You have succesfully removed your final mark."
 
 Background:\\ \hspace*{1cm}
 Given a student named "Jakab"\\ \hspace*{1cm}
-and his password and username are entered in the login fields\\ \hspace*{1cm}
-and it's one day after the deadline
+And his password and username are entered in the login fields\\ \hspace*{1cm}
+And it's one day after the deadline
 
 Scenario: Getting my grade and review\\ \hspace*{1cm}
 Given I open the Laboradmin page\\ \hspace*{1cm}
@@ -94,7 +94,7 @@ Then I should see my grade and review
 
 Background:\\ \hspace*{1cm}
 Given a student named "Jakab"\\ \hspace*{1cm}
-and his password and username are entered in the login fields
+And his password and username are entered in the login fields
 
 Scenario: Getting a summarized list of my grades\\ \hspace*{1cm}
 Given I am logged in as "Jakab"\\ \hspace*{1cm}
@@ -103,7 +103,7 @@ Then I should see all of my grades
 
 Background:\\ \hspace*{1cm}
 Given a logged in student named "Jakab"\\ \hspace*{1cm}
-and the settings page is loaded
+And the settings page is loaded
 
 Scenario: Setting a new SSH public key\\ \hspace*{1cm}
 Given I am logged in as "Jakab"\\ \hspace*{1cm}

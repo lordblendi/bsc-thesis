@@ -1,4 +1,4 @@
-\chapter{Specification}
+guid\chapter{Specification}
 
 Before the team's first meeting in August, I looked up all the homework portals I've used during my student years to write a small specification~\cite{Szepes-specification} about what I expect from a homework portal as a student. Since September we have weekly meetings where we discussed the followings: 
 
@@ -9,42 +9,17 @@ Before the team's first meeting in August, I looked up all the homework portals 
 	\item new features to be added
 \end{itemize}
 
-After a few meetings we had a list of features as the starting point for our specification. Then I used the 5 Whys technique to filter out some features we don't need.
-\bence{ Specification bevezető vége: én azért javasoltam a "5 Why"
-	használatát, hogy megtudjuk a felmerült kérdések közös gyökerét --
-	azokat, amikre igazán kell koncentrálni, illetve amik a feature-ök
-	alapján fogják jelenteni (és nem azért, hogy szűrjek -- ez egy következmény)}
+After a few meetings we had a list of features as the starting point for our specification. Then I used the 5 Whys technique to find the common roots of the features. 
 
 \section{Test Suite}
-\subsection{User Story}
-\todo{explain}
-%I chose the Cucumber software to run automated tests. Cucumber allows
-\todo{miau} cucumber, given-when-then, scenario, background
+In this section I introduce what kind of techniques I used to create the final specification. Some of these techniques serve as the basics of testing. I explain the testing in \refstruc{7-test}. 
 
-\underline{Example:}
+\subsection{5 Whys}
+\label{5-whys}
 
-Background:\\ \hspace*{1cm}
-Given a logged in student named "Jakab"\\ \hspace*{1cm}
-and the settings page is loaded
+The 5 Whys is a technique to find the root cause of a problem simply by asking the question "Why?" multiple times. With this technique I can find out what does the user want to achieve with using a feature. Why does the user want to use this feature? Does the user really want to use this or should the portal to this by default instead of the user? The 5 Whys also helps to decide when should I implement only one general feature instead of many specific features. For example, if the user wants to have 15 specific analytic features, I could consider making a general one instead of specific ones. 
 
-Scenario: Setting a new SSH public key\\ \hspace*{1cm}
-Given I am logged in as "Jakab"\\ \hspace*{1cm}
-And I have entered a new SSH public key\\ \hspace*{1cm}
-When I press the save button\\ \hspace*{1cm}
-Then I should see "Your settings have been saved."
-
-
-The user stories are in \refstruc{user-stories}.
-
-\subsubsection{5 Whys}
-
-\bence{- 2.1.2: a "5 Why"-ból emlékeim szerint először a "feature"
-	összefoglalókat hoztad össze és csak azután készültek el a részletes
-	sztorik,}
-
-The 5 Whys is a technique to find the root cause of a problem simply by asking the question "Why?". With this technique we can find out what does the user want to achieve with using a feature and why does he want to achieve it?
-
-\underline{Example:}
+\emph{Example:}
 
 The student wants to list his commits from every branch in the laboratory's repository.
 \begin{itemize}
@@ -55,12 +30,39 @@ The student wants to list his commits from every branch in the laboratory's repo
 	\item \emph{Why?} -- Because the student has to pass the laboratory to pass the course.
 \end{itemize}
 
-When I finished with the filtering, I had the final list of features \see{final-spec} and I started to write user stories to have the basics for test automation.
+In consequence of the 5 Whys, I also filtered out some features. Then I started to write user stories to have the basics for test automation.
+
+\subsection{User Story}
+A user story is a description of how can the user interact with the system, and what does the user have to do to use a certain feature. User stories are written in everyday language, and I can use them to run automated tests with a software tool. 
+
+\subsubsection{Given When Then}
+
+The Given When Then convention for user stories. The \emph{Given} describes a state of the system. The \emph{When} describes an event. The \emph{Then} describes the result. If there are multiple Givens, I can use ~\emph{And} or \emph{But}. If you have the same Given statement for many stories, you can combine them as a \emph{background} section. A \emph{scenario} is an example of an executable action~\cite{Cucumber-scenario}. 
+
+\emph{Example:}
+
+Background:\\ \hspace*{1cm}
+Given a logged in student named "Jakab"\\ \hspace*{1cm}
+And the settings page is loaded
+
+Scenario: Setting a new SSH public key\\ \hspace*{1cm}
+Given I am logged in as "Jakab"\\ \hspace*{1cm}
+And I have entered a new SSH public key\\ \hspace*{1cm}
+When I press the save button\\ \hspace*{1cm}
+Then I should see "Your settings have been saved."
+
+At first I wrote simple user stories without backgrounds and scenarios. I wrote them for all modules, but then as a first step, I focused only on the student module, because that's the first module I will work on. I finished writing scenarios for only that module. The other modules are still only a list of simple user stories. The user stories are in \refstruc{user-stories}.
+
+\subsubsection{Cucumber}
+User stories are good basics for testing. For testing I will use Cucumber. Cucumber is a software tool to run automated tests. It uses the Gherkin parser to parse feature files. A feature file contains user stories written in everyday language in a specific structure. In this project I will use English user stories~\cite{Cucumber-gherkin}. The usage is described in \refstruc{cucumber-test}.
 
 
+\subsection{Mock Server}
 
-\subsection{API Blueprint}
+\subsubsection{API Blueprint}
 \label{api-blueprint}
+
+\subsubsection{Drakov}
 
 \todo{miau2}
 drakov, api blueprint
