@@ -2,7 +2,7 @@
 
 In this thesis I present the implementation of the student module. In the student module I will implement the following features in priority order:
 \begin{enumerate}
-	\item see general informations about the classes
+	\item see general information about the classes
 	\setcounter{enumi}{0}
 	\item see the results
 	\item list of commits and tagging a commit as final version
@@ -21,18 +21,18 @@ In \refstruc{7-test} I will test the features with priority level 1 and 2.
 
 
 \section{Design Sketches}
-To be able to draw design sketches, we need to know when will a user login to use the Educational Support System and what kind of informations is he looking for. As a student, there are 5 possible scenarios:
+To be able to draw design sketches, we need to know when will a user login to use the Educational Support System and what kind of information is he looking for. As a student, there are 5 possible scenarios:
 
 \begin{enumerate}
 	\item Before a laboratory
 	\begin{itemize}
-		\item To get informations about the laboratory
+		\item To get information about the laboratory
 		\begin{itemize}
 			\item When will it be
 			\item Where will it be
 			\item Who will be the teacher
 		\end{itemize}
-		\item To read general informations about the course
+		\item To read general information about the course
 	\end{itemize}
 	
 	\item During a laboratory
@@ -41,7 +41,7 @@ To be able to draw design sketches, we need to know when will a user login to us
 		\item To get his Git remote URL
 	\end{itemize}
 	
-	\item After a laboratory, before deadline
+	\item After a laboratory, before the deadline for submitting the homework
 	\begin{itemize}
 		\item To see the date of the deadline
 		\item To see how much time is left until the deadline
@@ -69,15 +69,15 @@ To be able to draw design sketches, we need to know when will a user login to us
 
 With the scenarios and list of actions, we can see how many pages is needed for the student modules and how many states will one page have. 
 
-\emph{Before laboratory:} For these informations I will use only labels \see{fig:before}.
+\emph{Before laboratory:} For these information I will use only labels \see{fig:before}.
 
-\emph{During laboratory, after laboratory and before deadline:} For the informations, like deadline and entry test grade I will use labels. For the list of commits I will use a dropdown menu. When the page is loaded, the last final commit will be the chosen one. If the user did not chose a final commit before, the last commit in the master branch will be the chosen one \see{fig:during}.
+\emph{During laboratory, after laboratory and before deadline:} For the information, like deadline and entry test grade I will use labels. For the list of commits I will use a dropdown menu. When the page is loaded, the last final commit will be the chosen one. If the user did not chose a final commit before, the last commit in the master branch will be the chosen one \see{fig:during}.
 
-\emph{After laboratory and after deadline:} For these informations I will use labels. The reviews can be long, and I want to keep the design simple. Because of this, there will be a size limit for the label on the view, and the rest of the text will be hidden with an ellipsis. The user can click on the text to show the rest of the review in a pop up window \see{fig:after}.
+\emph{After laboratory and after deadline:} For these information I will use labels. The reviews can be long, and I want to keep the design simple. Because of this, there will be a size limit for the label on the view, and the rest of the text will be hidden with an ellipsis. The user can click on the text to show the rest of the review in a pop up window \see{fig:after}.
 
 \emph{Other scenarios:} The new e-mail address, password and SSH public keys will have input fields. The subscription will be changeable with check boxes \see{fig:settings}. The summarized view will be a simple table with the grades in it \see{fig:results}.
 
-\emph{Menu:} Because the user is looking for a specific set of information, the page will only contain the important informations, and the previous, but still relevant informations will be accessible with tabs on the laboratory page. To be able to switch between the pages, I will use a navigation bar on the top of the page. The bar will have the logo of the portal and one button for each pages.
+\emph{Menu:} Because the user is looking for a specific set of information, the page will only contain the important information, and the previous, but still relevant information will be accessible with tabs on the laboratory page. To be able to switch between the pages, I will use a navigation bar on the top of the page. The bar will have the logo of the portal and one button for each pages.
 
 I drew sketches \see{appendix-design-sketches} for every state with placeholder data. 
 
@@ -94,24 +94,6 @@ Bootstrap is a free and open source HTML, CSS and JS framework to create respons
 After deciding what kind of design framework will I use, I had to chose the colors of the portal. Both the Budapest University of Technology and Economics~\cite{BME-Arculat}~\cite{BME-Arculat-Intranet} and the Faculty of Electrical Engineering and Informatics~\cite{VIK-Arculat}~\cite{VIK-Arculat-PDF} have their own Visual Identity Guidelines. A visual identity guideline contains the description of which color is the official color of the institution and in what kind of text which fonts and why that font should be used.
 
 I consulted with my advisor, Sándor Gajdos and he told me that I should not follow any of these visual identity guidelines. Following any of the strict guidelines can be a problem in the future, if anyone would like to use this portal for another course that does not belong to the faculty or the university. Based on a subjective opinion I have decided to use green as the main color of the portal. I used the Google Color palette~\cite{google-color-chart} to choose a nice green, changed it a bit, and I got the final color, \#2a623d.
-
-\section{The Creation of the Graphic Design}
-
-As the first step I created a basic HTML page. An HTML page has a head and a body section. All the meta data belong to the head section, and anything I want to display on the page goes to the body section. 
-
-In the head section I included a charset option and set it to utf-8 for Unicode character encoding. I added one more important meta data, the \emph{http-equiv=''x-ua-compatible''}. I use this meta tag to force Internet Explorer to render in the highest available mode~\cite{IE10-microsoft}~\cite{IE10-html5-boiler}. This solves the problem, that Internet Explorer wanted to open the website in IE10 Compatibility Mode. I also included a title and linked the main CSS file in the head section.
-
-In the body section I created an empty div with an id. I render the pages into this div. After this div, I included the main JavaScript script. I had to put this after the div, because I render the website with JavaScript, and I can only add components to an element, that has finished rendering.
-
-As the main CSS file I concatenate the Bootstrap CSS file with my own CSS file, called \mbox{\emph{laboradmin.css}}. In the \mbox{\emph{laboradmin.css}} file I overwrite some parts of the Bootstrap CSS, to make some components to have a different appearance than the basic Bootstrap appearance, e.g., background colors and border visibility.
-
-As the main JavaScript file I concatenate all the JavaScript files into one file. This includes the followings: the shim file, because Mithril relies on some features what are not part of the previous Internet Explorer versions, the Mithril framework's minimized JavaScript code, the Bootstrap JavaScript file, because for some components I have to use their JavaScript code, and jQuery, because Bootstrap depends on jQuery. 
-
-I separated my JavaScript files based on if it is a part of the model's, the controller's or the view's code. I use MSX in my view codes. To make the inline HTML-like syntax more simple, I created different widgets, and use them as HTML tags. To build a page the followings are needed: a page, that contains the menu and the panel, a panel, that contains all the widgets, and the widgets that contain the basic HTML elements. The MSX transformer converts this HTML-like syntax into Mithril JavaScript code during the concatenation. In the HTML-like code, I add classes for every element. These class attributes will make the element's style look equal. Every class's style is defined in the CSS files.
-
-The controllers load the necessary data from the server and store it in the model. The views will load the data from the model. Because I did not want more dependencies for the project I decided to implement a simple JavaScript class as the model.
-
-For concatenation I use a gulp script. In this script I use gulp tools to concatenate and minify CSS, JS and HTML files and move them to the dist folder \see{gulp}.
 
 \newpage
 \section{Final Graphical Design}

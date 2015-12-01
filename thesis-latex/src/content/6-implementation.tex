@@ -1,8 +1,55 @@
 \chapter{Implementation}
 
 \section{verziókezelés}
+\todo{arg1}
+
+
+\section{tools, open source projektek}
+\todo{arg1}
+\section{Method of Implementation}
+During implementation I used HTML, CSS and JavaScript to create the web application. For deployment I used a gulp script written by me \see{gulp}. 
+
+HTML is a standard language to create websites. CSS describes the style of the HTML elements. The styles are binded to the elements within the class attribute. JavaScript is a script language to make websites interactive. Web applications use JavaScript for AJAX requests and event action handling. 
+
+\newparagraph{HTML}
+As the first step I created a basic HTML page. An HTML page has a head and a body section. All the meta data belong to the head section, and anything I want to display on the page goes to the body section. \label{html-impl}
+
+In the \emph{head section} I included a charset option and set it to utf-8 for Unicode character encoding. I added one more important meta data, the \emph{http-equiv=''x-ua-compatible''}. I use this meta tag to force Internet Explorer to render in the highest available mode~\cite{IE10-microsoft}~\cite{IE10-html5-boiler}. This solves the problem, that Internet Explorer wanted to open the website in IE10 Compatibility Mode. I also included a title and linked the main CSS file in the head section.
+
+In the \emph{body section} I created an empty div with an id attribute. The pages are rendered into this div. To make sure that JavaScript can render elements into this div, I included the JavaScript code after the closing tag of this div.
+
+\newparagraph{CSS}
+As the main CSS file I concatenate the Bootstrap CSS file with my own CSS file, called \mbox{\emph{laboradmin.css}}. During concatenation I had to make sure that my CSS code will be after the Bootstrap code. This is important, because in CSS the last style rules overrides the previous ones. The Bootstrap CSS file contains the basic Bootstrap component styles. In the \mbox{\emph{laboradmin.css}} file some parts of the Bootstrap CSS are overwritten, to make the components to have a different appearance than the basic Bootstrap appearance, e.g., font colors, background colors and border visibility.
+
+\newparagraph{JavaScript}
+As the main JavaScript file I concatenate all the JavaScript files into one file. This includes the following files: 
+\begin{itemize}
+	\item the shim file, because Mithril relies on some features what are not part of the previous Internet Explorer versions,
+	\item the Mithril framework's minimized JavaScript code,
+	\item the Bootstrap JavaScript file, because some components require it,
+	\item jQuery, because Bootstrap depends on jQuery, and
+	\item my JavaScript files.
+\end{itemize}
+
+I separated my JavaScript files based on if it is a part of the model's, the controller's or the view's code. 
+
+I use MSX in my \emph{view} codes. To make the inline HTML-like syntax more simple, I created different widgets, and use them as HTML tags. To build a page the followings are needed: 
+\begin{itemize}
+	\item a page, that contains the menu and the panel,
+	\item a panel, that contains all the widgets, and
+	\item the widgets, that contain the basic HTML elements.
+\end{itemize}
+
+The MSX transformer converts this HTML-like syntax into Mithril JavaScript code during the concatenation. In the HTML-like code, I add classes for every element. These class attributes will make the element's style look equal. Every class's style is defined in the CSS files.
+
+The \emph{controllers} are the communication bridges between the model and the views. The controllers have helper methods to get the necessary data from the model, or send data to the model and to change the behavior of the elements, e.g. disable buttons. The view uses these helper methods to bind data or event listeners to the elements.
+
+Because I did not want more dependencies I have decided to implement a simple JavaScript class as the \emph{model}. The model loads the necessary data from the server and stores it. The model can also send data to the server. All data flow between the model and the server go through a marshalling module for conversion.
+
+
 \section{mire figyeltem a kódolásnál}
-\section{tooles, open source projektek}
+\todo{arg1}
+
 \section{kód metrika}
 \section{teszt lefedettség}
 \section{eredmény}

@@ -1,0 +1,224 @@
+\chapter{Attribute List}
+\label{attribute-list}
+\begin{itemize}
+	\item Appointments
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item date - datetime
+			\item location - text
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item eventtype - EventTypes
+			\item studentgroup - StudentGroups
+		\end{itemize}
+	\end{itemize}
+	
+	\item Courses
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item name - text
+			\item codename - text
+		\end{itemize}
+	\end{itemize}
+	
+	\item Deliverables
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item deadline - datetime
+			\item submitteddate - datetime
+			\item grade - number - 1-5
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item deliverabletype - DeliverableTypes
+			\item evaluator - Staffs
+			\item related - Deliverables
+		\end{itemize}
+		\item Deliverables/Repositories
+		\begin{itemize}
+			\item attributes
+			\begin{itemize}
+				\item url - text - type (svn, git) depends on the url
+				\item commit - text - chosen final commit
+			\end{itemize}
+		\end{itemize}
+		\item Deliverables/Files
+		\begin{itemize}
+			\item attributes
+			\begin{itemize}
+				\item size - number
+				\item sha256sum - text
+				\item filename - text
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+	
+	\item DeliverableTypes
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item \todo{}
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item \todo{}
+		\end{itemize}
+	\end{itemize}
+	
+	\item Events
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item date - datetime
+			\item location - text
+			\item number - number - 1-5
+			\item title - text - DBMS, SQL, JDBC, X*, SOA
+			\item attempt - number - starting number: 1
+			\item shortdescription - text - generated
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item related - Events
+			\item eventtype - EventTypes
+			\item exercisetype - ExerciseTypes
+			\item demonstrator - Staffs
+			\item student - Students
+			\item studentgroup - StudentGroups			
+		\end{itemize}
+	\end{itemize}
+	
+	\item EventTypes
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item \todo{}
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item \todo{}
+		\end{itemize}
+	\end{itemize}
+	
+	\item ExerciseCategories
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item \todo{}
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item \todo{}
+		\end{itemize}
+	\end{itemize}
+	
+	\item ExerciseTypes
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item \todo{}
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item \todo{}
+		\end{itemize}
+	\end{itemize}
+	
+	\item RegisteredStaffs
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item isadmin - boolean
+			\item isdemonstrator - boolean
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item staff - Staffs
+			\item semester - Semesters
+		\end{itemize}
+	\end{itemize}
+	
+	\item RegisteredStudents
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item neptunsubjectcode - text
+			\item neptuncoursecode - text
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item student - Students
+			\item semester - Semesters
+		\end{itemize}
+	\end{itemize}
+	
+	\item Semesters
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item academicyear - number
+			\item academicterm - number
+			\item description - text - generated
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item course - Courses
+		\end{itemize}
+	\end{itemize}
+	
+	\item StudentGroups
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item name - text
+		\end{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item demonstrator - Staffs
+			\item semester - Semesters
+		\end{itemize}
+	\end{itemize}
+	
+	\item Users
+	\begin{itemize}
+		\item attributes
+		\begin{itemize}
+			\item id - number
+			\item givenname - text
+			\item surname - text
+			\item title - text
+			\item displayname - text - generated
+			\item loginname - text, unique
+			\item eppn - text - Sibboleth
+			\item email - text, unique
+			\item sshpubliykey - text
+			\item password - text
+		\end{itemize}
+		\item Users/Students
+		\begin{itemize}
+			\item attributes
+			\begin{itemize}
+				\item neptun - text
+				\item university - text
+			\end{itemize}
+		\end{itemize}
+		\item Users/Staff
+	\end{itemize}
+\end{itemize}
+
+

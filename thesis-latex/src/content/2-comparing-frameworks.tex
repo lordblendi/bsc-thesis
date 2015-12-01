@@ -1,7 +1,7 @@
 \chapter{Comparing JavaScript Frameworks}
 \label{comparing-frameworks}
 
-For the project I wanted to choose a JavaScript framework for faster development than using plain JavaScript with jQuery. Writing every component from scratch needs a lot of time. Hundreds of developers contribute in open-source frameworks, and developers can utilize their reviewed and tested work. This leads to getting more tasks done in less time. Because this project follows the MVC pattern \see{mvc}, only JavaScript MVC frameworks will be compared. The TodoMVC~\cite{TodoMVC} website helps developers to select a JavaScript MVC framework for their project. It provides the same example written in JavaScript using different JavaScript MVC frameworks.
+For the project, I preferred to choose a JavaScript framework for faster development than using plain JavaScript with jQuery. Writing every component from scratch needs a lot of time. Hundreds of developers contribute in open-source frameworks, and developers can utilize their reviewed and tested work. This leads to getting more tasks done in less time. Because this project follows the MVC pattern \see{mvc}, only JavaScript MVC frameworks will be compared. The TodoMVC~\cite{TodoMVC} website helps developers to select a JavaScript MVC framework for their project. It provides the same example written in JavaScript using different JavaScript MVC frameworks.
 
 During comparison I checked the followings:
 \begin{itemize}
@@ -20,6 +20,8 @@ The classic \emph{data binding} model is when the view template and the data fro
 
 Upon URL change an SPA will not download a new page. It will navigate to the right part of the application. \emph{Routing} takes care of this automatically. The SPA needs a routing table to know which URL belongs to which controller or view.
 
+During the comparison I made a small test program in every JavaScript framework to try AJAX requests, data binding and routing. The source codes are publicly available on Github with a gulp file \see{gulp} and an API blueprint test file for Drakov \see{api-blueprint}.
+
 \section{React}
 
 My first choice was React~\cite{React}. It is developed by Facebook and Instagram since 2013.
@@ -32,15 +34,21 @@ For data binding React has a one-way data flow called Flux~\cite{Flux}. Flux sup
 
 React focuses only on building views. The core React version does not have an option for routing and AJAX requests. If I want to support those in my application, then React should be combined with other frameworks or libraries to have a full MVC experience.
 
+\newparagraph{Test Program~\cite{Github-react}}
+The components are separated into different JavaScript files. JSX was used to represent the views. Before the concatenation a JSX transformer converts the inline HTML-like JSX to JavaScript code. The React components' states were used as a model. Because React has not got an option for AJAX requests. jQuery was used to download some mock data from the mock server. React Router was used~\cite{React-router} for routing. 
+
 \section{AngularJS}
 
-AngularJS~\cite{Angular} is one of the most famous JavaScript frameworks nowadays.  It has been maintained by Google for 6 years. It focuses mostly on dynamic views in web-applications. 
+AngularJS~\cite{Angular} is one of the most advanced JavaScript frameworks nowadays.  It has been maintained by Google for 6 years. It focuses mostly on dynamic views in web-applications. 
 
-Creating a website is done with an extended HTML vocabulary, like Android Layouts where we declare everything in XML.  It uses a two-way data binding template~\cite{Angular-Developer-DataBinding} which means whenever either the View or the Model is changed, it will update the other one.
+Creating a website is done with an extended HTML vocabulary, like Android Layouts where we declare everything in XML.  It uses a two-way data binding template~\cite{Angular-Developer-DataBinding} which means whenever either the View or the Model is changed, it will update the other one automatically.
 
 Angular AJAX requests are similar to the AJAX methods in jQuery, but Angular takes care of setting headers and converting the data to JSON string. It can also be used in unit tests with ngMock~\cite{Angular-AJAX}, because it can create a mock server. 
 
-For routing Angular uses a special listener. It binds these listeners to links. If the user clicks on a link, Angular will simply push the page to the browser's history and replace the view with the new page. This will even allow the back button to operate. This method works only if the website is loading from a server, because it allows Angular to load into the memory otherwise the listeners cannot navigate through pages~\cite{Angular-Location}~\cite{Angular-Location2}.
+For routing Angular uses a special listener. It binds these listeners to links. If the user clicks on a link, Angular will simply push the page to the browser's history and replace the view with the new page. This will even allow the back button to operate. This method works only if the website is loading from a server, because it allows Angular to load into the memory otherwise the listeners cannot navigate through the pages~\cite{Angular-Location}~\cite{Angular-Location2}.
+
+\newparagraph{Test Program~\cite{Github-angular}}
+The controllers are separated into different JavaScript files and the views into different HTML templates. The routing connects the right HTML template to the right controller. The JavaScript files are concatenated using gulp. The HTML templates are in different HTML files. Variables inside the controllers were used as a basic model. The routing is not included in the core Angular framework, but Google provides a library for it.
 
 \section{Mithril}
 
@@ -56,24 +64,13 @@ Mithril provides a utility for AJAX requests. We can set an early reference for 
 
 For routing Mithril needs a key-value map of possible routes and Mithril modules to connect the routes to the modules. Upon routing the module's controller will be called and passed as a parameter to the view.~\cite{Mithril-routing}.
 
+\newparagraph{Test Program~\cite{Github-mithril}}
+A Mithril module contains a model, a controller and a view. A controller is a JS constructor and the view is a function, that returns a virtual DOM. Modules are separated into different JavaScript files and concatenated with gulp. MSX transformer converts the HTML-like MSX to JavaScript code.
+
 \section{Comparison}
 
-During the comparison I made a small program in every JavaScript framework to try AJAX requests, data binding and routing. The source codes are publicly available on Github with a gulp file \see{gulp} and an API blueprint test file for Drakov \see{api-blueprint}.
 
-\newparagraph{React~\cite{Github-react}}
-The components are separated into different JavaScript files. JSX was used to represent the views. Before the concatenation a JSX transformer converts the inline HTML-like JSX to JavaScript code. The React components' states were used as a model. Because React has not got an option for AJAX requests. jQuery was used to download some mock data from the mock server. React Router was used~\cite{React-router} for routing. 
-
-
-\newparagraph{Angular~\cite{Github-angular}}
-The controllers are separated into different JavaScript files and the views into different HTML templates. The routing connects the right HTML template to the right controller. The JavaScript files are concatenated using gulp. The HTML templates are in different HTML files. Variables inside the controllers were used as a basic model. The routing is not included in the core Angular framework, but Google provides a library for it.
-
-
-\newparagraph{Mithril~\cite{Github-mithril}}
-A Mithril module contains a model, a controller and a view. A controller is a JS constructor and the view is a function, that returns a virtual DOM. Modules are separated into different JavaScript files and concatenated with gulp. MSX transformer converts the HTML-like MSX to JavaScript code. 
-
-\bence{- 4.1 és 4.4 -- ezeket páronként össze kéne gyúrni.  A 4.1, 4.2, 4.3-ban
-	már nyugodtan leírhatod az összehasonlítással kapcsolatos
-	megjegyzéseidet.  Javaslom, hogy legyen egy táblázat valahol, ahol
+\bence{Javaslom, hogy legyen egy táblázat valahol, ahol
 	gyorsan át lehet tekinteni az eredményt.\\érdemes lenne egy táblázatban is összefoglalni az áttekinthetőség
 	érdekében}
 
@@ -81,15 +78,32 @@ A Mithril module contains a model, a controller and a view. A controller is a JS
 In performance both React and Mithril are faster than Angular, because they use virtual DOM. Angular's public API interface is much bigger than React's or Mithril's. React does not have routing and AJAX requests in its core library, so it depends on other libraries. 
 I choose Mithril for this project, because it is  self-contained, so it does not have to depend on other libraries. It has utilities built-in for routing and AJAX requests. And it has a small API with great documentation. 
 
-
-\bence{- 4 és 5 között hiányzik számomra az a rész, ahol az implementáció
-	\_előtt\_ lefekteted azokat a kritériumokat, amik alapján "elfogadott"
-	(elfogadható) lesz a kezedből kiadott eredmény -- és amit a 6/7.
-	fejezetben tesztelsz.}
-
 \section{Supported Web Browsers}
-~\cite{IE10-microsoft}~\cite{IE10-html5-boiler}~\cite{IE10-html5-boiler-homepage}.
+At first I am aiming to develop the portal for desktop browsers. The portal will support every browser, that is supported by Google~\cite{google-support}.
+The supported browsers are:
+\begin{itemize}
+	\item Chrome
+	\item Internet Explorer
+	\item Firefox
+	\item Safari
+\end{itemize}
+
+\subsection{Internet Explorer}
+The portal will support Internet Explorer 10 and every newer version~\cite{google-support-blog}.
+
+Because there are some features, that Mithril depends on and are not part of earlier Internet Explorer version, I added a shim JavaScript file to the project~\cite{Mithril-tools}. 
+
+To force Internet Explorer to render in the highest available mode, I added a special meta tag in the html file~\cite{IE10-microsoft}~\cite{IE10-html5-boiler} \see{html-impl}.
 
 \section{Frontend System Design}
 \label{frontend-system-design}
 \todo{frontend ábra visioban}
+
+
+\todo{lefordítani az e-mailt}
+
+A beérkezett kérést a routig komponens dönti el egy routing table segítségével, hogy melyik controllernek kell kezelnie. A controller lefut, igény esetén szól a modellnek, ha valami adatot kell változtatni vagy frissíteni. A model ha szükséges, akkor kommunikációt kezdeményez az API-val.
+
+Az API eléréséhez a modell először elküldi az adatot átalakításra (marshalling), majd a server communication elküldi/lekéri a megfelelő adatot. Visszafele természetesen a marshalling átalakítja az adatot olyan formára, amivel a modell tud dolgozni.
+
+A controller lefutása után meghívódik a hozzátartozó view metódus, és mithrilben a view metódus első paramétere mindig a hozzá tartozó controller. Ez azért kell, mert a controller biztosítja az összes "többi helper" metódust a viewnak, és a view azokon keresztül éri el pl a modell adatait (pl X adat lekérése, amit ki tud tenni a label-be, ezt szimbolizálja az ábrán a model -> view nyíl).  Az elkészült view pedig visszakerül a browserhez, ami megjeleníti a felhasználó számára.
