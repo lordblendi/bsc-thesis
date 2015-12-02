@@ -35,7 +35,7 @@ For data binding React has a one-way data flow called Flux~\cite{Flux}. Flux sup
 React focuses only on building views. The core React version does not have an option for routing and AJAX requests. If I want to support those in my application, then React should be combined with other frameworks or libraries to have a full MVC experience.
 
 \newparagraph{Test Program~\cite{Github-react}}
-The components are separated into different JavaScript files. JSX was used to represent the views. Before the concatenation a JSX transformer converts the inline HTML-like JSX to JavaScript code. The React components' states were used as a model. Because React has not got an option for AJAX requests. jQuery was used to download some mock data from the mock server. React Router was used~\cite{React-router} for routing. 
+The components are separated into different JavaScript files. JSX was used to represent the views. Before the concatenation a JSX transformer converts the inline HTML-like JSX to JavaScript code. The React components' states were used as a model. Because React has not got an option for AJAX requests, jQuery was used to download some mock data from the mock server. React Router was used~\cite{React-router} for routing. 
 
 \section{AngularJS}
 
@@ -67,12 +67,33 @@ For routing Mithril needs a key-value map of possible routes and Mithril modules
 \newparagraph{Test Program~\cite{Github-mithril}}
 A Mithril module contains a model, a controller and a view. A controller is a JS constructor and the view is a function, that returns a virtual DOM. Modules are separated into different JavaScript files and concatenated with gulp. MSX transformer converts the HTML-like MSX to JavaScript code.
 
-\section{Comparison}
+\newpage
+\section{Comparison Table}
 
+\begin{center}
+	\begin{table}[!htbp]
+		\begin{tabular}{|p{3cm}||p{3.5cm}|p{3.5cm}|p{3.5cm}|}\hline
+									& \multicolumn{1}{c|}{\textbf{React}}          
+									& \multicolumn{1}{c|}{\textbf{Angular}}   
+									& \multicolumn{1}{c|}{\textbf{Mithril}} \tabularnewline \hhline{|=#=|=|=|}
+		\multicolumn{1}{|c||}{\multirow{7}{*}{\textbf{AJAX requests}}}      
+									& Not part of the core framework. Requires an external library or framework.          
+									& Provides simple AJAX methods. It can be used for unit tests, because it can create a mock server.
+									& Provides a simple utility. An early reference can be set for the response to qeue up operations to be performed after the request completes. \tabularnewline\hline
+		\multicolumn{1}{|c||}{\multirow{7}{*}{\textbf{data binding}}} 		
+									& One-way data flow, downstream. if something is changed in the component tree, it re-renders itself and all of its descendants.
+									& Two-way data binding. Either the model or the View is changed, it will update the other one autimatically.    
+									& One-way data flow. Uses a diff algorithm, that decides which part of the DOM needs to be updated. It is triggered by event handlers.   \tabularnewline\hline
+		\multicolumn{1}{|c||}{\multirow{6}{*}{\textbf{routing}}}        	
+									& Not part of the core framework. Requires an external library or framework.         
+									& A special listener is binded to the links. It pushes the page to the browser's history.
+									& Uses a key-value map as a routing table, that connects the URLs with Mithril module controllers.    \tabularnewline \hline
+	\end{tabular}
+	\caption{Framework Comparison Table}
+	\label{table:frameworkcomparison}
+	\end{table}
+\end{center}
 
-\bence{Javaslom, hogy legyen egy táblázat valahol, ahol
-	gyorsan át lehet tekinteni az eredményt.\\érdemes lenne egy táblázatban is összefoglalni az áttekinthetőség
-	érdekében}
 
 \section{Conclusion}
 In performance both React and Mithril are faster than Angular, because they use virtual DOM. Angular's public API interface is much bigger than React's or Mithril's. React does not have routing and AJAX requests in its core library, so it depends on other libraries. 
@@ -98,12 +119,16 @@ To force Internet Explorer to render in the highest available mode, I added a sp
 \section{Frontend System Design}
 \label{frontend-system-design}
 \todo{frontend ábra visioban}
+%\begin{figure}[!htbp]
+%	\includegraphics[width=0.95\textheight, angle=90]{figures/frontend_rendszerterv_teljes.pdf}
+%	\caption[Front End System Design]{Front End System Design\\The JS-APP was made by me and the outer layer was made by Bence Golda.}
+%	\label{fig:frontend-system-design}
+%\end{figure}
+%
 
+The routing component handles the incoming requests. It uses a routing table to decide which controller has to handle the request.
 
-\todo{lefordítani az e-mailt}
+The controller talks to the model, if any data should be changed or needed. The model sends data to the API or asks for data from the API. Every data is converted between the representation suitable for the implementation and the AJAX requests by the marshalling component. The communication between the API and the client is handled by the server communication component.
 
-A beérkezett kérést a routig komponens dönti el egy routing table segítségével, hogy melyik controllernek kell kezelnie. A controller lefut, igény esetén szól a modellnek, ha valami adatot kell változtatni vagy frissíteni. A model ha szükséges, akkor kommunikációt kezdeményez az API-val.
+The controller provides helper methods (e.g. getting data from the model) and it is passed as the first parameter to the view~\cite{Mithril-routing}. The rendered view is forwarded to the browser, that visualized it for the user.
 
-Az API eléréséhez a modell először elküldi az adatot átalakításra (marshalling), majd a server communication elküldi/lekéri a megfelelő adatot. Visszafele természetesen a marshalling átalakítja az adatot olyan formára, amivel a modell tud dolgozni.
-
-A controller lefutása után meghívódik a hozzátartozó view metódus, és mithrilben a view metódus első paramétere mindig a hozzá tartozó controller. Ez azért kell, mert a controller biztosítja az összes "többi helper" metódust a viewnak, és a view azokon keresztül éri el pl a modell adatait (pl X adat lekérése, amit ki tud tenni a label-be, ezt szimbolizálja az ábrán a model -> view nyíl).  Az elkészült view pedig visszakerül a browserhez, ami megjeleníti a felhasználó számára.

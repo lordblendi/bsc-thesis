@@ -61,9 +61,9 @@ User stories are good basics for testing. For testing I will use Cucumber. Cucum
 
 Because I only develop the front end, I wanted to make sure that I can work on the implementation without waiting for back end modules to be finished. To do that, I have to write an API specification and use a mock server. 
 
-A \emph{mock server} simulates the behavior of the back end and offers data for the front end to work with. With the good API specification it will offer the same data as the future back end, and gives the opportunity to test the developed front end modules during the applications's development.
+A \emph{mock server} simulates the behavior of the back end and offers mock data to work with. With a good API specification it will offer the same data as the future back end, and gives the opportunity to test the developed front end modules before the back end is finished.
 
-I was looking for an API specification tool to design the communication between the back end and the front end and a mock server tool, that implements the API specification.
+I was looking for an API specification tool to design the communication between the back end and the front end and a mock server tool, that implements that API specification.
 
 \subsubsection{API Blueprint}
 \label{api-blueprint}
@@ -75,6 +75,7 @@ I want to use my API specification as a normal documentation for humans and as a
 The API Blueprint~\cite{api-blueprint} team offers some tools, that implements API Blueprint specification. \emph{Drakov}~\cite{drakov} is one of these open source mock server tools, that implements API Blueprint specifications. The usage is described in \refstruc{mock-server-usage}.
 
 \section{The Final Specification} \label{final-spec}
+The final specification was made by me and finalized by the team.
 \subsection{User Roles}
 
 In the new portal there will be four different user roles: student, evaluator, demonstrator and administrator. 
