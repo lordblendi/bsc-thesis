@@ -1,11 +1,19 @@
 \chapter{Implementation}
 
-\section{verziókezelés}
-\todo{arg1}
+The team has decided, that the portal is an open source project. The source code is available on GitHub. This offers an opportunity for new students and staff to contribute in the project.
 
+\todo{github link}
+
+\section{Version Control}
+GitHub~\cite{github} is a Git repository service. Git is a version control system. In a new commit, it stores snapshots of the file system. If a file did not change, then Git links it to the previous version~\cite{git}. GitHub offers private and public repositories too. In this project we use public repositories and the Git Workflow~\cite{git-workflow}. 
+
+\subsection{Git Workflow}
+When many developers work on the same project, their aim is to keep the master branch clean. A branch is a pointer to one of the commits (snapshots). The default branch is the master branch. To keep the master branch clean, developers can create a new branches. While developing a feature, the developer commits into a second branch. These changes does not affect the master branch. When the feature is finished, then the developer has to merge it into the master branch. If the master branch did not change, it will move the pointer to the new commit. At this point the new branch can be deleted, because the master branch points at the same commit~\cite{git-workflow2}.
+
+If the master branch changed before, Git can do a three-way merge between the common ancestor, the last commit in the master branch, and the last commit in the second branch. Git can do this automatically, if a same part of a same file is not changed. In that case the developer can either accept one of the files or merge them by hand~\cite{git-workflow2}.
 
 \section{tools, open source projektek}
-\todo{arg1}
+\todo{----milyen open source projekteket és toolokat használunk, bár van, amit már leírtam pl a test suite sectionben.}
 \section{Method of Implementation}
 During implementation I used HTML, CSS and JavaScript to create the web application. For deployment I used a gulp script written by me \see{gulp}. 
 
@@ -48,8 +56,6 @@ Because I did not want more dependencies I have decided to implement a simple Ja
 
 
 \section{mire figyeltem a kódolásnál}
-\todo{arg1}
-
 \section{kód metrika}
 \section{teszt lefedettség}
 \section{eredmény}
