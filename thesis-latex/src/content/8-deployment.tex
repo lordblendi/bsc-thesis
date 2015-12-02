@@ -1,3 +1,39 @@
 \chapter{Deployment}
-hogy érhető el az az állapot, hogy a fájlok összeállnak -> gulp
+I wrote a gulp script on Linux to automatize the deployment. This script creates the three downloadable files from the source codes.
+
+\section{Gulp}
 \label{gulp}
+
+Gulp is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory.
+
+To install gulp on Linux, I used the npm package manager from a terminal, that was opened in the project's root folder. Gulp can be installed as a global package with the following command:
+
+\emph{npm install -g gulp}
+
+\subsection{Gulp Plugins}
+
+I use the following Gulp plugins:
+
+\begin{itemize}
+	\item gulp-concat
+	\item gulp-minify-css
+	\item gulp-minify-html
+	\item gulp-plumber		
+	\item gulp-uglify
+	\item gulp-util
+	\item msx
+	\item through2
+\end{itemize}
+	
+Use the following code to install plugins:
+
+\emph{npm install [plugin1 plugin2 plugin3]}
+
+\subsection{The Gulp File}
+The client's gulp file is added in the root directory. 
+
+First gulp uses the msx plugin, to transform the HTML-like syntax in the JavaScript files, then concatenates them. The concatenated JavaScript file is minimized and moved to the \emph{dist} folder. I used the MSX plugin's example code for the msx transformation task~\cite{gulp-msx-example}. Then gulp minimizes the HTML file and moves it to the \emph{dist} folder. At last the CSS files are concatenated, minimized and the minimized file is moved to the \emph{dist} folder.
+
+Use the following command to run it:
+
+\emph{gulp}

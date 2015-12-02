@@ -12,8 +12,30 @@ When many developers work on the same project, their aim is to keep the master b
 
 If the master branch changed before, Git can do a three-way merge between the common ancestor, the last commit in the master branch, and the last commit in the second branch. Git can do this automatically, if a same part of a same file is not changed. In that case the developer can either accept one of the files or merge them by hand~\cite{git-workflow2}.
 
-\section{tools, open source projektek}
-\todo{----milyen open source projekteket és toolokat használunk, bár van, amit már leírtam pl a test suite sectionben.}
+\section{Used Software Tools and Open Source Projects}
+The front end uses the following open source projects and software tools:
+
+\begin{itemize}
+	\item API Blueprint
+	\item Bootstrap
+	\item Cucumber	
+	\item Drakov
+	\item Mithril
+	\item GitHub
+	\item Gulp
+	\begin{itemize}
+		\item gulp-concat
+		\item gulp-minify-css
+		\item gulp-minify-html
+		\item gulp-plumber		
+		\item gulp-uglify
+		\item gulp-util
+		\item msx
+		\item through2
+	\end{itemize}
+\end{itemize}
+
+
 \section{Method of Implementation}
 During implementation I used HTML, CSS and JavaScript to create the web application. For deployment I used a gulp script written by me \see{gulp}. 
 
@@ -59,4 +81,4 @@ Because I did not want more dependencies I have decided to implement a simple Ja
 \section{kód metrika}
 \section{teszt lefedettség}
 \section{eredmény}
-kód hol érhető el, melyik commit verziót mutatom be, gulp
+kód hol érhető el, melyik commit verziót mutatom be, gulpra hivatkozás
