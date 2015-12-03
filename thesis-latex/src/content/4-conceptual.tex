@@ -42,7 +42,7 @@ If there were not any load balancer between the client and the web server, then 
 \subsection{Entity–Relationship Model}
 \label{ER-model}
 
-A data model describes the structures in which the database stores the data. The \emph{Entity-Relationship model} is a data model, that describes the data structure with entities and the relationships between them. An \emph{entity} is an existing information, that needs to be modeled. A \emph{property (attribute)} is a qualifier, that makes the entities unique. A \emph{relationship} describes a connection between entities~\cite{adatb}.
+A data model describes the structures in which the database stores the data. The \emph{Entity-Relationship model} is a formal notation, that describes the data structure with entities and the relationships between them. An \emph{entity} is an existing information, that needs to be modeled. \emph{Properties (attributes)} describes the entities and makes them unique. A \emph{relationship} describes a connection between entities~\cite{adatb}.
  
 The project's model uses Chen's notation. About 65 percent of the model was created by me, 35 percent of it was created by József Marton and it was finalized by the team. The attribute list is in \refstruc{attribute-list}.
 
@@ -51,19 +51,19 @@ The project's model uses Chen's notation. About 65 percent of the model was crea
 \begin{itemize}
 	\item \textbf{Appointments:} An appointment connects the student groups with a date and a location.
 	\item \textbf{Courses:} The courses, that use the portal.
-	\item \textbf{Deliverables:} \todo{The way the students submit their homework. }
-	\item \textbf{Deliverables/Repositories:} The repository, where students commit their source codes. 
-	\item \textbf{Deliverables/Files:} The files, that students submit as homeworks. 
-	\item \textbf{DeliverableTypes:} Describes the type of the submitted homework, e.g. documentation or git repository. 
-	\item \textbf{Events:} An educational event is a class with a date for students	to participate.
+	\item \textbf{Deliverables:} The things to be submitted by the students (e.g. homework).
+	\item \textbf{Deliverables/Repositories:} A special type of Deliverables that is to be submitted through a repository.
+	\item \textbf{Deliverables/Files:} A special type of Deliverables that is to be submitted as a file upload.
+	\item \textbf{DeliverableTypes:} Describes the type of the submitted homework, e.g. documentation, source code. 
+	\item \textbf{Events:} An educational event is a class with a date for a particular student to participate.
 	\item \textbf{EventTypes:} An event can be any type of class: lecture, laboratory or seminar. The Software Laboratory course has only laboratories.
-	\item \textbf{ExerciseCategories:} Describes the type of the laboratory: DBMS, SQL, JDBC, X* or SOA.
+	\item \textbf{ExerciseCategories:} Describes the type of the laboratory: DBMS, SQL, JDBC, XML technologies in databases or SOA.
 	\item \textbf{ExerciseTypes:} Describe the topic and the language of the exercises. 
 	\item \textbf{RegisteredStaffs:} A many-to-many relationship between the Semesters and the Staffs. It describes the staff member's role in the semester.
-	\item \textbf{RegisteredStudents:} A many-to-many relationship between the Semesters and the Students. It describes which Neptun course is registered for a student in the semester.
-	\item \textbf{Semesters:} \todo{The semester, when the course is being held.}
-	\item \textbf{StudentGroups:} In Software Laboratory 5 the students are separated into different groups. A group has one demonstrator and about 20 students.
-	\item \textbf{Users:} The people, that use the portal during a semester.
+	\item \textbf{RegisteredStudents:} A many-to-many relationship between the Semesters and the Students. It describes which Neptun course the student registered for in the semester.
+	\item \textbf{Semesters:} An instance of the course in a particular academic term.
+	\item \textbf{StudentGroups:} In Software Laboratory 5 the students are assigned to different groups. A group has one demonstrator and about 20 students.
+	\item \textbf{Users:} People, that use the portal during a semester.
 	\item \textbf{Users/Staffs:} A type of user, who is not a student. This user can be an administrator and/or a demonstrator and/or an evaluator.
 	\item \textbf{Users/Students:} A type of user, who attends the laboratories and solves a list of tasks.
 \end{itemize}
