@@ -15,6 +15,8 @@ If the master branch changed before, Git can do a three-way merge between the co
 \section{Used Software Tools and Open Source Projects}
 The front end uses the following open source projects and software tools:
 
+\bence{Ki kéne fejteni a toolokat, hogy melyik mire való igazából.}
+
 \begin{itemize}
 	\item API Blueprint
 	\item Bootstrap
@@ -24,6 +26,7 @@ The front end uses the following open source projects and software tools:
 	\item GitHub
 	\item Gulp
 	\begin{itemize}
+    \item \bence{Ezeket ne sorold fel!  Teljesen felesleges.}
 		\item gulp-concat
 		\item gulp-minify-css
 		\item gulp-minify-html
@@ -52,6 +55,9 @@ In the \emph{body section} I created an empty div with an id attribute. The page
 As the main CSS file I concatenate the Bootstrap CSS file with my own CSS file, called \mbox{\emph{laboradmin.css}}. During concatenation I had to make sure that my CSS code will be after the Bootstrap code. This is important, because in CSS the last style rules overrides the previous ones. The Bootstrap CSS file contains the basic Bootstrap component styles. In the \mbox{\emph{laboradmin.css}} file some parts of the Bootstrap CSS are overwritten, to make the components to have a different appearance than the basic Bootstrap appearance, e.g., font colors, background colors and border visibility.
 
 \newparagraph{JavaScript}
+
+\bence{Miért másolod össze a JS állományokat?  Miért jó ez?  Milyen nehézségeket okoz a fejlesztésnél, hogyan lesznek kiszolgálva éles környezetben?  Mi az előnye ennek?  ... Stb.  Nem érzem megindokoltnak azt, hogy ez miért történik és mivel jár végül.}
+
 As the main JavaScript file I concatenate all the JavaScript files into one file. This includes the following files: 
 \begin{itemize}
 	\item the shim file, because Mithril relies on some features what are not part of the previous Internet Explorer versions,
@@ -60,6 +66,8 @@ As the main JavaScript file I concatenate all the JavaScript files into one file
 	\item jQuery, because Bootstrap depends on jQuery, and
 	\item my JavaScript files.
 \end{itemize}
+
+\bence{Most össze vannak másolva vagy szét vannak választva?  Nem értem.  ((Tudom, hogy mit csinálsz, de a szövegből ez nem derül ki.))}
 
 I separated my JavaScript files based on if it is a part of the model's, the controller's or the view's code. 
 

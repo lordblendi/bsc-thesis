@@ -1,4 +1,7 @@
 \chapter{Conceptual System Design}
+
+\bence{ez itt nekem elég zavaros.  minden benne van, aminek benne kell lennie, de össze-visszaság érzésem van}
+
 The conceptual system design represents the structure of the system. It contains the conceptual model of the back end. The front end is only a module in this design to make the system design more simple. The front end design depends on which software architecture pattern is used. This project follows the MVC pattern \see{mvc}. In this chapter I introduce the system design and the general MVC pattern. The front end design will be introduced in \refstruc{frontend-system-design}, because it depends on the framework's behavior.
 
 \section{System Design}
@@ -26,6 +29,8 @@ To solve the scalability problem, the client's code will run in a web browser fo
  
 \newparagraph{Web Server}
 If there were not any load balancer between the client and the web server, then one server would get every request. With thousands of users this could lead to overload and high the response time. With a load balancer, the requests will first arrive at the load balancer, and it will decide which web server will handle that request and forwards it to that web server. The choice depends on the client module, request type and the web servers' load. The load balancer's purpose is to avoid overload and minimize the response time.
+
+\bence{Ez elég szarul néz ki elforgatva.  A kép címe normálisan áll, az oldalszámozás normálisan áll, a kép viszont fektetett.}
  
  \begin{figure}[!htbp]
  	\includegraphics[width=0.95\textheight, angle=90]{figures/atfogo_rendszerterv_teljes.pdf}
@@ -34,6 +39,8 @@ If there were not any load balancer between the client and the web server, then 
  \end{figure}
  
  \subsubsection{Data Security}
+
+\bence{a külön folyamatban futtatás még nem oldja meg a megfelelő izolációt.  a lényeg pont az, hogy szétválasztott megoldás esetén megvan a lehetősége annak, hogy akár külön gépen (instance) futhasson a szerver. a kliens esetén pedig azért jó ez így, mert a kliens kódjából nem lehet következtetni az elérhető adatokra (pl. a hallgatói modul nem fog tartalmazni olyan API routing szabályokat, amiket az oktatói viszont igen.}
  
  Both the back end and the front end are divided into three big modules: student, teacher and administrator. The different back end modules will run in different processes on one computer. This ensures that one module will never get another module's data or requests. 
  
@@ -68,6 +75,8 @@ The project's model uses Chen's notation. About 65 percent of the model was crea
 	\item \textbf{Users/Students:} A type of user, who attends the laboratories and solves a list of tasks.
 \end{itemize}
 
+\bence{Ez is fura. Mmint, hogy fektetve van az álló oldalon az ábra.}
+
 \begin{figure}[!htbp]
 	\includegraphics[width=0.85\textheight, angle=90]{figures/ER.pdf}
 	\caption[Entity–relationship model]{Entity–relationship model}
@@ -84,8 +93,12 @@ In object-oriented programming the Model is the objects where the data from the 
 
 The MVC pattern is memory efficient, because multiple views can share the same underlying data model. Controllers can be separated by events. This allows the developer to create a controller hierarchy, because a controller for a keyboard event is different from a controller for a mouse event. Views implement an instance of a controller, that can be changed at run-time, because we can be disabled and enabled.
 
+\bence{Az az érzésem, hogy ezt valahonnan másoltad / fordítottad.  Ha igen, illik hivatkozást betenni a szöveg végére.  Ha nem, akkor erről beszéljünk, mert a memória-hatékonyság ebben a formában szerintem nem igaz az MVC-re.  Nem lesz valami hatékony azért, mert MVC minta alapján készül.}
+
 \subsection{MVC Web Applications}
 
+\bence{Ez az ábra nem csak az enyém.  Tele van vele a google: https://www.google.hu/search?q=mvc+architecture&safe=off&source=lnms&tbm=isch&sa=X&ved=0ahUKEwil3-6Q58XJAhVGaRQKHXZHCc4Q_AUIBygB&biw=1278&bih=702#safe=off&tbm=isch&q=asp.net+mvc+architecture&imgrc=Cg1yLL6LrpJpOM: }
+\bence{Marshalling helyett talán jobb a "serialization"}
 
 \begin{figure}[!ht]
 	\includegraphics[width=\textwidth]{figures/klasszikus_mvc_webalkalmazas.pdf}

@@ -11,11 +11,16 @@ Before the team's first meeting in August, I looked up all the homework portals 
 
 After a couple of meetings we had a list of features as the starting point for our specification. Then I used the 5 Whys technique to find the common roots of the features. 
 
+\bence{Itt ki kéne fejteni azt, hogy honnan indulsz el és pontosan mi a célod a specifikációval.}
+
 \section{Test Suite}
+\bence{Talán más címet adnék itt meg, mert egy specifikációs módszertannal folytatod, nem a teszteléssel.}
 In this section I introduce what kind of techniques I used to create the final specification. Some of these techniques serve as the basics of testing. I explain the testing in \refstruc{7-test}. 
 
 \subsection{The 5 Whys}
 \label{5-whys}
+
+\bence{Kéne hivatkozás arra, hogy erről hol lehet bővebben olvasni, ui. ez egy létező, mások által is használt technika}
 
 The 5 Whys is a technique to find the root cause of a problem simply by asking the question "Why?" multiple times. With this technique I can find out what does the user would like to achieve with using a feature. Why would the user like to use this feature? Does the user really want to use this or should the portal to this by default instead of the user? The 5 Whys also helps to decide when should I implement only one general feature instead of many specific features. For example, if the user wants to have 15 specific analytic features, I could consider making a general one instead of specific ones. 
 
@@ -37,7 +42,13 @@ A user story is a description of how can the user interact with the system, and 
 
 \subsubsection{Given When Then}
 
-The Given When Then convention for user stories. The \emph{Given} describes a state of the system. The \emph{When} describes an event. The \emph{Then} describes the result. If there are multiple Givens, I can use ~\emph{And} or \emph{But}. If you have the same Given statement for many stories, you can combine them as a \emph{background} section. A \emph{scenario} is an example of an executable action~\cite{Cucumber-scenario}. 
+\bence{Kéne hivatkozás arra, hogy erről hol lehet bővebben olvasni}
+
+\bence{Itt nincs meg a mondat összes része: The Given When Then convention for user stories.}
+
+The \emph{Given} describes a state of the system. The \emph{When} describes an event. The \emph{Then} describes the result. If there are multiple Givens, I can use ~\emph{And} or \emph{But}. If you have the same Given statement for many stories, you can combine them as a \emph{background} section. A \emph{scenario} is an example of an executable action~\cite{Cucumber-scenario}. 
+
+\bence{Úgy egyáltalán miért ezeket a szavakat használjuk, honnan jön ez az egész...}
 
 \emph{Example:}
 
@@ -54,10 +65,19 @@ Then I should see "Your settings have been saved."
 At first I wrote simple user stories without backgrounds and scenarios. I wrote them for all modules, and I focused only on the student module, because that's the first module I will implement. I finished writing scenarios for only that module \refstruc{user-stories}.
 
 \subsubsection{Cucumber}
+
+\bence{Hivatkozás}
+
+\bence{Jó lenne tisztázni, hogy ezek pontosan milyen tesztek igazából.  Egyáltalán miért a specifikációs részben kerül szó tesztekről.}
+
 User stories are good basics for testing. For testing I will use Cucumber. Cucumber is a software tool to run automated tests. It uses the Gherkin parser to parse feature files. A feature file contains user stories written in everyday language in a specific structure. In this project I will use English user stories~\cite{Cucumber-gherkin}. The usage is described in \refstruc{cucumber-test}.
 
 
 \subsection{Mock Server}
+
+\bence{Ide is illene hivatkozást írni}
+
+\bence{A "contract" szó az, ami legjobban leírja a backend és a frontend kapcsolatát.  Ezt a szerződést kell mindkét félnek betartania.}
 
 Because I only develop the front end, I wanted to make sure that I can work on the implementation without waiting for back end modules to be finished. To do that, I have to write an API specification and use a mock server. 
 
@@ -71,6 +91,8 @@ I was looking for an API specification tool to design the communication between 
 I want to use my API specification as a normal documentation for humans and as a mock server specification. \emph{API Blueprint}~\cite{api-blueprint} is an open source project, that gives me the option to write my specification in Markdown. Markdown~\cite{markdown} is a markup language to write plain text format and it can be converted into HTML. Markdown is often used to style messages on forums and readme files. 
 
 \subsubsection{Drakov}
+
+\bence{Itt megismételsz egy mondatot}
 
 The API Blueprint~\cite{api-blueprint} team offers some tools, that implements API Blueprint specification. \emph{Drakov}~\cite{drakov} is one of these open source mock server tools, that implements API Blueprint specifications. The usage is described in \refstruc{mock-server-usage}.
 
@@ -218,3 +240,7 @@ Any type of user can:
 	megközelítést is definiálnod kéne,}
 
 \todo{mi az én feladatom?}
+
+\bence{a hallgatói modul esetében a lehetséges hibautak felderítése a fenti
+  "zöld" utak mellett.  pl. mi történik, ha a hallgató email-cím beírása nélkül
+  nyom a profil mentése gombra...}
