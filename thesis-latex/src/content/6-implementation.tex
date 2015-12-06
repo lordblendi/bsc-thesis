@@ -5,7 +5,7 @@ The team has decided, that the portal is an open source project. The source code
 \todo{github link}
 
 \section{Version Control}
-GitHub~\cite{github} is a Git repository service. Git is a version control system. In a new commit, it stores snapshots of the file system. If a file did not change, then Git links it to the previous version~\cite{git}. GitHub offers private and public repositories too. In this project we use public repositories and the Git Workflow~\cite{git-workflow}. 
+GitHub~\cite{github} is an online Git repository service. Git is a version control system. In a new commit, it stores snapshots of the file system. If a file did not change, then Git links it to the previous version~\cite{git}. GitHub offers private and public repositories too. In this project we use public repositories and the Git Workflow~\cite{git-workflow}. 
 
 \subsection{Git Workflow}
 When many developers work on the same project, their aim is to keep the master branch clean. A branch is a pointer to one of the commits (snapshots). The default branch is the master branch. To keep the master branch clean, developers can create a new branches. While developing a feature, the developer commits into a second branch. These changes does not affect the master branch. When the feature is finished, then the developer has to merge it into the master branch. If the master branch did not change, it will move the pointer to the new commit. At this point the new branch can be deleted, because the master branch points at the same commit~\cite{git-workflow2}.
@@ -15,31 +15,29 @@ If the master branch changed before, Git can do a three-way merge between the co
 \section{Used Software Tools and Open Source Projects}
 The front end uses the following open source projects and software tools:
 
-\bence{Ki kéne fejteni a toolokat, hogy melyik mire való igazából.}
-
 \begin{itemize}
-	\item API Blueprint
-	\item Bootstrap
-	\item Cucumber	
-	\item Drakov
-	\item Mithril
-	\item GitHub
-	\item Gulp
-	\begin{itemize}
-    \item \bence{Ezeket ne sorold fel!  Teljesen felesleges.}
-		\item gulp-concat
-		\item gulp-minify-css
-		\item gulp-minify-html
-		\item gulp-plumber		
-		\item gulp-uglify
-		\item gulp-util
-		\item msx
-		\item through2
-	\end{itemize}
+	\item \textbf{API Blueprint:} API Blueprint~\cite{api-blueprint} is an open source project, that gives me the option to write my specification in Markdown. I use it to describe the contract between the back end and the front end.
+	\item \textbf{Bootstrap:} Bootstrap~\cite{Bootstrap} is a free and open source HTML, CSS and JS framework to create responsive design. I use it as a template for the portal's design.
+	\item \textbf{Cucumber:} Cucumber~\cite{Cucumber} is a software tool to run automated tests with user stories written in the Given When Then convention. 
+	\item \textbf{Drakov:} Drakov~\cite{drakov} is a mock server tool, that implements API Blueprint specifications. I use it as a mock server for the features, that are not provided by the back end yet.
+	\item \textbf{GitHub:} GitHub~\cite{github} is an online Git repository service. The project's source code is available on GitHub.
+	\item \textbf{Gulp:} Gulp~\cite{gulp} is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory and then to start the mock server.
+	\item \textbf{Mithril:} Mithril~\cite{Mithril} is a small JavaScript MVC framework. The front end is implemented in Mithril.
+
 \end{itemize}
+
+\subsection{Documentation}
+
+This thesis and all the documents for this project were written in \LaTeX~\cite{latex}. \LaTeX is a markup language to create scientific documents. A TeX distribution produces the PDF output. 
+
+The thesis template~\cite{FTSRG-latex} for \LaTeX was created by the Fault Tolerant Systems Research Group (FTSRG) at the Department of Measurement and Information Systems, and was recommended by an FTSRG team member, Gábor Szárnyas.
+
+All the diagrams were made by me in Microsft Visio 2013~\cite{visio}. Visio is a part of the Microsoft Office and is an application to create diagrams. Visio is free for students via DreamSpark~\cite{msdnaa}.
 
 
 \section{Method of Implementation}
+\nori{Bence kommentek jó része idáig feldolgozva}
+
 During implementation I used HTML, CSS and JavaScript to create the web application. For deployment I used a gulp script written by me \see{gulp}. 
 
 HTML is a standard language to create websites. CSS describes the style of the HTML elements. The styles are binded to the elements within the class attribute. JavaScript is a script language to make websites interactive. Web applications use JavaScript for AJAX requests and event action handling. 
@@ -62,6 +60,10 @@ As the main JavaScript file I concatenate all the JavaScript files into one file
 \begin{itemize}
 	\item the shim file, because Mithril relies on some features what are not part of the previous Internet Explorer versions,
 	\item the Mithril framework's minimized JavaScript code,
+	\item the Moment~\cite{moment} framework's minimized JavaScript code,
+	\begin{itemize}
+		\item I use this framework to calculate the time difference between the current time and the deadline.
+	\end{itemize}
 	\item the Bootstrap JavaScript file, because some components require it,
 	\item jQuery, because Bootstrap depends on jQuery, and
 	\item my JavaScript files.
