@@ -1,9 +1,7 @@
 \chapter{Conceptual System Design}
-The conceptual system design represents the \todo{structure} of the system. The front end design depends on which software architecture pattern is used. This project follows the MVC pattern \see{mvc}. In this chapter I am going to introduce the system design and the general MVC pattern. The front end system design will be introduced in \refstruc{frontend-system-design}, because it depends on the framework's behavior.
+The conceptual system design represents a high level structure of the system's architecture. It defines the relations between the components. The components have to be separated from each other, because then every component is easily replaceable without changing any other components. The conceptual system design does not require the components to be implemented with the same technologies. The clients will be implemented in HTML, CSS and JavaScript \see{comparing-frameworks} and the back end components will be implemented in Ruby on Rails.
 
-\section{System Design}
-
-\todo{\% előkeresni a régi ábrát!!!! az újban 85\% Bence 15\%én - rendszertervezés email Bence okt 21}
+In this design the front end is represented as a basic component, because the front end system design was be introduced in \refstruc{frontend-system-design}. About 15 percent of the model was created by me, 85 percent of it was created by Bence Golda and it was finalized by the team.
 
 The main components are the followings:
 
@@ -19,34 +17,43 @@ The main components are the followings:
 	\item \textbf{Worker:} This will process the task, e.g., changes the user's mailing list subscription.
 \end{itemize}
 
-\subsubsection{Scalability}
+\begin{landscape}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[height=0.95\textwidth]{figures/atfogo_rendszerterv_teljes.pdf}
+		\caption[Conceptional System Design]{Conceptional System Design}
+		\label{fig:conceptional-system-design}
+	\end{figure}
+\end{landscape}
+
+\section{Scalability}
 
 \newparagraph{Client}
 To solve the scalability problem, the client's code will run in a web browser for every user. This way, resources for the client's code are provided by the user as he opens the web portal in a web browser.
  
 \newparagraph{Web Server}
 If there were not any load balancer between the client and the web server, then one server would get every request. With thousands of users this could lead to overload and high the response time. With a load balancer, the requests will first arrive at the load balancer, and it will decide which web server will handle that request and forwards it to that web server. The choice depends on the client module, request type and the web servers' load. The load balancer's purpose is to avoid overload and minimize the response time.
+
+
  
- \begin{figure}[!htbp]
- 	\includegraphics[width=0.95\textheight, angle=90]{figures/atfogo_rendszerterv_teljes.pdf}
- 	\caption[Conceptional System Design]{Conceptional System Design}
- 	\label{fig:conceptional-system-design}
- \end{figure}
+ \section{Data Security}
+ Both the back end and the front end are divided into three big modules: student, teacher and administrator. 
+
+ \newparagraph{Web Server}
+ This gives us the option to run the different modules on different computers or virtual machine instances.
  
- \subsubsection{Data Security}
- 
- Both the back end and the front end are divided into three big modules: student, teacher and administrator. The different back end modules will run in different processes on one computer. This ensures that one module will never get another module's data or requests. 
+ \newparagraph{Client}
+ This ensures that one module's source code is not enough to deduce the available data, e.g., the student module will not include some API routing rules, that are included in the teacher module and the administrator module.
  
 
- \newpage
-\subsection{Entity–Relationship Model}
+\section{Entity–Relationship Model}
 \label{ER-model}
 
 A data model describes the structures in which the database stores the data. The \emph{Entity-Relationship model} is a formal notation, that describes the data structure with entities and the relationships between them. An \emph{entity} is an existing information, that needs to be modeled. \emph{Properties (attributes)} describes the entities and makes them unique. A \emph{relationship} describes a connection between entities~\cite{adatb}.
  
 The project's model uses Chen's notation. About 65 percent of the model was created by me, 35 percent of it was created by József Marton and it was finalized by the team. The attribute list is in \refstruc{attribute-list}.
 
- The main entities are the followings:
+The main entities are the followings:
 
 \begin{itemize}
 	\item \textbf{Appointments:} An appointment connects the student groups with a date and a location.
@@ -68,31 +75,15 @@ The project's model uses Chen's notation. About 65 percent of the model was crea
 	\item \textbf{Users/Students:} A type of user, who attends the laboratories and solves a list of tasks.
 \end{itemize}
 
-\begin{figure}[!htbp]
-	\includegraphics[width=0.85\textheight, angle=90]{figures/ER.pdf}
-	\caption[Entity–relationship model]{Entity–relationship model}
-	\label{fig:er}
-\end{figure}
+\begin{landscape}
+	
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=1.3\textheight]{figures/ER.pdf}
+		\caption[Entity–relationship model]{Entity–relationship model}
+		\label{fig:er}
+	\end{figure}
+\end{landscape}
 
-\newpage
-\section{MVC Pattern}
-\label{mvc}
-
-The Model-View-Controller (MVC) is a software architecture pattern for user interface implementation, where the application logic is separated from the user interface.
-
-In object-oriented programming the Model is the objects where the data from the database is stored. The View is the presentation layer. The user sees and interacts with the View. The Controller will process and respond to the user requests and invoke the changes in the Model. 
-
-The MVC pattern is memory efficient, because multiple views can share the same underlying data model. Controllers can be separated by events. This allows the developer to create a controller hierarchy, because a controller for a keyboard event is different from a controller for a mouse event. Views implement an instance of a controller, that can be changed at run-time, because we can be disabled and enabled.
-
-\subsection{MVC Web Applications}
-
-
-\begin{figure}[!ht]
-	\includegraphics[width=\textwidth]{figures/klasszikus_mvc_webalkalmazas.pdf}
-	\caption[Classic MVC Web Application]{Classic MVC Web Application\\Made by Bence Golda.}
-	\label{fig:classic-mvc-webapplication}
-\end{figure}
-
-In web applications the browser communicates with a controller. When the user sends a request, routing will decide which controller will handle the request. The chosen controller talks to the model to get the relevant data. If it is necessary, the model will send data to or ask for data from the database, the API or the local storage. During this process, the data has to be transformed via marshalling. Marshalling is the process, that transforms the data between storable and sendable dataformats. When the model returns the desired data to the controller, it will forward the data to the view. The presentation layer will decide which page has to be returned to the browser, binds the data to the view template and returns it.
 
 
