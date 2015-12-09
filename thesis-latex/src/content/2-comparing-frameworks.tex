@@ -1,20 +1,18 @@
 \chapter{Comparing JavaScript Frameworks}
 \label{comparing-frameworks}
 
-\todo{leírni miért js!!}
+The Client will be implemented in JavaScript, because all the modern web browsers support JavaScript via an interpreter. JavaScript is a cross-platform scripting language~\cite{aaf}. For the project, I preferred to choose a JavaScript framework for faster development than using plain JavaScript with jQuery. Writing every component from scratch needs a lot of time. Hundreds of developers contribute in open-source frameworks, and developers can utilize their reviewed and tested work. This leads to getting more tasks done in less time. Because this project follows the MVC pattern \see{mvc}, only JavaScript MVC frameworks will be compared. The TodoMVC~\cite{TodoMVC} website helps developers to select a JavaScript MVC framework for their project. It provides the same example written in JavaScript using different JavaScript MVC frameworks.
 
-For the project, I preferred to choose a JavaScript framework for faster development than using plain JavaScript with jQuery. Writing every component from scratch needs a lot of time. Hundreds of developers contribute in open-source frameworks, and developers can utilize their reviewed and tested work. This leads to getting more tasks done in less time. Because this project follows the MVC pattern \see{mvc}, only JavaScript MVC frameworks will be compared. The TodoMVC~\cite{TodoMVC} website helps developers to select a JavaScript MVC framework for their project. It provides the same example written in JavaScript using different JavaScript MVC frameworks.
-
-During comparison I checked the followings:
+During comparison, I checked the followings:
 \begin{itemize}
 	\item \textbf{AJAX requests:} the client and the server \see{fig:conceptional-system-design} will communicate via REST using JSON format.
 	\item \textbf{data binding:} to connect the data from the model to the view \see{fig:classic-mvc-webapplication}.
 	\item \textbf{routing:} to build a single-page application.
 \end{itemize}
 
-\bence{4. eleje: amiről még beszéltünk, hogy ellenőrizni kéne: különböző tesztelési módszerek alkalmazhatósága,}
+%\bence{4. eleje: amiről még beszéltünk, hogy ellenőrizni kéne: különböző tesztelési módszerek alkalmazhatósága,}
 
-In a single-page application (SPA) when the user opens the web site in a browser, all the resources will be downloaded with a single page load. From that point when the user interacts with the web site, it will dynamically update previously downloaded single page~\cite{SPA}.
+In a single-page application (SPA) when the user opens the web site in a browser, all the resources will be downloaded with a single page load. From that point, when the user interacts with the web site, it will dynamically update previously downloaded single page~\cite{SPA}.
 
 In JavaScript with \emph{AJAX requests} we can send requests to a server asynchronously without reloading a page. In a SPA we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser will not reload the whole page, it will just simply load the new view into the old frame. Everything happens in the background so the application will not force the user to wait while it sends data to a server. If the application is retrieving data, then when it arrives, the application can process it and show the result to the user.
 
@@ -98,11 +96,11 @@ A Mithril module contains a model, a controller and a view. A controller is a JS
 
 
 \section{Conclusion}
-In performance both React and Mithril are faster than Angular, because they use virtual DOM. Angular's public API interface is much bigger than React's or Mithril's. React does not have routing and AJAX requests in its core library, so it depends on other libraries. 
+In performance, both React and Mithril are faster than Angular, because they use virtual DOM. Angular's public API interface is much bigger than React's or Mithril's. React does not have routing and AJAX requests in its core library, so it depends on other libraries. 
 I choose Mithril for this project, because it is  self-contained, so it does not have to depend on other libraries. It has utilities built-in for routing and AJAX requests. And it has a small API with great documentation. 
 
 \section{Supported Web Browsers}
-At first I am aiming to develop the portal for desktop browsers. The portal will support every browser, that is supported by Google~\cite{google-support}.
+At first, I am aiming to develop the portal for desktop browsers. The portal will support every browser, that is supported by Google~\cite{google-support}.
 The supported browsers are:
 \begin{itemize}
 	\item Chrome
@@ -122,12 +120,10 @@ To force Internet Explorer to render in the highest available mode, I added a sp
 \label{frontend-system-design}
 The front end system design depends on the chosen framework's behavior and it also depends on which software architecture pattern is used. This project follows the MVC pattern. In this section I am going to introduce the general MVC pattern and the final front end system design. 
 
-\todo{Marshalling helyett talán jobb a "serialization" -> ábrán kijavítani}
-
 \section{MVC Pattern}
 \label{mvc}
 
-The Model-View-Controller (MVC) is a software architecture pattern for user interface implementation, where the application logic is separated from the user interface.
+The Model-View-Controller (MVC) is a software architecture pattern for user interface design and implementation, where the application logic is separated from the user interface~\cite{szofttech}.
 
 In object-oriented programming the Model is the objects where the data from the database is stored. The View is the presentation layer. The user sees and interacts with the View. The Controller will process and respond to the user requests and invoke the changes in the Model. 
 
@@ -136,7 +132,6 @@ In object-oriented programming the Model is the objects where the data from the 
 %\bence{Az az érzésem, hogy ezt valahonnan másoltad / fordítottad.  Ha igen, illik hivatkozást betenni a szöveg végére.  Ha nem, akkor erről beszéljünk, mert a memória-hatékonyság ebben a formában szerintem nem igaz az MVC-re.  Nem lesz valami hatékony azért, mert MVC minta alapján készül.}
 
 \subsection{MVC Web Applications}
-\todo{Marshalling helyett talán jobb a "serialization" -> ábrán kijavítani}
 
 \begin{figure}[!ht]
 	\includegraphics[width=\textwidth]{figures/klasszikus_mvc_webalkalmazas.pdf}
@@ -144,7 +139,7 @@ In object-oriented programming the Model is the objects where the data from the 
 	\label{fig:classic-mvc-webapplication}
 \end{figure}
 
-In web applications the browser communicates with a controller. When the user sends a request, routing will decide which controller will handle the request. The chosen controller talks to the model to get the relevant data. If it is necessary, the model will send data to or ask for data from the database, the API or the local storage. During this process, the data has to be transformed via serialization. serialization is the process, that transforms the data between storable and sendable dataformats. When the model returns the desired data to the controller, it will forward the data to the view. The presentation layer will decide which page has to be returned to the browser, binds the data to the view template and returns it.
+In web applications the browser communicates with a controller. When the user sends a request, routing will decide which controller will handle the request. The chosen controller talks to the model to get the relevant data. If it is necessary, the model will send data to or ask for data from the database, the API or the local storage. During this process, the data has to be transformed via serialization. serialization is the process, that transforms the data between dataformats to be sent and stored. When the model returns the desired data to the controller, it will forward the data to the view. The presentation layer will decide which page has to be returned to the browser, binds the data to the view template and returns it.
 
 \subsection{Final Front End System Design}
 
@@ -152,9 +147,9 @@ The final design is based on the classic MVC Web application \see{fig:classic-mv
 
 The routing component handles the incoming requests. It uses a routing table to decide which controller has to handle the request.
 
-The controller talks to the model, if any data should be changed or needed. The model sends data to the API or asks for data from the API. Every data is converted between the representation suitable for the implementation and the AJAX requests by the serialization component. The communication between the API and the client is handled by the server communication component.
+The controller talks to the model if any data should be changed or needed. The model sends data to the API or asks for data from the API. Every data is converted between the representation suitable for the implementation and the AJAX requests by the serialization component. The communication between the API and the client is handled by the server communication component.
 
-The controller provides helper methods (e.g. getting data from the model) and it is passed as the first parameter to the view~\cite{Mithril-routing}. The rendered view is forwarded to the browser, that visualized it for the user.
+The controller provides helper methods (e.g. getting data from the model) and it is passed as the first parameter to the view~\cite{Mithril-routing}. The rendered view is forwarded to the browser that visualized it for the user.
 
 \newpage
 \begin{landscape}
