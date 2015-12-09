@@ -1,6 +1,6 @@
 \chapter{Deployment}\label{deployment}
 
-For implementation and deployment I used Linux Mint 17.2.
+For implementation and deployment I used Linux Mint 17.2. The commit, that is presented in this thesis is tagged with \emph{thesis-final}~\cite{Github-final}.
 
 \section{Installation Steps}
 
@@ -9,25 +9,28 @@ First you need to clone the git repository. If you do not have git installed, us
 
 \monospace{sudo apt-get install git-all}
 
-Use the following command to clone the repository into a new folder:
+Use the following command to clone the repository into a new folder. This will clone the latest commit and every commit before it, including the \emph{thesis-final} tagged commit. To get the tagged commit create a new branch with checkout and add the tag.
 
-\monospace{git clone https://github.com/lordblendi/student}
+\monospace{git clone https://github.com/lordblendi/student\\
+		cd student/\\
+		git checkout -b new\_branch thesis-final
+	}
 
 Output:
 
-\monospace{Cloning into 'student'...\\
-		remote: Counting objects: 5038, done.\\
-		remote: Compressing objects: 100\% (188/188), done.\\
-		remote: Total 5038 (delta 92), reused 0 (delta 0), pack-reused 4836\\
-		Receiving objects: 100\% (5038/5038), 14.21 MiB | 7.64 MiB/s, done.\\
-		Resolving deltas: 100\% (1093/1093), done.\\
-		Checking connectivity... done.
+\monospace{lenny@lenny-laptop-3 \textasciitilde/temp/new \$ git clone https://github.com/lordblendi/student\\
+		Cloning into 'student'...\\
+		remote: Counting objects: 5041, done.\\
+		remote: Compressing objects: 100\% (191/191), done.\\
+		remote: Total 5041 (delta 94), reused 0 (delta 0), pack-reused 4836\\
+		Receiving objects: 100\% (5041/5041), 14.21 MiB | 7.47 MiB/s, done.\\
+		Resolving deltas: 100\% (1095/1095), done.\\
+		Checking connectivity... done.\\
+		lenny@lenny-laptop-3 \textasciitilde/temp/new \$ cd student/\\
+		lenny@lenny-laptop-3 \textasciitilde/temp/new/student \$ git checkout -b new\_branch thesis-final\\
+		Switched to a new branch 'new\_branch'\\	
 	}
 	
-Step into that folder:
-
-\monospace{cd student/}
-
 \newparagraph{Node}
 I use node package manager (npm) and the node version manager (nvm) to install software tools and node versions. Use the following command to install npm and nvm:
 

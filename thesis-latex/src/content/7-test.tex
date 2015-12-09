@@ -21,7 +21,7 @@ $+$ Response 200 (application/json)
 	\string}
 \end{addmargin}
 
-This example sends the same json response for every HTTP GET request. The \emph{userid} is a wildcard parameter, the server will send the same response. I used the parameter \emph{1} for testing.
+This example sends the same json response for every HTTP GET request. The \emph{userid} is a wildcard parameter, the server will send the same response for every parameter. I used the parameter \emph{1} for testing.
 	
 	
 \emph{Example POST}:
@@ -66,32 +66,12 @@ This example sends the same json response for every HTTP GET request. The \emph{
 	
 This example sends the same json response for every HTTP POST or OPTIONS request, where the body matches the JSON Schema. Only two parameters are required, but the body cannot contain any parameter, that is not defined in the properties section.
 
-The API blueprint files are available on Github.\todo{link} Mock server usage is described in \refstruc{mock-server-usage}.
+The API blueprint files are available on Github~\cite{Github-blueprint}. Mock server usage is described in \refstruc{mock-server-usage}.
 
 
 \section{Testing}
-The following features were implemented:
-
-\begin{enumerate}
-	\item see the general information about the classes
-	\setcounter{enumi}{0}
-	\item see the results
-	\item see a list of commits and tagging a commit as final version
-	\setcounter{enumi}{1}
-	\item set new password, e-mail and SSH public key
-	\item summarized view of student's grades
-\end{enumerate}
-
-As I mentioned in \refstruc{design-specification}, I tested the features with priority levels 1 and 2.
-
 \subsection{Acceptance Tests}
-An acceptance test validates that this is the software or feature the customer wanted. I wrote user stories \see{spec-user-story} for the features I wanted to test based on the user stories I wrote during the specification phase. 
-
-During the testing I was comparing the HTML element's existence and compared the included texts with the example data that came form the user story. If a label contains a date, I used a regex for pattern matching:
-
-\monospace{(\textbackslash d{4})\textbackslash.(\textbackslash d{2})\textbackslash.(\textbackslash d{2})\textbackslash. (\textbackslash d{2}):(\textbackslash d{2})}
-
-Because I cannot test features, that needs to change the database, without a real back end, I tested for requests. If there was an outgoing request for the specific URL, the test passed. These tests will change when the back end modules will be implemented.
+An acceptance test validates that this is the software or feature the customer wanted. I wrote user stories \see{spec-user-story} for the features I wanted to test based on the user stories I wrote during the specification phase~\cite{szofttech}.
 
 \subsubsection{Cucumber}
 \label{cucumber-test}
@@ -110,6 +90,7 @@ I wanted to use a browser to test the client's JavaScript code. My first choice 
 Zombie~\cite{zombie} is lightweight framework, that implements a browser without a user interface. It also supports assertions, that makes it possible to text field comparison and HTML element existence testing easier, and pipelines to log the outgoing requests from the Zombie browser. 
 
 \subsection{Code Coverage Tests}
+A coverage test measures which functions, statements, lines were executed~\cite{szofttech}. I tested which user stories w
 
 \subsubsection{Istanbul}
 Istanbul~\cite{istanbul} is a code coverage software tool for JavaScript. It checks coverage for:
@@ -125,17 +106,38 @@ First follow the instructions in \refstruc{deployment}, then start the mock serv
 
 \monospace{npm test}
 
-Use the following command to run the Cucumber tests with code coverage:
+I have implemented 14 scenarios and 91 steps. Use the following command to run the Cucumber tests with code coverage:
 
 \monospace{npm test \texttt{-{}-}coverage}
 
-I have implemented 14 scenarios and 91 steps.
+The following features were implemented:
+
+\begin{enumerate}
+	\item see the general information about the classes
+	\setcounter{enumi}{0}
+	\item see the results
+	\item see a list of commits and tagging a commit as final version
+	\setcounter{enumi}{1}
+	\item set new password, e-mail and SSH public key
+	\item summarized view of student's grades
+\end{enumerate}
+
+As I mentioned in \refstruc{design-specification}, I tested the features with priority levels 1 and 2.
+
+During the testing I was comparing the HTML elements' texts with the example data that came form the user story and the elements' existence. If a label contains a date, I used a regex for pattern matching:
+
+\monospace{(\textbackslash d{4})\textbackslash.(\textbackslash d{2})\textbackslash.(\textbackslash d{2})\textbackslash. (\textbackslash d{2}):(\textbackslash d{2})}
+
+Because I cannot test features, that needs to change the database, without a real back end, I tested for outgoing requests. If there was an outgoing request for the specific URL, the test passed. This  also gave me the option to test for not outgoing requests. For example, to set a new password, the user has to fill out three input fields: old password once and new password once. If any of these fields were empty, or the new password fields do not contain the same password, then the client should not send a request to the server. I wrote scenarios to all 8 possible states. These tests will change when the back end modules will be implemented.
+
+In this phase the client has a save button on the settings page. As a future improvement in the next version, I will set the save mechanism to the fields on change events. Because of this the server only requires two parameters in the HTTP request's body: mailing list subscription and notification subscription. These parameters will always have a valid value, because the check box fields return a boolean value, either true or false.
 
 \subsubsection{Test Results}
+In behavior-driven development the developer implements first the tests, that fail. Then the developer implements the missing features, until all the tests for that feature passes. After running the tests, all scenarios and steps passed. This means that all the features, that are prescribed in the functional specification were implemented and tested. The coverage summary for the test Javascript files are almost 100\%. The branch summery is only 55 \%, because the lines, that contain a command to send an error did not run.
 
 \begin{figure}[!ht]
 	\includegraphics[width=\textwidth]{figures/test-result.png}
-	\caption{Test Results}
+	\caption{Part of the Tests' Output}
 	\label{fig:test-results}
 	\end{figure}
 
