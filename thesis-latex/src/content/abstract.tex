@@ -10,10 +10,17 @@
 %----------------------------------------------------------------------------
 \chapter*{Kivonat}\addcontentsline{toc}{chapter}{Kivonat}
 
-%Jelen dokumentum egy diplomaterv sablon, amely formai keretet ad a BME Villamosmérnöki és Informatikai Karán végző hallgatók által elkészítendő szakdolgozatnak és diplomatervnek. A sablon használata opcionális. Ez a sablon \LaTeX~alapú, a \emph{TeXLive} \TeX-implementációval és a PDF-\LaTeX~fordítóval működőképes.
-honnan->hova
+A Szoftver Laboratórium 5 tantárgy lebonyolítása több száz hallgató adminisztratív feladatainak elvégzését is igényli az órák megtartása mellett. Ezen feladatok elvégzése egy adminisztrációs portál segítségével jelentősen megkönnyíthető. A tantárgy már eddig is rendelkezett egy portállal, de az évek során a tantárgy és a követelményrendszer változásával, illetve a felhasználók újabb elvárásai miatt elavultá vált. 
 
-látszon az eredmény
+A szakdolgozatom célja egy új portál tervezése és a hozzátartozó vékony kliens implementálása, amely rugalmasan alkalmazkodik a követelményrendszer változásaihoz, illetve lehetőséget nyújt több tantárgy kezeléséhez is. A végleges rendszer három modult fog tartalmazni, mind a back end, mind a front end részen: a hallgatói, az oktatói és az admin modult. Ezen szakdolgozatban a hallgatói modul tervezése és elkészítése kerül bemutatásra.
+
+A munkám során az előző portál specifikációját és az új elvárásokat vizsgálva elkészítettem az új rendszer specifikációját. A specifikálás során olyan technológiákkal ismerkedtem meg, mellyekkel előtérbe kerül a validáció és a verifikáció fontossága. Az így kapott specifikáció alapján megterveztem a kliens dizájnját ügyelve arra, hogy a minimalista, de egyszerűen kezelhető felhasználói felület csak a szükséges információkat szolgáltassa a felhasználó számára.
+
+A vékony kliens implementálásához megismerkedtem három JavaScript keretrendszerrel, melyek közül végül a Mithrilt választottam. A keretrendszer működése alapján elkészítettem a front end, majd az egész rendszer rendszertervét és figyelembe vettem a Design by Contract módszertan alapelveit, és definiáltam a kliens és a szerver közötti interfészeket. Mivel a back end elkészítése nem az én feladatköröm, így a fejlesztés és a tesztelés során az elkészített interfészek felhasználásával egy mock szerverrel dolgoztam, ami biztosította a példaadatokat. 
+
+A kiválasztott keretrendszerben és Bootstrap 3-ban elkészítettem a kliens tervezett felületeit. Az elkészült kódot modulokon belül is felbontottam a könnyebb fejlesztés és karbantarthatóság érdekében. Az implementálás során elfogadási teszteket (acceptance test) és kód lefedettségi tesztet (code coverage test) készítettem. A teszteket a Cucumber, Zombie és Istanbul tesztrendszerek segítségével futtattam és gulp build rendszerrel automatizáltam.
+
+
 
 \vfill
 \selectlanguage{english}

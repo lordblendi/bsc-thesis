@@ -1,51 +1,191 @@
-\chapter{Deployment}
+\chapter{Deployment}\label{deployment}
 
-\bence{Megy az Windowson is, irreleváns a Linux rész}
+For implementation and deployment I used Linux Mint 17.2.
 
-I wrote a gulp script on Linux to automatize the deployment. This script creates the three downloadable files from the source codes.
+\section{Installation Steps}
 
-\section{Gulp}
-\label{gulp}
+\newparagraph{Git Repository}
+First you need to clone the git repository. If you do not have git installed, use the following command:
 
-Gulp is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory and then to start the mock server.
+\monospace{sudo apt-get install git-all}
 
-To install gulp on Linux, I used the npm package manager from a terminal, that was opened in the project's root folder. Gulp can be installed as a global package with the following command:
+Use the following command to clone the repository into a new folder:
 
-\bence{Hívható parancsokat és konzolos kimeneteket nem dőlt betűvel szokás
-  megjeleníteni.  Monospace betűtípust használj és legyen egyértelmű, hogy
-  melyik rész a meghívott parancs, mit kell root és mit lehet sima
-  felhasználóként meghívni.  És az is legyen egyértelmű, hogy mi a kimenet.  Ha
-  az túl hosszú, akkor illik rövidíteni}
+\monospace{git clone https://github.com/lordblendi/student}
 
-\emph{npm install -g gulp}
+Output:
 
-\subsection{Gulp Plugins}
-
-I use the following Gulp plugins:
-
-\begin{itemize}
-	\item drakov
-	\item gulp-concat
-	\item gulp-minify-css
-	\item gulp-minify-html
-	\item gulp-plumber		
-	\item gulp-uglify
-	\item gulp-util
-	\item msx
-	\item through2
-\end{itemize}
+\monospace{Cloning into 'student'...\\
+		remote: Counting objects: 5038, done.\\
+		remote: Compressing objects: 100\% (188/188), done.\\
+		remote: Total 5038 (delta 92), reused 0 (delta 0), pack-reused 4836\\
+		Receiving objects: 100\% (5038/5038), 14.21 MiB | 7.64 MiB/s, done.\\
+		Resolving deltas: 100\% (1093/1093), done.\\
+		Checking connectivity... done.
+	}
 	
-Use the following code to install plugins:
+Step into that folder:
 
-\emph{npm install [plugin1 plugin2 plugin3]}
+\monospace{cd student/}
 
-\subsection{The Gulp File}
+\newparagraph{Node}
+I use node package manager (npm) and the node version manager (nvm) to install software tools and node versions. Use the following command to install npm and nvm:
+
+\monospace{sudo apt-get install -y curl nodejs\\
+		curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
+	}
+
+For testing Cucumber needs Node v4.2. and the mock server needs Node v0.10. Use the following commands to install these:
+
+\monospace{nvm install 4.2\\
+		nvm install 0.10
+	}
+	
+Use the following command to switch between Node versions in the current terminal:
+
+\monospace{nvm use [version]}
+
+Use the following command to check which node version is being used in the current terminal:
+
+\monospace{node -v}
+
+\newparagraph{Gulp}\label{gulp}Gulp is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory. Gulp can be installed as a global package with the following command:
+
+\monospace{npm install -g gulp}
+
+\newparagraph{Dependencies}
+The git repository includes a \emph{package.json} file, that holds the project's metadata, like: name, version, author and dependencies. Dependencies are required to run the gulp file \see{gulp-file}.
+
+Use the following command to install the dependencies listed in package.json:
+
+\monospace{npm install}
+
+\section{Apache2}
+I used the Apache Web Server to serve the laboradmin's files on localhost. Use the following commands to install Apache:
+
+\monospace{sudo apt-get update\\
+		sudo apt-get install apache2
+	}
+	
+To set the document root to \emph{/var/www/html} add the \emph{laboradmin.conf} file:
+
+\monospace{sudo gedit /etc/apache2/sites-enabled/laboradmin.conf }
+
+And add this:
+
+\monospace{<VirtualHost *:80>\\
+	\# The ServerName directive sets the request scheme, hostname and port that\\
+	\# the server uses to identify itself. This is used when creating\\
+	\# redirection URLs. In the context of virtual hosts, the ServerName\\
+	\# specifies what hostname must appear in the request's Host: header to\\
+	\# match this virtual host. For the default virtual host (this file) this\\
+	\# value is not decisive as it is used as a last resort host regardless.\\
+	\# However, you must set it for any further virtual host explicitly.\\
+	\#ServerName www.example.com
+	\\
+	ServerAdmin webmaster@localhost\\
+	DocumentRoot /var/www/html/laboradmin/dist  \\
+	\\
+	\# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,\\
+	\# error, crit, alert, emerg.\\
+	\# It is also possible to configure the loglevel for particular\\
+	\# modules, e.g.\\
+	\#LogLevel info ssl:warn\\
+	\\
+	ErrorLog \$\string{APACHE\_LOG\_DIR\string}/error.log\\
+	CustomLog \$\string{APACHE\_LOG\_DIR\string}/access.log combined\\
+	\\
+	\# For most configuration files from conf-available/, which are\\
+	\# enabled or disabled at a global level, it is possible to\\
+	\# include a line for only one particular virtual host. For example the\\
+	\# following line enables the CGI configuration for this host only\\
+	\# after it has been globally disabled with "a2disconf".\\
+	\#Include conf-available/serve-cgi-bin.conf\\
+	</VirtualHost>\\
+	\\
+	\# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+	}
+
+Make sure to use the same folder name \emph{laboradmin} in \emph{/var/www/html} in the \emph{laboradmin.conf}, because the URL is hard coded in the tests.
+
+Now all you have to do is to create a softlink from your\emph{ student/} directory to the \emph{/var/www/html} directory. Example command:
+
+\monospace{sudo ln -s /home/lenny/temp/student/ /var/www/html/laboradmin}
+	
+The \emph{/home/lenny/temp/} part should be switched to where you saved the git repository.
+
+And change the permissions on your student folder:
+
+\monospace{sudo chmod -R 0777 /home/lenny/temp/student/}
+
+Now you have to reboot apache2:
+
+\monospace{sudo service apache2 reload}
+
+\section{The Gulp File}\label{gulp-file}
 The client's gulp file is added in the root directory. 
 
-First gulp uses the msx plugin, to transform the HTML-like syntax in the JavaScript files, then concatenates them. The concatenated JavaScript file is minimized and moved to the \emph{dist} folder. I used the MSX plugin's example code for the msx transformation task~\cite{gulp-msx-example}. Then gulp minimizes the HTML file and moves it to the \emph{dist} folder. At last the CSS files are concatenated, minimized and the minimized file is moved to the \emph{dist} folder.
-
-Use the following command to run it:
-
-\emph{gulp}
+First gulp uses the msx plugin, to transform the HTML-like syntax in the JavaScript files, then concatenates them. The concatenated JavaScript file is minimized and moved to the \emph{dist} folder. I used the MSX plugin's example code for the msx transformation task~\cite{gulp-msx-example}. Then gulp minimizes the HTML file and moves it to the \emph{dist} folder. At last the CSS files are concatenated, minimized and the minimized file is moved to the \emph{dist} folder. 
 
 The final three files are in the \emph{dist} folder. These files will be downloaded from the server, when a user opens the portal in a browser.
+
+Use the following command to run the gulp file:
+
+\monospace{gulp}
+
+Output:
+
+\monospace{{[}12:34:50{]} Using gulpfile \textasciitilde/thesis/laboradmin/gulpfile.js\\
+		{[}12:34:50{]} Starting 'default'...\\
+		{[}12:34:50{]} Starting 'browserify'...\\
+		{[}12:34:50{]} Starting 'msx'...\\
+		{[}12:34:50{]} Finished 'msx' after 30 ms\\
+		{[}12:34:50{]} Starting 'html'...\\
+		{[}12:34:50{]} Finished 'html' after 7.27 ms\\
+		{[}12:34:50{]} Starting 'css'...\\
+		{[}12:34:50{]} Finished 'css' after 5.4 ms\\
+		{[}12:34:50{]} Finished 'browserify' after 48 ms\\
+		{[}12:34:50{]} Finished 'default' after 49 ms
+	}
+
+\section{Mock Server Usage}
+\label{mock-server-usage}
+Before opening the laboradmin in a browser, you need to start the drakov mock server. Open a new terminal in the \emph{student} folder and use the following commands to switch to node v0.10 and start drakov:
+
+\monospace{nvm use 0.10\\
+		drakov -f "api-blueprint/*.md" \texttt{-{}-}autoOptions
+	}
+The \emph{\texttt{-{}-}autoOptions} flag lets the server to answer preflight OPTIONS requests. If a browser sets a header, e.g., content-type in the POST request, then the browser will send a preflight OPTIONS request instead of a post request.
+	
+Output:
+
+\monospace{lenny@lenny-laptop-3 \textasciitilde/temp/student \$ nvm use 0.10\\
+		npm WARN deprecated This version of npm lacks support for important features,
+		\begin{center}
+			$\vdots$
+		\end{center}
+		Now using node v0.10.41 (npm v1.4.29)\\
+		lenny@lenny-laptop-3 \textasciitilde/temp/student \$ drakov -f "api-blueprint/*.md" \texttt{-{}-}autoOptions \\
+		DRAKOV STARTED   \\
+		{[}LOG{]} Setup Route: GET /resources Get resources\\
+		{[}LOG{]} Setup Route: OPTIONS /resources \\
+		{[}LOG{]} Setup Route: GET /student/:userid/general Get student general informations\\
+		{[}LOG{]} Setup Route: GET /student/:userid/results Get student results\\
+		{[}LOG{]} Setup Route: GET /student/:userid/laboratory Get student laboratory details example for full lab\\
+		{[}LOG{]} Setup Route: GET /student/:userid/settings Get student settings\\
+		{[}LOG{]} Setup Route: OPTIONS /student/:userid/general \\
+		{[}LOG{]} Setup Route: OPTIONS /student/:userid/results \\
+		{[}LOG{]} Setup Route: OPTIONS /student/:userid/laboratory \\
+		{[}LOG{]} Setup Route: OPTIONS /student/:userid/settings \\
+		{[}LOG{]} Setup Route: POST /student/:userid/setfinalcommit Post new final commit for student\\
+		{[}LOG{]} Setup Route: POST /student/:userid/setsettings Post new settings for student\\
+		{[}LOG{]} Setup Route: OPTIONS /student/:userid/setfinalcommit \\
+		{[}LOG{]} Setup Route: OPTIONS /student/:userid/setsettings \\
+		Drakov 0.1.12      Listening on port 3000
+	}
+
+And now you can open the following page in a web browser:
+
+\monospace{http://localhost/laboradmin/dist/}
+
+
