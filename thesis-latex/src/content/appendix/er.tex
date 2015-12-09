@@ -65,11 +65,22 @@
 		\item attributes
 		\begin{itemize}
 			\item id - number
-			\item \todo{}
+			\item type - text - file / repository
+			\item deadline - datetime operator - +4 days from the event's date (oracle interval)
+			\item description - text - for example: report
 		\end{itemize}
 		\item foreign keys
 		\begin{itemize}
-			\item \todo{}
+			\item eventtype - EventTypes
+		\end{itemize}
+	\end{itemize}
+	
+	\item RegisteredStaffs
+	\begin{itemize}
+		\item foreign keys
+		\begin{itemize}
+			\item evaluator - Staffs
+			\item exercisetype - ExcerciseTypes
 		\end{itemize}
 	\end{itemize}
 	
@@ -101,11 +112,8 @@
 		\item attributes
 		\begin{itemize}
 			\item id - number
-			\item \todo{}
-		\end{itemize}
-		\item foreign keys
-		\begin{itemize}
-			\item \todo{}
+			\item title - text
+			\item number - number
 		\end{itemize}
 	\end{itemize}
 	
@@ -114,11 +122,11 @@
 		\item attributes
 		\begin{itemize}
 			\item id - number
-			\item \todo{}
+			\item type - text - SQL, DBMS, SOA, JDBC, XML
 		\end{itemize}
 		\item foreign keys
 		\begin{itemize}
-			\item \todo{}
+			\item course - Courses
 		\end{itemize}
 	\end{itemize}
 	
@@ -127,11 +135,15 @@
 		\item attributes
 		\begin{itemize}
 			\item id - number
-			\item \todo{}
+			\item name - text - for example: Car Rental
+			\item shortname - text - for example: AUTO
+			\item exerciseid - number - for example: 22
+			\item codename - text - generated, for example: 22-AUTO
+			\item language - text
 		\end{itemize}
 		\item foreign keys
 		\begin{itemize}
-			\item \todo{}
+			\item exercisecategory - ExerciseCategories
 		\end{itemize}
 	\end{itemize}
 	
@@ -186,6 +198,7 @@
 		\begin{itemize}
 			\item id - number
 			\item name - text
+			\item language - text
 		\end{itemize}
 		\item foreign keys
 		\begin{itemize}
