@@ -1,6 +1,6 @@
 \chapter{Implementation}\label{implementation}
 
-The team has decided, that the portal is an open source project. The source code is available on GitHub~\cite{Github-student-frontend}~\cite{Github-backend}. This offers an opportunity for new students and staff to contribute in the project.
+The team has decided, that the portal is an open source project. The source code is available on GitHub~\cite{Github-student-frontend}~\cite{Github-backend}. This offers an opportunity for new students and staff to contribute in the project. 
 
 \section{Version Control}
 GitHub~\cite{github} is an online Git repository service. Git is a version control system. In a new commit, it stores snapshots of the file system. If a file did not change, then Git links it to the previous version~\cite{git}. GitHub offers private and public repositories too. In this project we use public repositories and the Git Workflow~\cite{git-workflow}. 
@@ -21,21 +21,14 @@ The front end uses the following open source projects and software tools:
 	\item \textbf{GitHub:} GitHub~\cite{github} is an online Git repository service. The project's source code is available on GitHub.
 	\item \textbf{Gulp:} Gulp~\cite{gulp} is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory and then to start the mock server.
 	\item \textbf{Mithril:} Mithril~\cite{Mithril} is a small JavaScript MVC framework. The front end is implemented in Mithril.
+	\item \textbf{JSLint:} I used the JSLint~\cite{jetbrains-jslint} code verifier plugin to verify that my JavaScript codes match the coding rules~\cite{js-conventions}.
 
 \end{itemize}
 
-\subsection{Documentation}
-
-This thesis and all the documents for this project were written in \LaTeX~\cite{latex}. \LaTeX is a markup language to create scientific documents. A TeX distribution produces the PDF output. 
-
-The thesis template~\cite{FTSRG-latex} for \LaTeX was created by the Fault Tolerant Systems Research Group (FTSRG) at the Department of Measurement and Information Systems, and was recommended by an FTSRG team member, Gábor Szárnyas.
-
-All the diagrams were made by me in Microsft Visio 2013~\cite{visio}. Visio is a part of the Microsoft Office and is an application to create diagrams. Visio is free for students via DreamSpark~\cite{msdnaa}.
+This thesis and all the documents for this project were written in \LaTeX~\cite{latex}. \LaTeX is a markup language to create scientific documents. A TeX distribution produces the PDF output. All the diagrams were made by me in Microsft Visio 2013~\cite{visio}. Visio is a part of the Microsoft Office and is an application to create diagrams. Visio is free for students via DreamSpark~\cite{msdnaa}. For developement, I used IntelliJ IDEA~\cite{intellij-idea}, that is free for students.
 
 
 \section{Method of Implementation}
-\nori{Bence kommentek jó része idáig feldolgozva}
-
 During implementation I used HTML, CSS and JavaScript to create the web application. For deployment I used a gulp script written by me \see{gulp}. 
 
 HTML is a standard language to create websites. CSS describes the style of the HTML elements. The styles are binded to the elements within the class attribute. JavaScript is a script language to make websites interactive. Web applications use JavaScript for AJAX requests and event action handling. 
@@ -51,10 +44,7 @@ In the \emph{body section} I created an empty div with an id attribute. The page
 As the main CSS file I concatenate the Bootstrap CSS file with my own CSS file, called \mbox{\emph{laboradmin.css}}. During concatenation I had to make sure that my CSS code will be after the Bootstrap code. This is important, because in CSS the last style rules overrides the previous ones. The Bootstrap CSS file contains the basic Bootstrap component styles. In the \mbox{\emph{laboradmin.css}} file some parts of the Bootstrap CSS are overwritten, to make the components to have a different appearance than the basic Bootstrap appearance, e.g., font colors, background colors and border visibility.
 
 \newparagraph{JavaScript}
-
-\bence{Miért másolod össze a JS állományokat?  Miért jó ez?  Milyen nehézségeket okoz a fejlesztésnél, hogyan lesznek kiszolgálva éles környezetben?  Mi az előnye ennek?  ... Stb.  Nem érzem megindokoltnak azt, hogy ez miért történik és mivel jár végül.}
-
-As the main JavaScript file I concatenate all the JavaScript files into one file. This includes the following files: 
+This module contains the following JavasScript files: 
 \begin{itemize}
 	\item the shim file, because Mithril relies on some features what are not part of the previous Internet Explorer versions,
 	\item the Mithril framework's minimized JavaScript code,
@@ -67,26 +57,22 @@ As the main JavaScript file I concatenate all the JavaScript files into one file
 	\item my JavaScript files.
 \end{itemize}
 
-\bence{Most össze vannak másolva vagy szét vannak választva?  Nem értem.  ((Tudom, hogy mit csinálsz, de a szövegből ez nem derül ki.))}
+During developement for the sake of maintainability, I separated my JavaScript files based on if it is a part of the model's, the controller's or the view's code. 
 
-I separated my JavaScript files based on if it is a part of the model's, the controller's or the view's code. 
-
-I use MSX in my \emph{view} codes. To make the inline HTML-like syntax more simple, I created different widgets, and use them as HTML tags. To build a page the followings are needed: 
+I use MSX in my \emph{view} codes. To make the inline HTML-like syntax more simple, I created different widgets, and use them as HTML tags. The widgets are separated in different directories based on the page that uses the widget. To build a page the followings are needed: 
 \begin{itemize}
 	\item a page, that contains the menu and the panel,
 	\item a panel, that contains all the widgets, and
 	\item the widgets, that contain the basic HTML elements.
 \end{itemize}
 
-The MSX transformer converts this HTML-like syntax into Mithril JavaScript code during the concatenation. In the HTML-like code, I add classes for every element. These class attributes will make the element's style look equal. Every class's style is defined in the CSS files.
+The MSX transformer converts this HTML-like syntax into Mithril JavaScript code during the concatenation. In the HTML-like code, I add classes for every element and ids and names for some element. These class attributes will make the element's style look equal. Every class's style is defined in the CSS files. The names and ids helps finding HTML elements for event handlers and during testing.
 
 The \emph{controllers} are the communication bridges between the model and the views. The controllers have helper methods to get the necessary data from the model, or send data to the model and to change the behavior of the elements, e.g. disable buttons. The view uses these helper methods to bind data or event listeners to the elements.
 
 Because I did not want more dependencies I have decided to implement a simple JavaScript class as the \emph{model}. The model loads the necessary data from the server and stores it. The model can also send data to the server. All data flow between the model and the server go through a marshalling module for conversion.
 
+During deployment I concatenate all the JavaScript files to one file and minimize it. This leads to as few requests to the back end as possible and improves the performance. The website will only download one HTML file, one CSS file and one JavaScript file.
 
-\section{mire figyeltem a kódolásnál}
-\section{kód metrika}
-\section{teszt lefedettség}
-\section{eredmény}
-kód hol érhető el, melyik commit verziót mutatom be, gulpra hivatkozás
+\section{Final Version}
+I have uploaded the code to GitHub. The commit, that is presented in this thesis is tagged with \emph{thesis-final}~\cite{Github-final}.
