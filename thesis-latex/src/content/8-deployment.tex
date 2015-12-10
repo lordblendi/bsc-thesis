@@ -1,6 +1,6 @@
 \chapter{Deployment}\label{deployment}
 
-For implementation and deployment I used Linux Mint 17.2. The commit, that is presented in this thesis is tagged with \emph{thesis-final}~\cite{Github-final}.
+For implementation and deployment I used Linux Mint 17.2. The commit, that is presented in this thesis is tagged with \emph{thesis-final2}~\cite{Github-final}.
 
 \section{Installation Steps}
 
@@ -9,11 +9,11 @@ First you need to clone the git repository. If you do not have git installed, us
 
 \monospace{sudo apt-get install git-all}
 
-Use the following command to clone the repository into a new folder. This will clone the latest commit and every commit before it, including the \emph{thesis-final} tagged commit. To get the tagged commit create a new branch with checkout and add the tag.
+Use the following command to clone the repository into a new folder. This will clone the latest commit and every commit before it, including the \emph{thesis-final2} tagged commit. To get the tagged commit create a new branch with checkout and add the tag.
 
 \monospace{git clone https://github.com/lordblendi/student\\
 		cd student/\\
-		git checkout -b new\_branch thesis-final
+		git checkout -b new\_branch thesis-final2
 	}
 
 Output:
@@ -27,34 +27,48 @@ Output:
 		Resolving deltas: 100\% (1095/1095), done.\\
 		Checking connectivity... done.\\
 		lenny@lenny-laptop-3 \textasciitilde/temp/new \$ cd student/\\
-		lenny@lenny-laptop-3 \textasciitilde/temp/new/student \$ git checkout -b new\_branch thesis-final\\
+		lenny@lenny-laptop-3 \textasciitilde/temp/new/student \$ git checkout -b new\_branch thesis-final2\\
 		Switched to a new branch 'new\_branch'\\	
 	}
 	
 \newparagraph{Node}
 I use node package manager (npm) and the node version manager (nvm) to install software tools and node versions. Use the following command to install npm and nvm:
 
-\monospace{sudo apt-get install -y curl nodejs\\
+\monospace{sudo apt-get install curl nodejs\\
 		curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 	}
+	
+Close and reopen your terminal to start using nvm. For testing Cucumber needs node v4.2. and the mock server needs node v0.10. Use the following commands to install these:
 
-For testing Cucumber needs Node v4.2. and the mock server needs Node v0.10. Use the following commands to install these:
-
-\monospace{nvm install 4.2\\
-		nvm install 0.10
+\monospace{sudo nvm install v4.2\\
+		sudo nvm install v0.10
 	}
 	
-Use the following command to switch between Node versions in the current terminal:
+Use the following commands to see the installed node versions:
+	
+\monospace{nvm ls}
+	
+Output:
 
-\monospace{nvm use [version]}
+\monospace{       v0.10.41\\
+	->       v4.2.3\\
+	node -> stable (-> v4.2.3) (default)\\
+	stable -> 4.2 (-> v4.2.3) (default)\\
+	iojs -> N/A (default)
+	}
+	
+	
+Use the following command to switch to node v4.2 in the current terminal:
+
+\monospace{nvm use 4.2}
 
 Use the following command to check which node version is being used in the current terminal:
 
 \monospace{node -v}
 
-\newparagraph{Gulp}\label{gulp}Gulp is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory. Gulp can be installed as a global package with the following command:
+\newparagraph{Gulp}\label{gulp}Gulp is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory. Gulp can be installed with the following command (npm will not work without using a node version):
 
-\monospace{npm install -g gulp}
+\monospace{npm install gulp}
 
 \newparagraph{Dependencies}
 The git repository includes a \emph{package.json} file, that holds the project's metadata, like: name, version, author and dependencies. Dependencies are required to run the gulp file \see{gulp-file}.
@@ -72,7 +86,7 @@ I used the Apache Web Server to serve the laboradmin's files on localhost. Use t
 	
 To set the document root to \emph{/var/www/html} add the \emph{laboradmin.conf} file:
 
-\monospace{sudo gedit /etc/apache2/sites-enabled/laboradmin.conf }
+\monospace{sudo vi /etc/apache2/sites-enabled/laboradmin.conf }
 
 And add this:
 
@@ -119,11 +133,11 @@ The \emph{/home/lenny/temp/} part should be switched to where you saved the git 
 
 And change the permissions on your student folder:
 
-\monospace{sudo chmod -R 0777 /home/lenny/temp/student/}
+\monospace{sudo chmod -R 0755 /home/lenny/temp/student/}
 
 Now you have to reboot apache2:
 
-\monospace{sudo service apache2 reload}
+\monospace{sudo service apache2 restart}
 
 \section{The Gulp File}\label{gulp-file}
 The client's gulp file is added in the root directory. 
@@ -153,22 +167,22 @@ Output:
 
 \section{Mock Server Usage}
 \label{mock-server-usage}
-Before opening the laboradmin in a browser, you need to start the drakov mock server. Open a new terminal in the \emph{student} folder and use the following commands to switch to node v0.10 and start drakov:
+Before opening the laboradmin in a browser, you need to start the drakov mock server. Use the following commands to switch to node v0.10 and install drakov and his dependencies:
 
-\monospace{nvm use 0.10\\
-		drakov -f "api-blueprint/*.md" \texttt{-{}-}autoOptions
-	}
+\monospace{sudo apt-get install make g++\\
+	nvm use 0.10\\
+	npm install -g drakov}
+
+
+Open a new terminal in the \emph{student} folder and use the following commands to start drakov:
+
+\monospace{drakov -f "api-blueprint/*.md" \texttt{-{}-}autoOptions}
+	
 The \emph{\texttt{-{}-}autoOptions} flag lets the server to answer preflight OPTIONS requests. If a browser sets a header, e.g., content-type in the POST request, then the browser will send a preflight OPTIONS request instead of a post request.
 	
 Output:
 
-\monospace{lenny@lenny-laptop-3 \textasciitilde/temp/student \$ nvm use 0.10\\
-		npm WARN deprecated This version of npm lacks support for important features,
-		\begin{center}
-			$\vdots$
-		\end{center}
-		Now using node v0.10.41 (npm v1.4.29)\\
-		lenny@lenny-laptop-3 \textasciitilde/temp/student \$ drakov -f "api-blueprint/*.md" \texttt{-{}-}autoOptions \\
+\monospace{	lenny@lenny-laptop-3 \textasciitilde/temp/student \$ drakov -f "api-blueprint/*.md" \texttt{-{}-}autoOptions \\
 		DRAKOV STARTED   \\
 		{[}LOG{]} Setup Route: GET /resources Get resources\\
 		{[}LOG{]} Setup Route: OPTIONS /resources \\

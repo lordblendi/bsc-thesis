@@ -1,6 +1,54 @@
 \chapter{Conceptual System Design}\label{conceptual}
 The conceptual system design represents a high level structure of the system's architecture. It defines the relations between the components. The components have to be separated from each other, because then every component is easily replaceable without changing any other components. The conceptual system design does not require the components to be implemented with the same technologies. The clients will be implemented in HTML, CSS and JavaScript \see{comparing-frameworks} and the back end components will be implemented in Ruby on Rails.
 
+
+\section{Frontend System Design}
+\label{frontend-system-design}
+The front end system design depends on the chosen framework's behavior and it also depends on which software architecture pattern is used. This project follows the MVC pattern. In this section I am going to introduce the general MVC pattern and the final front end system design. 
+
+\subsection{MVC Pattern}
+\label{mvc}
+
+The Model-View-Controller (MVC) is a software architecture pattern for user interface design and implementation, where the application logic is separated from the user interface~\cite{szofttech}.
+
+In object-oriented programming the Model is the objects where the data from the database is stored. The View is the presentation layer. The user sees and interacts with the View. The Controller will process and respond to the user requests and invoke the changes in the Model. 
+
+%The MVC pattern is memory efficient, because multiple views can share the same underlying data model. Controllers can be separated by events. This allows the developer to create a controller hierarchy, because a controller for a keyboard event is different from a controller for a mouse event. Views implement an instance of a controller, that can be changed at run-time, because we can be disabled and enabled.
+
+%\bence{Az az érzésem, hogy ezt valahonnan másoltad / fordítottad.  Ha igen, illik hivatkozást betenni a szöveg végére.  Ha nem, akkor erről beszéljünk, mert a memória-hatékonyság ebben a formában szerintem nem igaz az MVC-re.  Nem lesz valami hatékony azért, mert MVC minta alapján készül.}
+
+\subsubsection{MVC Web Applications}
+
+\begin{figure}[!ht]
+	\includegraphics[width=\textwidth]{figures/klasszikus_mvc_webalkalmazas.pdf}
+	\caption[Classic MVC Web Application]{Classic MVC Web Application~\cite{mvc-webapp}}
+	\label{fig:classic-mvc-webapplication}
+\end{figure}
+
+In web applications the browser communicates with a controller. When the user sends a request, routing will decide which controller will handle the request. The chosen controller talks to the model to get the relevant data. If it is necessary, the model will send data to or ask for data from the database, the API or the local storage. During this process, the data has to be transformed via serialization. serialization is the process, that transforms the data between dataformats to be sent and stored. When the model returns the desired data to the controller, it will forward the data to the view. The presentation layer will decide which page has to be returned to the browser, binds the data to the view template and returns it.
+
+\subsection{Final Front End System Design}
+
+The final design is based on the classic MVC Web application \see{fig:classic-mvc-webapplication} and the behavior of Mithril~\cite{Mithril-getting-started}. It describes the design of the client, but does not describe how the clients communicate with each other, because the different clients cannot communicate with each other.
+
+The routing component handles the incoming requests. It uses a routing table to decide which controller has to handle the request.
+
+The controller talks to the model if any data should be changed or needed. The model sends data to the API or asks for data from the API. Every data is converted between the representation suitable for the implementation and the AJAX requests by the serialization component. The communication between the API and the client is handled by the server communication component.
+
+The controller provides helper methods (e.g. getting data from the model) and it is passed as the first parameter to the view~\cite{Mithril-routing}. The rendered view is forwarded to the browser that visualized it for the user.
+
+\newpage
+\begin{landscape}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[height=0.8\textwidth]{figures/frontend_rendszerterv.pdf}
+		\caption[Front End System Design]{Front End System Design\\The JS-APP was made by me and the outer layer was made by Bence Golda.}
+		\label{fig:frontend-system-design}
+	\end{figure}
+\end{landscape}
+
+\section{System Design}
+
 In this design the front end is represented as a basic component, because the front end system design was introduced in \refstruc{frontend-system-design}. About 15 percent of the model was created by me, 85 percent of it was created by Bence Golda and it was finalized by the team.
 
 The main components are the followings:
