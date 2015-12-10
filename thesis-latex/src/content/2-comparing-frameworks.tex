@@ -14,17 +14,17 @@ During comparison, I checked the followings:
 
 In a single-page application (SPA) when the user opens the web site in a browser, all the resources will be downloaded with a single page load. From that point, when the user interacts with the web site, it will dynamically update previously downloaded single page~\cite{SPA}.
 
-In JavaScript with \emph{AJAX requests} we can send requests to a server asynchronously without reloading a page. In a SPA we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser will not reload the whole page, it will just simply load the new view into the old frame. Everything happens in the background so the application will not force the user to wait while it sends data to a server. If the application is retrieving data, then when it arrives, the application can process it and show the result to the user.
+HTTP requests are necessary, because the client has to download data from the server and upload data to the server. In JavaScript with \emph{AJAX requests} we can send requests to a server asynchronously without reloading a page. In a SPA we want to make the browser think it is always on the same page. When the user clicks on a new link, the browser will not reload the whole page, it will just simply load the new view into the old frame. Everything happens in the background so the application will not force the user to wait while it sends data to a server. If the application is retrieving data, then when it arrives, the application can process it and show the result to the user. 
 
-The classic \emph{data binding} model is when the view template and the data from the model are merged together to create the to be displayed view. Any data changes in the view will not automatically sync into the model. The developer has to write the controller that syncs the changes between the model and the view~\cite{Angular-Developer-DataBinding}.
+The classic \emph{data binding} model is when the view template and the data from the model are merged together to create the to be displayed view. This is necessary, because data binding helps separating the model's code from the view's code, and supports code maintainability. Any data changes in the view will not automatically sync into the model. The developer has to write the controller that syncs the changes between the model and the view~\cite{Angular-Developer-DataBinding}.
 
-Upon URL change an SPA will not download a new page. It will navigate to the right part of the application. \emph{Routing} takes care of this automatically. The SPA needs a routing table to know which URL belongs to which controller or view.
+Upon URL change an SPA will not download a new page. It will navigate to the right part of the application. \emph{Routing} takes care of this automatically. The SPA needs a routing table to know which URL belongs to which controller or view. This is important, because without routing the application would fetch new pages whenever the URL changes.
 
 During the comparison I made a small test program in every JavaScript framework to try AJAX requests, data binding and routing. The source codes are publicly available on Github with a gulp file \see{gulp} and an API blueprint test file for Drakov \see{api-blueprint}.
 
 \section{React}
 
-My first choice was React~\cite{React}. It is developed by Facebook and Instagram since 2013.
+My first choice was React~\cite{React}, because it is well-known for it's virtual DOM and Flux. It is developed by Facebook and Instagram since 2013.
 
 React creates a virtual DOM instead of always updating the browser's actual document object model (DOM)~\cite{dom}. The DOM provides a structured representation of HTML and XML documents. The objects are the nodes of the tree, and the tree structure is the DOM tree. In this case the DOM connects the HTML page to the JavaScript code. The virtual DOM is like a blueprint of the real DOM. Instead of containing a div\footnote{A div is a generic container in HTML. It helps structuring the HTML document~\cite{div}.} element, the virtual DOM contains a React.div element that is just data and not a rendered content. React is able to find out what has changed on the real DOM. It makes changes to the virtual DOM, because that is faster and then re-render the real DOM~\cite{React-Virtual-DOM}.
 
@@ -32,14 +32,14 @@ To create DOM elements, we can choose between JavaScript and JSX~\cite{JSX}. If 
 
 For data binding React has a one-way data flow called Flux~\cite{Flux}. Flux supports data flow only in a single direction, downstream. This means if something is changed in the component tree, then it will cause the element to re-render itself and all of its descendants.
 
-React focuses only on building views. The core React version does not have an option for routing and AJAX requests. If I want to support those in my application, then React should be combined with other frameworks or libraries to have a full MVC experience.
+React focuses only on building views. I did not like that the core React version does not have an option for routing and AJAX requests. If I want to support those in my application, then React should be combined with other frameworks or libraries to have a full MVC experience.
 
 \newparagraph{Test Program~\cite{Github-react}}
 The components are separated into different JavaScript files. JSX was used to represent the views. Before the concatenation a JSX transformer converts the inline HTML-like JSX to JavaScript code. The React components' states were used as a model. Because React has not got an option for AJAX requests, jQuery was used to download some mock data from the mock server. React Router was used~\cite{React-router} for routing. 
 
 \section{AngularJS}
 
-AngularJS~\cite{Angular} is one of the most advanced JavaScript frameworks nowadays.  It has been maintained by Google for 6 years. It focuses mostly on dynamic views in web-applications. 
+AngularJS~\cite{Angular} is one of the most advanced JavaScript frameworks nowadays. I chose it because it is famous about the two-way data binding.  It has been maintained by Google for 6 years. It focuses mostly on dynamic views in web-applications. 
 
 Creating a website is done with an extended HTML vocabulary, like Android Layouts where we declare everything in XML.  It uses a two-way data binding template~\cite{Angular-Developer-DataBinding} which means whenever either the View or the Model is changed, it will update the other one automatically.
 
@@ -52,7 +52,7 @@ The controllers are separated into different JavaScript files and the views into
 
 \section{Mithril}
 
-Mithril~\cite{Mithril} is a small MVC framework created by Leo Horie. It uses a similar virtual DOM like React, but also implements controller features like routing.
+Mithril~\cite{Mithril} is a small MVC framework created by Leo Horie. I chose it because it uses a similar virtual DOM like React, but also implements controller features like routing.
 
 When we are creating a website, Mithril first creates virtual DOM elements, that is a JavaScript object that represents a DOM element. Rendering will create a real DOM element from the virtual one~\cite{Mithril-m}~\cite{Mithril-render}. If we prefer using HTML syntax, we can use MSX~\cite{MSX}. It uses JSX, but transforms the output to be compatible with Mithril. 
 
@@ -68,7 +68,7 @@ For routing Mithril needs a key-value map of possible routes and Mithril modules
 A Mithril module contains a model, a controller and a view. A controller is a JS constructor and the view is a function, that returns a virtual DOM. Modules are separated into different JavaScript files and concatenated with gulp. MSX transformer converts the HTML-like MSX to JavaScript code.
 
 \newpage
-\section{Comparison Table}
+\section{Comparison Table and Conclusion}
 
 \begin{center}
 	\begin{table}[!htbp]
@@ -94,24 +94,20 @@ A Mithril module contains a model, a controller and a view. A controller is a JS
 	\end{table}
 \end{center}
 
-
-\section{Conclusion}
 In performance, both React and Mithril are faster than Angular, because they use virtual DOM. Angular's public API interface is much bigger than React's or Mithril's. React does not have routing and AJAX requests in its core library, so it depends on other libraries. 
 I choose Mithril for this project, because it is  self-contained, so it does not have to depend on other libraries. It has utilities built-in for routing and AJAX requests. And it has a small API with great documentation. 
 
 \section{Supported Web Browsers}
-At first, I am aiming to develop the portal for desktop browsers. The portal will support every browser, that is supported by Google~\cite{google-support}.
-The supported browsers are:
+At first, I am aiming to develop the portal for desktop browsers. The portal will support every browser, that is supported by Google~\cite{google-support}. All browsers must have JavaScript enabled.
+The supported browsers are based on the browser usage stats in Hungary~\cite{browser-usage}:
 \begin{itemize}
-	\item Chrome
-	\item Internet Explorer
-	\item Firefox
-	\item Safari
+	\item Chrome 39.0
+	\item Internet Explorer 10.~\cite{google-support-blog}.
+	\item Firefox 33.0
+	\item Safari -- previous major releases
 \end{itemize}
 
 \subsection{Internet Explorer}
-The portal will support Internet Explorer 10 and every newer version~\cite{google-support-blog}.
-
 Because there are some features, that Mithril depends on and are not part of earlier Internet Explorer version, I added a shim JavaScript file to the project~\cite{Mithril-tools}. 
 
 To force Internet Explorer to render in the highest available mode, I added a special meta tag in the html file~\cite{IE10-microsoft}~\cite{IE10-html5-boiler} \see{html-impl}.
