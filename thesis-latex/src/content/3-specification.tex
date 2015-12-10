@@ -136,6 +136,7 @@ User stories are lines for a contract, that can be verified with an automatized 
 
 I use this methodology to describe the communication between the back end and the front end. I was looking for an API specification tool to design the communication between the back end and the front end and a mock server tool, that implements that API specification.
 
+
 \subsubsection{Mock Server}
 Because I only develop the front end, I wanted to make sure that I can work on the implementation without waiting for back end modules to be finished. To do that, I have to write an API specification and use a mock server. 
 
@@ -148,17 +149,19 @@ I want to use my API specification as a readable documentation for humans and as
 
 \emph{Example GET:}
 
-\# Message {[}/student/\string{userid\string}/general{]}\\
-\#\# Get student general informations [GET]\\
-$+$ Response 200 (application/json)
 \begin{addmargin}[1em]{1em}
-	\string{
-		\begin{addmargin}[1em]{1em}
-			"name" : "Teszt Hallgató",\\
-			"neptun" : "Neptun",\\
-			"id" : "1"
-		\end{addmargin}
-		\string}
+	\# Message {[}/student/\string{userid\string}/general{]}\\
+	\#\# Get student general informations [GET]\\
+	$+$ Response 200 (application/json)
+	\begin{addmargin}[1em]{1em}
+		\string{
+			\begin{addmargin}[1em]{1em}
+				"name" : "Teszt Hallgató",\\
+				"neptun" : "Neptun",\\
+				"id" : "1"
+			\end{addmargin}
+			\string}
+	\end{addmargin}
 \end{addmargin}
 
 This example sends the same json response for every HTTP GET request. The \emph{userid} is a wildcard parameter, the server will send the same response for every parameter. I used the parameter \emph{1} for testing.
@@ -166,45 +169,49 @@ This example sends the same json response for every HTTP GET request. The \emph{
 
 \emph{Example POST}:
 
-\# Message {[}/student/\string{userid\string}/setsettings{]}\\
-\#\#\# Post new settings for student {[}POST{]}\\
-\#\# Automatic response to OPTIONS requests
-
-+ Request (application/json)
 \begin{addmargin}[1em]{1em}
-	+ Schema
+	\# Message {[}/student/\string{userid\string}/setsettings{]}\\
+	\#\#\# Post new settings for student {[}POST{]}\\
+	\#\# Automatic response to OPTIONS requests
+	
+	+ Request (application/json)
 	\begin{addmargin}[1em]{1em}
-		\string{   "type":"object",
-			\begin{addmargin}[1em]{1em}
-				"required": {[}"notification", "mailingList"{]},\\
-				"properties" : \string{
-					\begin{addmargin}[1em]{1em}
-						"email": \string{"type":"string"\string},\\
-						"notification": \string{"type":"boolean"\string},\\
-						"mailingList": \string{"type":"boolean"\string},\\
-						"sshPublicKey": \string{"type":"string"\string},\\
-						"oldpwd": \string{"type":"string"\string},\\
-						"newpwd": \string{"type":"string"\string}
-					\end{addmargin}
-					\string}
-			\end{addmargin}
-			\string}
+		+ Schema
+		\begin{addmargin}[1em]{1em}
+			\string{   "type":"object",
+				\begin{addmargin}[1em]{1em}
+					"required": {[}"notification", "mailingList"{]},\\
+					"properties" : \string{
+						\begin{addmargin}[1em]{1em}
+							"email": \string{"type":"string"\string},\\
+							"notification": \string{"type":"boolean"\string},\\
+							"mailingList": \string{"type":"boolean"\string},\\
+							"sshPublicKey": \string{"type":"string"\string},\\
+							"oldpwd": \string{"type":"string"\string},\\
+							"newpwd": \string{"type":"string"\string}
+						\end{addmargin}
+						\string}
+				\end{addmargin}
+				\string}
+		\end{addmargin}
 	\end{addmargin}
-\end{addmargin}
-
-+ Response 201 (application/json;charset=UTF-8)
-\begin{addmargin}[1em]{1em}
-	+ Body
+	
+	+ Response 201 (application/json;charset=UTF-8)
 	\begin{addmargin}[1em]{1em}
-		\string{
-			\begin{addmargin}[1em]{1em}
-				status": "ok"
-			\end{addmargin}
-			\string}
+		+ Body
+		\begin{addmargin}[1em]{1em}
+			\string{
+				\begin{addmargin}[1em]{1em}
+					status": "ok"
+				\end{addmargin}
+				\string}
+		\end{addmargin}
 	\end{addmargin}
 \end{addmargin}
 
 This example sends the same json response for every HTTP POST or OPTIONS request, where the body matches the JSON Schema. Only two parameters are required, but the body cannot contain any parameter, that is not defined in the properties section.
+
+The files are available on Github~\cite{Github-blueprint}. 
 
 \subsubsection{Drakov}
 

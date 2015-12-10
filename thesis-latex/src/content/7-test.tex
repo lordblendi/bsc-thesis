@@ -1,11 +1,9 @@
-\chapter{Test}
+\chapter{Testing}
 \label{7-test}
 
 To test the application I used Cucumber with user stories for acceptance tests with Zombie as a headless browser and Istanbul for code coverage testing. I also used a mock server to get mock data during testing, because the back end modules are not finished yet.
 
-\section{Communication Interfaces}
-As I mentioned in \refstruc{api-blueprint}, I used the API Blueprint specification to define the communication interfaces. The files are available on Github~\cite{Github-blueprint}. Mock server usage is described in \refstruc{mock-server-usage}.
-
+Due the simpleness of the implemented methods, e.g., getters to provide data from the model through the controller to the view, or setters to store the downloaded data in the model, I did not create unit tests.
 
 \section{Testing}
 \subsection{Acceptance Tests}
@@ -28,7 +26,7 @@ I wanted to use a browser to test the client's JavaScript code. My first choice 
 Zombie~\cite{zombie} is lightweight framework, that implements a browser without a user interface. It also supports assertions, that makes it possible to text field comparison and HTML element existence testing easier, and pipelines to log the outgoing requests from the Zombie browser. 
 
 \subsection{Code Coverage Tests}
-A coverage test measures which functions, statements, lines were executed~\cite{szofttech}. I tested which user stories w
+A coverage test measures which functions, statements, lines were executed~\cite{szofttech}. I tested which user story step definitions were executed, and how many times were they executed, because some scenarios had similar steps, e.g., the 8 different of filling the password fields on the settings page.
 
 \subsubsection{Istanbul}
 Istanbul~\cite{istanbul} is a code coverage software tool for JavaScript. It checks coverage for:
