@@ -32,7 +32,7 @@ The student wants to list his commits from every branch in the laboratory's repo
 	\item \emph{Why?} -- Because the student has to pass the laboratory in order to pass the course.
 \end{itemize}
 
-In consequence of the 5 Whys, I also filtered out some features. Then I started to write the user stories to establish the basics for test automation.
+In consequence of the 5 Whys, I also filtered out some features. For example, in the first version I wanted to have file uploading in the portal, but it has the same root as having a git repository. I have decided to eliminate the file uploading feature, because student can learn the usage of a version control system by submitting their homeworks to a repository. Then I started to write the user stories to establish the basics for test automation.
 
 \subsection{User Story}\label{spec-user-story}
 A user story is a description of how can the user interact with the system, and what does the user have to do to use a certain feature. User stories are written in everyday language, and I can use them to run automated tests with a software tool. 
@@ -40,11 +40,18 @@ A user story is a description of how can the user interact with the system, and 
 \subsubsection{Given When Then}
 In test-driven development (TDD) a developer first writes tests and then write then implements. A test is based on the specification, and the purpose of implementation is to pass the tests. 
 
-In behavior-driven development (BDD) a developer first writes behaviors and then implements. A behavior describes how the software should behave in certain situations. Tests and behaviors are similar, but behaviors are written in a ubiquitous language. This language helps focusing on the behavior of the software and makes the tests fluidly readable~\cite{given-when-then-article2}~\cite{given-when-then-article3}. 
+In behavior-driven development (BDD) a developer first writes behaviors and then implements. A behavior describes how the software should behave in certain situations. Tests and behaviors are similar, but behaviors are written in a ubiquitous language, that helps focusing on the behavior of the software and makes the tests fluidly readable~\cite{given-when-then-article2}~\cite{given-when-then-article3}. 
 
-The Given When Then~\cite{given-when-then-cucumber}~\cite{given-when-then-article} technique is a convention to write user stories in BDD. It was made by Dan North and Chris Matts.
+The Given When Then~\cite{given-when-then-cucumber}~\cite{given-when-then-article} technique is a convention to write user stories in BDD. It was made by Dan North and Chris Matts and contains the following steps~\cite{Cucumber-scenario}:
 
-The \emph{Given} describes a state of the system. The \emph{When} describes an event. The \emph{Then} describes the result. If there are multiple Givens, I can use ~\emph{And} or \emph{But}. If you have the same Given statement for many stories, you can combine them as a \emph{background} section. A \emph{scenario} is an example of an executable action~\cite{Cucumber-scenario}. 
+\begin{itemize}
+	\item \textbf{Given:} describes a state of the system.
+	\item \textbf{When:} an event, that happens to the system.
+	\item \textbf{Then:} the state of the system after the occurred event.
+	\item \textbf{And, But:} Multiple steps can
+	\item \textbf{Scenario:} is an example of an executable action. It has to contain at least a \emph{When} and a \emph{Then} step.
+	\item \textbf{Background:} If you have the same Given statement for many scenarios, you can combine them as a \emph{background} section.
+\end{itemize} 
 
 \emph{Example:}
 
@@ -61,30 +68,150 @@ Then I should see "Your settings have been saved."
 At first I wrote simple user stories without backgrounds and scenarios. I wrote them for all modules, and then I focused only on the student module, because that's the first module I will implement. I finished writing scenarios for only that module \see{user-stories}.
 
 \newparagraph{Cucumber}\label{spec-cucumber}
-User stories are good starting points for acceptance test. For testing I will use Cucumber~\cite{Cucumber}. 
+
+User stories are good starting points for acceptance tests. For testing I will use Cucumber~\cite{Cucumber}. 
 
 Cucumber is a software tool to run automated tests with user stories written in the Given When Then convention. Cucumber uses a parser named Gherkin~\cite{Cucumber-gherkin} to parse feature files. 
-A feature file contains user stories written in everyday language in a specific structure. Gherkin can parse user stories written in 65+ languages. In this project I will use English user stories. The usage is described in \refstruc{cucumber-test}.
+A feature file contains user stories written in everyday language in a specific structure. Gherkin can parse user stories written in 65+ languages. In this project I will use English user stories. Although anything can be written in user stories, the more steps is included, the more code have to be implemented. The usage is described in \refstruc{cucumber-test}.
+
+\emph{Example:}
+
+The previous Given When Then example implemented for Cucumber test. The logic for the steps is npt implemented yet
+
+\monospace{	\begin{addmargin}[1em]{1em}
+				var myStepDefinitionsWrapper = function () \string{
+					\begin{addmargin}[1em]{1em}
+						this.Then(/\textasciicircum{}I see "({[}\textasciicircum{}"{]}*)" as the page title\$/, function (arg1, callback) \string{
+								\begin{addmargin}[1em]{1em}
+									callback.pending();
+								\end{addmargin}
+						\string});\\
+						\\
+						this.Given(/\textasciicircum{}a logged in student named "({[}\textasciicircum{}"{]}*)"\$/, function (arg1, callback) \string{
+							\begin{addmargin}[1em]{1em}
+								callback.pending();
+							\end{addmargin}
+						\string});\\
+						\\
+						this.Given(/\textasciicircum{}the settings page is loaded\$/, function (callback) \string{
+							\begin{addmargin}[1em]{1em}
+								callback.pending();
+							\end{addmargin}\
+					\string});\\
+						\\
+						this.Given(/\textasciicircum{}I am logged in as "({[}\textasciicircum{}"{]}*)"\$/, function (arg1, callback) \string{
+							\begin{addmargin}[1em]{1em}
+								callback.pending();
+							\end{addmargin}
+						\string});\\
+						\\
+						this.Given(/\textasciicircum{}I have entered a new SSH public key\$/, function (callback) \string{
+							\begin{addmargin}[1em]{1em}
+								callback.pending();
+							\end{addmargin}
+						\string});\\
+						\\
+						this.When(/\textasciicircum{}I press the save button\$/, function (callback) \string{
+							\begin{addmargin}[1em]{1em}
+								callback.pending();
+							\end{addmargin}
+						\string});\\
+						\\
+						this.Then(/\textasciicircum{}I should see "({[}\textasciicircum{}"{]}*)"\$/, function (arg1, callback) \string{
+							\begin{addmargin}[1em]{1em}
+								callback.pending();
+							\end{addmargin}
+						\string});
+					\end{addmargin}
+				\string};\\				
+			module.exports = myStepDefinitionsWrapper;
+		\end{addmargin}
+	}
 
 
 \subsection{Contract}
 Design by Contract is a software development methodology made by Bertrand Meyer. A contract describes how a software's components a collaborates with each other. A contract has obligations and benefits. An obligation for a component is a benefit for the other component, and vice versa~\cite{touch-of-class}~\cite{Szepes-onlab}~\cite{szofttech}.
+
+User stories are lines for a contract, that can be verified with an automatized testing tool, but the components are different: one component is the specification, the other is the client.
 
 I use this methodology to describe the communication between the back end and the front end. I was looking for an API specification tool to design the communication between the back end and the front end and a mock server tool, that implements that API specification.
 
 \subsubsection{Mock Server}
 Because I only develop the front end, I wanted to make sure that I can work on the implementation without waiting for back end modules to be finished. To do that, I have to write an API specification and use a mock server. 
 
-A \emph{mock server} simulates the behavior of the back end and offers mock data to work with. With a good API specification it will offer the same data as the future back end, and gives the opportunity to test the developed front end modules before the back end is finished.
+A \emph{mock server} simulates the behavior of the back end and offers mock data to work with. With an API specification it will offer the same data as the future back end, and gives the opportunity to test the developed front end modules before the back end is finished.
 
 \subsubsection{API Blueprint}
 \label{api-blueprint}
 
 I want to use my API specification as a readable documentation for humans and as a mock server specification. \emph{API Blueprint}~\cite{api-blueprint} is an open source project, that gives me the option to write my specification in Markdown. Markdown~\cite{markdown} is a markup language to write plain text format and it can be converted into HTML. Markdown is often used to style messages on forums and readme files. 
 
+\emph{Example GET:}
+
+\# Message {[}/student/\string{userid\string}/general{]}\\
+\#\# Get student general informations [GET]\\
+$+$ Response 200 (application/json)
+\begin{addmargin}[1em]{1em}
+	\string{
+		\begin{addmargin}[1em]{1em}
+			"name" : "Teszt Hallgató",\\
+			"neptun" : "Neptun",\\
+			"id" : "1"
+		\end{addmargin}
+		\string}
+\end{addmargin}
+
+This example sends the same json response for every HTTP GET request. The \emph{userid} is a wildcard parameter, the server will send the same response for every parameter. I used the parameter \emph{1} for testing.
+
+
+\emph{Example POST}:
+
+\# Message {[}/student/\string{userid\string}/setsettings{]}\\
+\#\#\# Post new settings for student {[}POST{]}\\
+\#\# Automatic response to OPTIONS requests
+
++ Request (application/json)
+\begin{addmargin}[1em]{1em}
+	+ Schema
+	\begin{addmargin}[1em]{1em}
+		\string{   "type":"object",
+			\begin{addmargin}[1em]{1em}
+				"required": {[}"notification", "mailingList"{]},\\
+				"properties" : \string{
+					\begin{addmargin}[1em]{1em}
+						"email": \string{"type":"string"\string},\\
+						"notification": \string{"type":"boolean"\string},\\
+						"mailingList": \string{"type":"boolean"\string},\\
+						"sshPublicKey": \string{"type":"string"\string},\\
+						"oldpwd": \string{"type":"string"\string},\\
+						"newpwd": \string{"type":"string"\string}
+					\end{addmargin}
+					\string}
+			\end{addmargin}
+			\string}
+	\end{addmargin}
+\end{addmargin}
+
++ Response 201 (application/json;charset=UTF-8)
+\begin{addmargin}[1em]{1em}
+	+ Body
+	\begin{addmargin}[1em]{1em}
+		\string{
+			\begin{addmargin}[1em]{1em}
+				status": "ok"
+			\end{addmargin}
+			\string}
+	\end{addmargin}
+\end{addmargin}
+
+This example sends the same json response for every HTTP POST or OPTIONS request, where the body matches the JSON Schema. Only two parameters are required, but the body cannot contain any parameter, that is not defined in the properties section.
+
 \subsubsection{Drakov}
 
 The API Blueprint~\cite{api-blueprint} team offers some tools, that implements API Blueprint specification. \emph{Drakov}~\cite{drakov} is one of these open source mock server tools. Its usage is described in \refstruc{mock-server-usage}.
+
+
+
 
 \section{The Final Specification} \label{final-spec}
 The final specification was made by me and finalized by the team \see{user-roles}.
@@ -93,9 +220,15 @@ During the specification phase I eliminated dispensable features. Although we wa
 
 For example, the first version of the specification included file uploading for the reports via the portal. This feature is dispensable, because the user can store the reports in the git repository too. I could eliminate the git repository feature and keep the file uploading feature, but the course's goal is to teach the students how to use version control, and file uploading is not a version control system. Eliminating this feature leads to less task for the user, because he does not have use two features to submit his homework.
 
+\subsection{Authentication}
+The portal will use the Sibboleth~\cite{sibboleth} for user authentication and simple login with a username and a password. Sibboleth is a solution to connect the users between applications. The BME offers this for students and university staff members to use only one account for every portal and application. The portal still has to provide another solution for users, that do not have a Sibboleth account, e.g., a user, who is not teaching, working or studying at the university.
+
 \subsection{User Roles}
 \label{user-roles}
 In the new portal there will be four different user roles: student, demonstrator, evaluator and administrator. 
+
+\subsubsection{Authorization}
+A staff member can be a demonstrator and/or evaluator and/or administrator. The portal will divide the different role's features to different pages. This gives an option to choose between the roles, e.g., the menu will contain a button for switching roles. If a user does not have access to a feature, it will not appear in the student.
 
 \subsubsection{Student Role}
 
@@ -135,7 +268,7 @@ The student can:
 
 \subsubsection{Teacher}
 
-The teacher can be a demonstrator and/or an evaluator \see{data-dictionary}. If a teacher is both a demonstrator and an evaluator, then the portal will give an option to choose between the roles, e.g., the menu will contain a button for switching roles. 
+The teacher can be a demonstrator and/or an evaluator \see{data-dictionary}. 
 
 \newparagraph{Demonstrator Role}
 

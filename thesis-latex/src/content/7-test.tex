@@ -4,69 +4,7 @@
 To test the application I used Cucumber with user stories for acceptance tests with Zombie as a headless browser and Istanbul for code coverage testing. I also used a mock server to get mock data during testing, because the back end modules are not finished yet.
 
 \section{Communication Interfaces}
-As I mentioned in \refstruc{api-blueprint}, I used the API Blueprint specification to define the communication interfaces. 
-
-\emph{Example GET:}
-
-\# Message {[}/student/\string{userid\string}/general{]}\\
-\#\# Get student general informations [GET]\\
-$+$ Response 200 (application/json)
-\begin{addmargin}[1em]{1em}
-	\string{
-	\begin{addmargin}[1em]{1em}
-		"name" : "Teszt Hallgató",\\
-		"neptun" : "Neptun",\\
-		"id" : "1"
-	\end{addmargin}
-	\string}
-\end{addmargin}
-
-This example sends the same json response for every HTTP GET request. The \emph{userid} is a wildcard parameter, the server will send the same response for every parameter. I used the parameter \emph{1} for testing.
-	
-	
-\emph{Example POST}:
-
-\# Message {[}/student/\string{userid\string}/setsettings{]}\\
-\#\#\# Post new settings for student {[}POST{]}\\
-\#\# Automatic response to OPTIONS requests
-
-+ Request (application/json)
-\begin{addmargin}[1em]{1em}
-	+ Schema
-		\begin{addmargin}[1em]{1em}
-		\string{   "type":"object",
-			\begin{addmargin}[1em]{1em}
-				"required": {[}"notification", "mailingList"{]},\\
-				"properties" : \string{
-					\begin{addmargin}[1em]{1em}
-						"email": \string{"type":"string"\string},\\
-						"notification": \string{"type":"boolean"\string},\\
-						"mailingList": \string{"type":"boolean"\string},\\
-						"sshPublicKey": \string{"type":"string"\string},\\
-						"oldpwd": \string{"type":"string"\string},\\
-						"newpwd": \string{"type":"string"\string}
-					\end{addmargin}
-				\string}
-			\end{addmargin}
-		\string}
-		\end{addmargin}
-\end{addmargin}
-
-+ Response 201 (application/json;charset=UTF-8)
-\begin{addmargin}[1em]{1em}
-	+ Body
-	\begin{addmargin}[1em]{1em}
-		\string{
-			\begin{addmargin}[1em]{1em}
-				status": "ok"
-			\end{addmargin}
-			\string}
-	\end{addmargin}
-\end{addmargin}
-	
-This example sends the same json response for every HTTP POST or OPTIONS request, where the body matches the JSON Schema. Only two parameters are required, but the body cannot contain any parameter, that is not defined in the properties section.
-
-The API blueprint files are available on Github~\cite{Github-blueprint}. Mock server usage is described in \refstruc{mock-server-usage}.
+As I mentioned in \refstruc{api-blueprint}, I used the API Blueprint specification to define the communication interfaces. The files are available on Github~\cite{Github-blueprint}. Mock server usage is described in \refstruc{mock-server-usage}.
 
 
 \section{Testing}
