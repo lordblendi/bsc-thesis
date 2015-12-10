@@ -37,9 +37,10 @@ Istanbul~\cite{istanbul} is a code coverage software tool for JavaScript. It che
 \end{itemize}
 
 \section{Automatized Tests}
-First follow the instructions in \refstruc{deployment}, then start the mock server. Use the following command to run the Cucumber tests:
+First follow the instructions in \refstruc{deployment}, then start the mock server. To run the tests, you have to use node v4.2. Use the following commands to switch to node v4.2 and to run the Cucumber tests:
 
-\monospace{npm test}
+\monospace{nvm use 4.2\\
+	npm test}
 
 I have implemented 14 scenarios and 91 steps. Use the following command to run the Cucumber tests with code coverage:
 

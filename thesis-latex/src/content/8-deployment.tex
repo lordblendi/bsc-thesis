@@ -5,6 +5,7 @@ For implementation and deployment I used Linux Mint 17.2. The commit, that is pr
 \section{Installation Steps}
 
 \newparagraph{Git Repository}
+
 First you need to clone the git repository. If you do not have git installed, use the following command:
 
 \monospace{sudo apt-get install git-all}
@@ -33,6 +34,7 @@ Output:
 	
 \newpage
 \newparagraph{Node}
+
 I use node package manager (npm) and the node version manager (nvm) to install software tools and node versions. Use the following command to install npm and nvm:
 
 \monospace{sudo apt-get install curl nodejs\\
@@ -67,11 +69,14 @@ Use the following command to check which node version is being used in the curre
 
 \monospace{node -v}
 
-\newparagraph{Gulp}\label{gulp}Gulp is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory. Gulp can be installed with the following command (npm will not work without using a node version):
+\newparagraph{Gulp}\label{gulp}
+
+Gulp is a software tool to automatize tasks. I use it to concatenate and minimize files, transform HTML-like syntax in JavaScript files and move them to another directory. Gulp can be installed with the following command (npm will not work without using a node version):
 
 \monospace{npm install gulp}
 
 \newparagraph{Dependencies}
+
 The git repository includes a \emph{package.json} file, that holds the project's metadata, like: name, version, author and dependencies. Dependencies are required to run the gulp file \see{gulp-file}.
 
 Use the following command to install the dependencies listed in package.json:
@@ -140,7 +145,6 @@ Now you have to reboot apache2:
 
 \monospace{sudo service apache2 restart}
 
-\newpage
 \section{The Gulp File}\label{gulp-file}
 The client's gulp file is added in the root directory. 
 
