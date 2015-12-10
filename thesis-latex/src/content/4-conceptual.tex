@@ -57,19 +57,19 @@ The main components are the followings:
 	\item \textbf{Client:} The communication bridge between the user and the web server. There will be three different modules: student, teacher and administrator. The users will be able to reach the client with a web browser. The users can log in with their accounts and features, e.g., getting general information, read reviews, give grades. The different client modules can only communicate with the web server, and they cannot communicate with each other. 
 	\item \textbf{Database:} A database to store the system's data permanently \see{ER-model}. 
 	\item \textbf{Git:} A database to store the students' homeworks. Every student will get a different git repository for each laboratory.
-	\item \textbf{Load Balancer:} It prevents the client from contacting the web server directly and mitigates the chance of a scalability issue \see{scalability}. 
+	\item \textbf{Load Balancer:} A component, that mitigates the chance of a scalability issue \see{scalability}. 
 	\item \textbf{Object-relational mapping:} It converts the data between the suitable representation for the implementation and the database. 
 	\item \textbf{Messaging:} A component, that supports sending messages, e.g., tasks between the different components. The web server, the task manager and the workers will use this to send tasks to each other. The Messaging component will have a message queue. In case a worker aborts, the message will be saved in the queue.
 	\item \textbf{Task Manager:} A special worker. It gets tasks from the web server to decide which worker has to process it. After the decision it forwards the task through the message bus.
 	\item \textbf{Web Server:} The server that runs the API's implementation. This component processes the incoming requests, creates tasks and forwards them to the task manager. It also provides the clients data from the databases. The API is written in Ruby on Rails. 
-	\item \textbf{Worker:} A worker processes tasks, e.g., changes the user's mailing list subscription.
+	\item \textbf{Worker:} A worker processes time-consuming tasks that takes longer and does not fit the request-response communication's time limit, e.g., changes the user's mailing list subscription.
 \end{itemize}
 
 \begin{landscape}
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[height=0.95\textwidth]{figures/atfogo_rendszerterv_teljes.pdf}
-		\caption[Conceptional System Design]{Conceptional System Design}
+		\caption[Conceptual System Design]{Conceptual System Design}
 		\label{fig:conceptional-system-design}
 	\end{figure}
 \end{landscape}
