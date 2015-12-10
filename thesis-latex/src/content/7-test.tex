@@ -5,11 +5,10 @@ To test the application I used Cucumber with user stories for acceptance tests w
 
 Due the simpleness of the implemented methods, e.g., getters to provide data from the model through the controller to the view, or setters to store the downloaded data in the model, I did not create unit tests.
 
-\section{Testing}
-\subsection{Acceptance Tests}
+\section{Acceptance Tests}
 An acceptance test validates that this is the software or feature the customer wanted. I wrote user stories \see{spec-user-story} for the features I wanted to test based on the user stories I wrote during the specification phase~\cite{szofttech}.
 
-\subsubsection{Cucumber}
+\subsection{Cucumber}
 \label{cucumber-test}
 
 I used Cucumber \see{spec-cucumber} to implement acceptance tests. I used the instructions on the Cucumber website to start the implementation~\cite{github-cucumberjs}. A Cucumber test requires the following files:
@@ -20,15 +19,15 @@ I used Cucumber \see{spec-cucumber} to implement acceptance tests. I used the in
 	\item \textbf{Step Definitions:} These are the implemented feature steps. I generated the functions with a JetBrains plugin~\cite{jetbrains-cucumber} and implemented the logic for every step. 
 \end{itemize}
 
-\subsubsection{Zombie}
+\subsection{Zombie}
 I wanted to use a browser to test the client's JavaScript code. My first choice was Selenium~\cite{selenium} with a Google Chrome browser, but the tests were slow. To solve this issue I have decided to use a browser without a user interface. I chose Zombie, because it was recommended on the Cucumber website.
 
 Zombie~\cite{zombie} is lightweight framework, that implements a browser without a user interface. It also supports assertions, that makes it possible to text field comparison and HTML element existence testing easier, and pipelines to log the outgoing requests from the Zombie browser. 
 
-\subsection{Code Coverage Tests}
+\section{Code Coverage Tests}
 A coverage test measures which functions, statements, lines were executed~\cite{szofttech}. I tested which user story step definitions were executed, and how many times were they executed, because some scenarios had similar steps, e.g., the 8 different of filling the password fields on the settings page.
 
-\subsubsection{Istanbul}
+\subsection{Istanbul}
 Istanbul~\cite{istanbul} is a code coverage software tool for JavaScript. It checks coverage for:
 
 \begin{itemize}
@@ -37,7 +36,7 @@ Istanbul~\cite{istanbul} is a code coverage software tool for JavaScript. It che
 	\item \emph{Branch:} Number of branches, that have been executed.
 \end{itemize}
 
-\subsection{Automatized Tests}
+\section{Automatized Tests}
 First follow the instructions in \refstruc{deployment}, then start the mock server. Use the following command to run the Cucumber tests:
 
 \monospace{npm test}
@@ -68,7 +67,7 @@ Because I cannot test features, that needs to change the database, without a rea
 
 In this phase the client has a save button on the settings page. As a future improvement in the next version, I will set the save mechanism to the fields on change events. Because of this the server only requires two parameters in the HTTP request's body: mailing list subscription and notification subscription. These parameters will always have a valid value, because the check box fields return a boolean value, either true or false.
 
-\subsubsection{Test Results}
+\section{Test Results}
 In behavior-driven development the developer implements first the tests, that fail. Then the developer implements the missing features, until all the tests for that feature passes. After running the tests, all scenarios and steps passed. This means that all the features, that are prescribed in the functional specification were implemented and tested. The coverage summary for the test Javascript files are almost 100\%. The branch summery is only 55 \%, because the lines, that contain a command to send an error did not run.
 
 \begin{figure}[!ht]
