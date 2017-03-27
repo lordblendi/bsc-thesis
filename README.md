@@ -4,6 +4,8 @@ This is the repository of my Bachelor's thesis work at the Budapest University o
 
 [The source code of the project is also open source.](https://github.com/lordblendi/student)
 
+[PDF output](https://github.com/lordblendi/bsc-thesis/blob/master/diploma.pdf)
+
 ## Abstract
 
 The Software Laboratory 5 course besides holding classes also requires administration tasks to be carried out for hundreds of students. The completion of these tasks can be disburdened with an administration portal. The course has a portal, but that is out-of-date because of the technological improvements and the users' new requirements.
