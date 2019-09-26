@@ -23,3 +23,7 @@ The conceptual system design is based on the Design by Contract methodology. I d
 I implemented the student client in Mithril and Bootstrap 3. The graphic style in the MVC pattern's View is served by Bootstrap 3. For improved maintenance and easier implementation I divided the code into smaller parts within the modules, and automatized the build task with gulp.
 
 An important part of my work was to test the implemented components. For this I created acceptance tests and code coverage test based on the specification. The tests were implemented in and run by the Cucumber, the Zombie and the Istanbul frameworks. The results confirmed that the design and the implementation were satisfactory.
+
+## Template
+
+I've used the [FTSRG thesis template](https://github.com/FTSRG/thesis-template-latex).
